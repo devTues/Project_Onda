@@ -66,7 +66,7 @@ public class MemberDAO {
 				num= rs.getInt("cus_num")+1;
 			}
 			Connection con=getConnection();
-			String sql="insert into customer(cus_num,cus_id,cus_pass,cus_name,cus_phone,cus_email,cus_birth) values(?,?,?,?,?,?,?)";
+			String sql="insert into customer(cus_num,cus_id,cus_pass,cus_name,cus_phone,cus_email) values(?,?,?,?,?,?)";
 			PreparedStatement pstmt=con.prepareStatement(sql);
 			
 			pstmt.setInt(1, num);
@@ -75,7 +75,6 @@ public class MemberDAO {
 			pstmt.setString(4, dto.getCus_name());
 			pstmt.setString(5, dto.getCus_phone());
 			pstmt.setString(6, dto.getCus_email());
-			pstmt.setString(7, dto.getCus_birth());
 			
 			pstmt.executeUpdate(); //sql insert,update,delete 때 사용
 			
@@ -103,7 +102,7 @@ public class MemberDAO {
 			
 			pstmt.setInt(1, num);
 			pstmt.setString(2, dto.getCus_id());
-			pstmt.setString(3, dto.getCus_id());
+			pstmt.setString(3, dto.getCus_email());
 			pstmt.setString(4, dto.getCus_name());
 			pstmt.setString(5, dto.getCus_email());
 			
@@ -155,7 +154,6 @@ public class MemberDAO {
 				dto.setCus_name(rs.getString("cus_name"));
 				dto.setCus_phone(rs.getString("cus_phone"));
 				dto.setCus_email(rs.getString("cus_email"));
-				dto.setCus_birth(rs.getString("cus_birth"));
 				
 			} else {}
 		} catch (Exception e) {e.printStackTrace();} finally {close();}
@@ -167,13 +165,12 @@ public class MemberDAO {
 		
 		try {
 			con=getConnection();
-			String sql="update customer set cus_name=?,cus_phone=?,cus_email=?,cus_birth=? where cus_id=?";
+			String sql="update customer set cus_name=?,cus_phone=?,cus_email=? where cus_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, dtoUpdate.getCus_name());
 			pstmt.setString(2, dtoUpdate.getCus_phone());
 			pstmt.setString(3, dtoUpdate.getCus_email());
-			pstmt.setString(4, dtoUpdate.getCus_birth());
-			pstmt.setString(5, dtoUpdate.getCus_id());
+			pstmt.setString(4, dtoUpdate.getCus_id());
 			
 			pstmt.executeUpdate();
 			

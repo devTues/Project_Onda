@@ -21,7 +21,7 @@
 	아이디 : <input type="text" name="id" value="<%=id %>" readonly><br>
 	비밀번호: <input type="password" name="pass"><br>
 	<input type="submit" value="탈퇴하기"><br>
-	<font color="#0000FF">※ 카카오 간편가입 회원은 아이디, 비밀번호가 동일합니다.</font>
+	<font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 이메일과 동일합니다.</font>
 </form>
 </div>
 

@@ -30,7 +30,7 @@ function kakaoInsert() {
 //                 	alert(res.kakao_account.email)
 					alert('회원가입 성공! 메인페이지에서 로그인해주세요')
                     kakaojoin.id.value=res.id;
-                	kakaojoin.pass.value=res.id;
+                	kakaojoin.pass.value=res.kakao_account.email;
                 	kakaojoin.name.value=res.properties.nickname;
                 	kakaojoin.email.value=res.kakao_account.email;
 					kakaojoin.submit()
@@ -73,7 +73,7 @@ function kakaoInsert() {
 	* 이름 : <input type="text" name="name" placeholder="이름을(를) 입력하세요"> <br>
 	* 이메일 : <input type="email" name="email"><br>
 	* 휴대폰 번호 : <input type="text" name="phone" placeholder="ex) 01012345678"><br>
-	* 생년월일 : <input type="text" name="birth" placeholder="ex) 19990117"><br>
+
 </form>
 </fieldset>
 <input type="reset" value="Cancel"><input type="submit" value="Submit"><br>
