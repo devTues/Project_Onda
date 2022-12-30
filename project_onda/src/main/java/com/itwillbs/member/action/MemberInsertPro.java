@@ -21,7 +21,6 @@ public class MemberInsertPro implements Action {
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		String birth = request.getParameter("birth");
 		
 		// package member, 파일이름 MemberDTO
 		MemberDTO dto = new MemberDTO();
@@ -31,7 +30,6 @@ public class MemberInsertPro implements Action {
 		dto.setCus_name(name);
 		dto.setCus_phone(phone);
 		dto.setCus_email(email);
-		dto.setCus_birth(birth);
 
 		MemberDAO dao = new MemberDAO();
 		
