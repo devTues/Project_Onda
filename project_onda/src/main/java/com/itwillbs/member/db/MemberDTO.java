@@ -8,7 +8,6 @@ public class MemberDTO {
 	private String cus_name;
 	private String cus_phone;
 	private String cus_email;
-	private String cus_birth;
 	
 	public int getCus_num() {
 		return cus_num;
@@ -46,13 +45,6 @@ public class MemberDTO {
 	public void setCus_email(String cus_email) {
 		this.cus_email = cus_email;
 	}
-	public String getCus_birth() {
-		return cus_birth;
-	}
-	public void setCus_birth(String cus_birth) {
-		this.cus_birth = cus_birth;
-	}
-	
 
 	
 

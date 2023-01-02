@@ -21,8 +21,6 @@ public class MemberUpdatePro implements Action {
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		String birth = request.getParameter("birth");
-		
 
 		//MemberDAO 객체 생성
 		MemberDAO dao = new MemberDAO();
@@ -42,7 +40,6 @@ public class MemberUpdatePro implements Action {
 			dtoUpdate.setCus_name(name);
 			dtoUpdate.setCus_phone(phone);
 			dtoUpdate.setCus_email(email);
-			dtoUpdate.setCus_birth(birth);
 
 			// 리턴할형 없음 void updateMember(수정할정보) 메서드 정의
 			dao.updateMember(dtoUpdate);

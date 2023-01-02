@@ -27,10 +27,9 @@
 	이름 : <input type="text" name="name" value="<%=dto.getCus_name() %>"><br>
 	휴대폰 : <input type="text" name="phone" value="<%=dto.getCus_phone() %>"><br>
 	이메일 : <input type="text" name="email" value="<%=dto.getCus_email() %>"><br>
-	생년월일 : <input type="text" name="birth" value="<%=dto.getCus_birth() %>"><br>
 	<input type="submit" value="확인"><br>
 	
-	<font color="#0000FF">※ 카카오 간편가입 회원은 아이디, 비밀번호가 동일합니다.</font>
+	<font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 이메일과 동일합니다.</font>
 </form>
 </div>
 </body>
