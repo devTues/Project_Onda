@@ -10,8 +10,8 @@
 		<li><a href="리뷰내역링크">리뷰내역</a></li>
 		<li><a href="리뷰내역링크">포인트</a></li>
 		<li><a href="고객센터링크">고객센터</a></li>
-		<li><a href="./MemberUpdateForm.me">정보수정</a></li>
-		<li><a href="./MemberDeleteForm.me">회원탈퇴</a></li>
+		<li><a href="./CustomerUpdateForm.cu">정보수정</a></li>
+		<li><a href="./CustomerDeleteForm.cu">회원탈퇴</a></li>
 	</ul>
 	</nav>
 </header>
