@@ -6,24 +6,24 @@
 <meta charset="UTF-8">
 <title>member/agree.jsp</title>
 <link href="./css/menu.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
+<!-- <script type="text/javascript"> -->
 
-// 개인정보동의 체크박스
-function fun1() {
-	if(document.fr.ch[0].checked==false || document.fr.ch[1].checked==false) {
-		alert("이용약관 및 개인정보 처리방침에 동의하셔야 가입이 가능합니다.");
-		return;
-	}
-	document.fr.submit();
-}
-</script>
+<!-- // 개인정보동의 체크박스 -->
+<!-- function fun1() { -->
+<!-- 	if(document.fr.ch[0].checked==false || document.fr.ch[1].checked==false) { -->
+<!-- 		alert("이용약관 및 개인정보 처리방침에 동의하셔야 가입이 가능합니다."); -->
+<!-- 		return; -->
+<!-- 	} -->
+<!-- 	document.fr.submit(); -->
+<!-- } -->
+<!-- </script> -->
 
 </head>
 <body>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
-<form action="./CustomerJoinForm.cu" method="post" name="fr">
-<h1>약관동의</h1>
-<input type="checkbox" name="ch" value="이용약관">이용약관 동의(필수)<br><br>
+<!-- <form action="./CustomerJoinForm.cu" method="post" name="fr"> -->
+<h2>이용약관</h2>
+<!-- <input type="checkbox" name="ch" value="이용약관">이용약관 동의(필수)<br><br> -->
 <div tabindex="0" class="" style="height: 100px; border:1px solid #dfe0df; margin-top: -5px; border-radius: 4px; padding: 12px 14px; overflow-y: auto; background:#fff; color:#000;">
 						제1조 목적<br>
 <br>
@@ -146,8 +146,9 @@ function fun1() {
 <br>
 부칙<br>
 <br>
-이 약관은 &lt;사이트 개설일&gt; 부터 시행합니다.					</div><br>
-<input type="checkbox" name="ch" value="개인정보수집">개인정보 수집 및 이용 동의(필수)<br><br>
+이 약관은 &lt;사이트 개설일&gt; 부터 시행합니다.</div><br>
+<!-- <input type="checkbox" name="ch" value="개인정보수집">개인정보 수집 및 이용 동의(필수)<br><br> -->
+<h2>개인정보수집 및 이용</h2>
 <div tabindex="0" class="" style="height: 100px; border:1px solid #dfe0df; margin-top: -5px; border-radius: 4px; padding: 12px 14px; overflow-y: auto; background:#fff; color:#000;">
 						<strong>1. 개인정보 수집목적 및 이용목적</strong><br>
 <br>
@@ -165,8 +166,8 @@ ID, 성명, 비밀번호, 주소, 휴대폰 번호, 이메일, 14세 미만 가�
 <br>
 <strong>3. 개인정보 보유 및 이용기간</strong><br>
 <strong>회원탈퇴 시까지</strong> (단, 관계 법령에 보존 근거가 있는 경우 해당 기간 시까지 보유, 개인정보처리방침에서 확인 가능)					</div><br>
-</form> 
-<input type="submit" value="가입하기" onclick="fun1()"><br>
+<!-- </form>  -->
+<!-- <input type="submit" value="가입하기" onclick="fun1()"><br> -->
 
 
 </body>

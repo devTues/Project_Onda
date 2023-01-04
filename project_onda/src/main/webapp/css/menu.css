@@ -13,7 +13,7 @@
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--color-white);
-	height: 100px;
+	height: 80x;
 } 
 
 .navbar a{
@@ -23,13 +23,13 @@
 
 .logo_area{
 /* 	 margin: 35px; */
-  margin-right: 40px;
+   margin-right: 70px;
 /*     padding-left: 20px; */
 }
 
 .logo_area a{
 	font-size: 25px;
-  font-family: var(--font-eng);
+    font-family: sans-serif;
 }
 
 .menu_area_ul{
@@ -39,11 +39,12 @@
 }
 
 .menu_area_ul li{
-  padding: 8px 45px;
+  padding: 8px 30px;
 }
 
 .menu_area_ul li a {
   font-size: 18px;
+  font-family: sans-serif;
 }
 
 .menu_area_ul li a:hover{
@@ -51,7 +52,7 @@
 }
 
 .login_area{
-  margin-right: 40px;
+  margin-right: 10px;
 }
 
 .login_area_ul{
@@ -67,20 +68,9 @@
 
 .login_area_ul li a{
   font-size: 15px;
+  font-family: sans-serif;
 }
 
 .login_area_ul li a:hover{
   color: var(--color-gray-300);
 }
-
-
-/* 연습용 */
-/* li:first-child {cursor: pointer;} */
-/* input[id="change"], li:nth-of-type(2) {display: none;} */
-/* #change:checked ~ li > a { */
-/* 	display:none; */
-/* } */
-/* #change:checked ~ li .b { */
-/* 	display:block; */
-/* } */
-

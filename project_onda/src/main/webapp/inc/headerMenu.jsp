@@ -7,7 +7,7 @@
    <nav class="navbar">
       <!-- 로고 영역 시작 -->
       <div class="logo_area"> <!-- 로고이미지 누르면 메인페이지 이동 -->
-        <a href="" >CAFE ONDA</a>
+        <a href="./MainPage.cu" >CAFE ONDA</a>
       </div>
       <!-- 로고 영역 끝 -->
       
@@ -29,8 +29,7 @@
       if(id == null) { // 세션값이 없을 경우 보여질 메뉴
     	  %><div class="login_area">
           <ul class="login_area_ul">
-            <li><a href="./CustomerLoginForm.cu">LOGIN</a></li>
-            <li><a href="./CustomerAgree.cu">JOIN</a></li>
+            <li><a href="./CustomerLoginForm.cu">MemberShip</a></li>
             <li><a href="">CART</a></li>
           </ul>
           </div>

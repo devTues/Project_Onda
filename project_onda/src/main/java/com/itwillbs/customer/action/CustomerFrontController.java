@@ -25,14 +25,19 @@ public class CustomerFrontController extends HttpServlet {
 		ActionForward forward=null;
 		Action action=null;
 		
-		if(strpath.equals("/CustomerAgree.cu")) {
+		if(strpath.equals("/MainPage.cu")) {
+			forward = new ActionForward();
+			forward.setPath("./customer/mainpage.jsp");
+			forward.setRedirect(false);
+		
+		} else if(strpath.equals("/CustomerAgree.cu")) {
 			forward = new ActionForward();
 			forward.setPath("./customer/agree.jsp");
 			forward.setRedirect(false);
 		
 		} else if(strpath.equals("/CustomerJoinForm.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/joinForm.jsp");
+			forward.setPath("./customer/loginTest.jsp");
 			forward.setRedirect(false);
 			
 		} else if(strpath.equals("/CustomerIdCheck.cu")) {
@@ -55,12 +60,17 @@ public class CustomerFrontController extends HttpServlet {
 						
 		} else if(strpath.equals("/CustomerLoginForm.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/loginForm.jsp");
+			forward.setPath("./customer/loginTest.jsp");
 			forward.setRedirect(false);
 		
 		} else if(strpath.equals("/CustomerLoginPro.cu")) {
 			action=new CustomerLoginPro();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+		
+		} else if(strpath.equals("/CustomerFindIdPw.cu")) {
+			forward = new ActionForward();
+			forward.setPath("./customer/findidpw.jsp");
+			forward.setRedirect(false);	
 		
 		} else if(strpath.equals("/CustomerFindId.cu")) {
 			forward = new ActionForward();
