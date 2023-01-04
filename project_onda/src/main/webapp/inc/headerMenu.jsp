@@ -29,8 +29,8 @@
       if(id == null) { // 세션값이 없을 경우 보여질 메뉴
     	  %><div class="login_area">
           <ul class="login_area_ul">
-            <li><a href="./MemberLoginForm.me">LOGIN</a></li>
-            <li><a href="./MemberAgree.me">JOIN</a></li>
+            <li><a href="./CustomerLoginForm.cu">LOGIN</a></li>
+            <li><a href="./CustomerAgree.cu">JOIN</a></li>
             <li><a href="">CART</a></li>
           </ul>
           </div>
@@ -38,9 +38,9 @@
       } else { // 세션값이 있을 경우 보여질 메뉴
     	  %><div class="login_area">
           <ul class="login_area_ul">
-            <li><a href="./MemberMain.me">MY</a></li>
+            <li><a href="./CustomerMain.cu">MY</a></li>
             <li><a href="">CART</a></li>
-            <li><a href="./MemberLogout.me">LOGOUT</a></li>
+            <li><a href="./CustomerLogout.cu">LOGOUT</a></li>
           </ul>
           </div>
           <%

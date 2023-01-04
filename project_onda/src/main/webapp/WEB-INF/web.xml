@@ -10,12 +10,12 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>MemberFrontController</servlet-name>
-    <servlet-class>com.itwillbs.member.action.MemberFrontController</servlet-class>
+    <servlet-name>CustomerFrontController</servlet-name>
+    <servlet-class>com.itwillbs.customer.action.CustomerFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MemberFrontController</servlet-name>
-    <url-pattern>*.me</url-pattern>
+    <servlet-name>CustomerFrontController</servlet-name>
+    <url-pattern>*.cu</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>BoardFrontController</servlet-name>
