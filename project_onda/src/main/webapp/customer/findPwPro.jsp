@@ -29,7 +29,7 @@ String pass = (String)request.getAttribute("pass");
                  </div>
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
-                            <h1 >Find Password</h1>
+                            <h2>비밀번호 찾기</h2>
                         </div>
                     </div>
                     <form action="./CustomerLoginForm.cu" method="post">

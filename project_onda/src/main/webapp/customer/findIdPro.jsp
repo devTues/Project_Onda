@@ -29,7 +29,7 @@ String id = (String)request.getAttribute("id");
                  </div>
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
-                            <h1 >Find ID</h1>
+                            <h2>아이디 찾기</h2>
                         </div>
                     </div>
                     <form action="./CustomerLoginForm.cu" method="post">

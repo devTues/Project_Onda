@@ -36,7 +36,7 @@ public class CustomerDeletePro implements Action {
 			session.invalidate();
 			// main.jsp 이동
 			ActionForward forward=new ActionForward();
-			forward.setPath("./CustomerMain.me");
+			forward.setPath("./MainPage.cu");
 			forward.setRedirect(true);
 			return forward;
 			

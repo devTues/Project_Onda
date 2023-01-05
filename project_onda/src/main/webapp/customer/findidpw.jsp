@@ -26,7 +26,7 @@
 	                        </div>
                             <div class="logo mb-3">
                                 <div class="col-md-12 text-center">
-                                    <h1 >Find ID</h1>
+                                    <h2>아이디 찾기</h2>
                                 </div>
                             </div>
                             <form action="./CustomerFindIdPro.cu" method="post" name="findidForm">
@@ -56,7 +56,7 @@
 	                        </div>
                             <div class="logo mb-3">
                                 <div class="col-md-12 text-center">
-                                    <h1 >Find Password</h1>
+                                    <h2>비밀번호 찾기</h2>
                                 </div>
                             </div>
                             <form action="./CustomerFindPwPro.cu" method="post" name="findpwForm">

@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login & Registration Bootstrap 4 Form Template</title>
+    <title>login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery-validate/1.19.1/jquery.validate.js"></script>
+    <link href="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <link href="https://cdn.tutorialjinni.com/font-awesome/5.12.0/css/all.css" rel="stylesheet">
     <link href="./css/login.css" rel="stylesheet" type="text/css">
 </head>
@@ -24,14 +25,16 @@
                         <div class="close">
                             <a href="./MainPage.cu">X</a>
                         </div>
+                        <!-- 창닫기 -> 메인으로 이동 끝 -->
                             <div class="logo mb-3">
                                 <div class="col-md-12 text-center">
-                                    <h1>Login</h1>
+                                    <h2>로그인</h2>
                                 </div>
                             </div>
+                            
                             <form action="./CustomerLoginPro.cu" method="post" name="login">
                                 <div class="form-group">
-                                    <input type="text" name="id" class="form-control" id="id" aria-describedby="emailHelp" placeholder="아이디">
+                                    <input type="text" name="id" class="form-control" id="loginid" aria-describedby="emailHelp" placeholder="아이디">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="pass" id="pass" class="form-control" aria-describedby="emailHelp" placeholder="비밀번호">
@@ -40,8 +43,12 @@
                                 <div class="col-md-12 mb-3">
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">로그인</button>
                                 </div>
-                               
-
+                            </form>   
+                            
+                            <!-- 카카오 회원 로그인 시작 -->
+							<form action="./CustomerLoginPro.cu" method="post" name="kakaologin">
+							     <input type="hidden" name="id">
+							     <input type="hidden" name="pass">
                                 <div class="col-md-12 mb-3">
                                    <p class="text-center">
                                        <a href="javascript:kakaoLogin();" class="kakao btn mybtn"><i class="fa fa-google-plus">
@@ -49,15 +56,16 @@
                                        </a>
                                    </p>
                                 </div>  
-                                <div class="col-md-12 mb-3">
+                            </form>
+                            <!-- 카카오 회원 로그인 끝 -->
+                            
+                            	<div class="col-md-12 mb-3">
                                   <p class="text-center">
                                     <a href="#" id="signup">회원가입</a>
                                     |
                                     <a href="./CustomerFindIdPw.cu" target='_blank' id="findidpw">아이디 · 비밀번호 찾기</a>
                                   </p>
                                 </div>
-                            </form>
-                            
                              
                         </div>
                     </div>
@@ -69,15 +77,16 @@
 	                        </div>
                             <div class="logo mb-3">
                                 <div class="col-md-12 text-center">
-                                    <h1 >Sign up</h1>
+                                    <h2>회원가입</h2>
                                 </div>
                             </div>
-                            <form action="./CustomerJoinPro.cu" method="post" name="registration" onsubmit="return valid()">
+                            <form action="./CustomerJoinPro.cu" method="post" name="registration">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">아이디</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="text"  name="id" class="form-control" id="firstname" placeholder="아이디">
+                                    <input type="text"  name="id" class="form-control" id="joinid" placeholder="아이디">
                                 </div>
+<!-- 								<div class="dupdiv"></div> -->
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">비밀번호</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
@@ -109,13 +118,6 @@
                                 <div class="col-md-12 text-center mb-3">
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">가입하기</button>
                                 </div>
-                                
-                                
-                                <div class="col-md-12 ">
-                                    <div class="form-group">
-                                        <p class="text-center"><a href="#" id="signin">기존 회원 로그인</a></p>
-                                    </div>
-                                </div>
                         	</form>
                         	
                        	    <form action="./KakaoJoin.cu" name="kakaojoin" method="post">
@@ -127,7 +129,13 @@
                                    <a href="javascript:kakaoJoin();" class="kakao btn mybtn"><i class="fa fa-google-plus">
                                      </i> 카카오 간편회원가입
                                    </a>
-                               </div>     
+                               </div> 
+                               
+                               <div class="col-md-12 ">
+                                    <div class="form-group">
+                                        <p class="text-center"><a href="#" id="signin">기존 회원 로그인</a></p>
+                                    </div>
+                                </div>
 							</form>
                         	
                         </div>
@@ -136,18 +144,19 @@
             </div>
         </div>   
         <script>
-            $("#signup").click(function () {
+        	// 로그인, 회원가입 제어
+            $("#signup").click(function() {
                 $("#first").fadeOut("fast", function () {
                     $("#second").fadeIn("fast");
                 });
             });
-            $("#signin").click(function () {
+            $("#signin").click(function() {
                 $("#second").fadeOut("fast", function () {
                     $("#first").fadeIn("fast");
                 });
             });
             
-            $(function () {
+            $(function() {
                 $("form[name='login']").validate({
                     rules: {
                         id: {
@@ -168,7 +177,7 @@
                     }
                 });
             });
-            $(function () {
+            $(function() {
                 $("form[name='registration']").validate({
                     rules: {
                     	id: {
@@ -225,8 +234,33 @@
                 });
             });
             
-         // 카카오 회원가입
+            // 아이디 중복체크
+			$('#joinid').on("keyup", function() {
+				$.ajax({
+					url:'./CustomerIdCheck.cu',
+					data: {'joinid':$('.joinid').val()},
+					success: function(rdata) {
+						$('.dupdiv').html("아이디 중복입니다").css("color", "red");
+					}
+				});
+				
+			});
+			
+			// id="join"
+			$('#join').submit(function() {
+	// 			alert("회원가입");
+				// class="id"
+				if($('.id').val() == ""){
+					alert("아이디 입력하세요");
+					$('.id').focus();
+					return false;
+				}
+			});
+            
+            
+            // 카카오 회원가입
             window.Kakao.init('46649a5dcd99d3819c79c2f83892ddb9');
+            
             function kakaoJoin() {
             	Kakao.Auth.login({
             		scope:'account_email',
@@ -234,9 +268,6 @@
                         Kakao.API.request({
                             url: '/v2/user/me',
                             success: (res) => {
-//                             	alert(res.id)
-//                             	alert(res.properties.nickname)
-//                             	alert(res.kakao_account.email)
             					alert('회원가입 성공! 메인페이지에서 로그인해주세요')
                                 kakaojoin.id.value=res.id;
                             	kakaojoin.pass.value=res.kakao_account.email;
@@ -244,7 +275,29 @@
                             	kakaojoin.email.value=res.kakao_account.email;
             					kakaojoin.submit()
                             },
-            				
+                            fail: function (error) {
+                                console.log(error);
+                            },
+                        })
+                    },
+                    fail: function (error) {
+                        console.log(error);
+                    },
+                })
+            }
+            
+            // 카카오 로그인
+            function kakaoLogin() {
+            	Kakao.Auth.login({
+            		scope:'account_email',
+                    success: function (response) {
+                        Kakao.API.request({
+                            url: '/v2/user/me',
+                            success: (res) => {
+                                kakaologin.id.value=res.id;
+                                kakaologin.pass.value=res.kakao_account.email;
+            					kakaologin.submit()
+                            },
                             fail: function (error) {
                                 console.log(error);
                             },
