@@ -47,7 +47,7 @@ public class CustomerUpdatePro implements Action {
 			
 			//MemberMain.me 이동
 			ActionForward forward=new ActionForward();
-			forward.setPath("./CustomerMain.cu");
+			forward.setPath("./CustomerMypage.cu");
 			forward.setRedirect(true);
 			return forward;
 			

@@ -70,7 +70,6 @@ function log() {
      <input type="hidden" name="id">
      <input type="hidden" name="pass">
      <a href="javascript:kakaoLogin();"><img src="https://developers.kakao.com/tool/resource/static/img/button/login/full/ko/kakao_login_medium_narrow.png"></a>
-     
 </form>
 
 </body>

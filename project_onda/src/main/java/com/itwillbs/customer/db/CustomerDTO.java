@@ -2,19 +2,12 @@ package com.itwillbs.customer.db;
 
 public class CustomerDTO {
 	
-	private int cus_num;
 	private String cus_id;
 	private String cus_pass;
 	private String cus_name;
 	private String cus_phone;
 	private String cus_email;
 	
-	public int getCus_num() {
-		return cus_num;
-	}
-	public void setCus_num(int cus_num) {
-		this.cus_num = cus_num;
-	}
 	public String getCus_id() {
 		return cus_id;
 	}

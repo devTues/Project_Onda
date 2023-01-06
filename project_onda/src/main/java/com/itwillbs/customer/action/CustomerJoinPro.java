@@ -17,7 +17,7 @@ public class CustomerJoinPro implements Action {
 		// 폼에 입력한 데이터 => 서버request 저장
 		// id pass name 변수 파라미터값 가져와서 저장
 		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
+		String pass = request.getParameter("pass1");
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");

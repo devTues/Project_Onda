@@ -16,7 +16,7 @@ public class CustomerLogout implements Action {
 		
 		// ./MemberMain.me 이동
 		ActionForward forward=new ActionForward();
-		forward.setPath("./CustomerMain.cu");
+		forward.setPath("./MainPage.cu");
 		forward.setRedirect(true);
 		
 		return forward;

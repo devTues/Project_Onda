@@ -37,7 +37,7 @@
       } else { // 세션값이 있을 경우 보여질 메뉴
     	  %><div class="login_area">
           <ul class="login_area_ul">
-            <li><a href="./CustomerMain.cu">MY</a></li>
+            <li><a href="./CustomerMypage.cu">MY</a></li>
             <li><a href="">CART</a></li>
             <li><a href="./CustomerLogout.cu">LOGOUT</a></li>
           </ul>

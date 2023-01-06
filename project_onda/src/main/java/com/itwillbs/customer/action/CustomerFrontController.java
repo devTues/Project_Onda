@@ -41,14 +41,12 @@ public class CustomerFrontController extends HttpServlet {
 			forward.setRedirect(false);
 			
 		} else if(strpath.equals("/CustomerIdCheck.cu")) {
-			forward = new ActionForward();
-			forward.setPath("./customer/idCheck.jsp");
-			forward.setRedirect(false);	
+			action=new CustomerIdCheck();
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
-		}  else if(strpath.equals("/CustomerPhoneCheck.cu")) {
-			forward = new ActionForward();
-			forward.setPath("./customer/phoneCheck.jsp");
-			forward.setRedirect(false);	
+		} else if(strpath.equals("/CustomerPhoneCheck.cu")) {
+			action=new CustomerPhoneCheck();
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/CustomerJoinPro.cu")) {
 			action=new CustomerJoinPro();
@@ -72,27 +70,17 @@ public class CustomerFrontController extends HttpServlet {
 			forward.setPath("./customer/findidpw.jsp");
 			forward.setRedirect(false);	
 		
-		} else if(strpath.equals("/CustomerFindId.cu")) {
-			forward = new ActionForward();
-			forward.setPath("./customer/findIdForm.jsp");
-			forward.setRedirect(false);
-			
 		} else if(strpath.equals("/CustomerFindIdPro.cu")) {
 			action = new CustomerFindIdPro();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
-			
-		} else if(strpath.equals("/CustomerFindPw.cu")) {
-			forward = new ActionForward();
-			forward.setPath("./customer/findPwForm.jsp");
-			forward.setRedirect(false);
 			
 		} else if(strpath.equals("/CustomerFindPwPro.cu")) {
 			action = new CustomerFindPwPro();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
-		} else if(strpath.equals("/CustomerMain.cu")) {
+		} else if(strpath.equals("/CustomerMypage.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/main.jsp");
+			forward.setPath("./customer/mypage.jsp");
 			forward.setRedirect(false);
 			
 		} else if(strpath.equals("/CustomerLogout.cu")) {
