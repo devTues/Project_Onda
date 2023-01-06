@@ -32,44 +32,23 @@ public class CustomerDAO {
 		if(rs!=null)try{rs.close();} catch(SQLException e) {}
 	} // close 메서드
 	
-	// 아이디 중복 확인 idCheck
-	public int idCheck(String id){
-		int result = 1;
+   // 전화번호 중복 확인
+	public CustomerDTO phoneCheck(String phone) {
+		CustomerDTO dto=null;
+		
 		try {
-			con= getConnection();
-			String sql = "select * from customer where cus_id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			
+			con=getConnection();
+			String sql="select * from customer where cus_phone=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, phone);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
-				return 0;  // 이미 존재하는 경우, 생성 불가능
-			} 
-
+				dto=new CustomerDTO();
+			} else {}
 		} catch (Exception e) {e.printStackTrace();} finally {close();}
-		
-		return result;
-	}// idCheck
-	
-   // 전화번호 중복 확인
-   public int phoneCheck(String phone) {
-	   int result = -1;
-		try {
-			con= getConnection();
-			String sql = "select cus_phone from customer where cus_phone=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, phone);
-			
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()){result = 0;} 
-			else{result = 1;}
-
-		} catch (Exception e) {e.printStackTrace();} finally {close();}
-		
-		return result;
-   }
+		return dto;
+	} // 전화번호 중복 확인
 		
 	// insertMember 메서드
 	public void insertCustomer(CustomerDTO dto) {

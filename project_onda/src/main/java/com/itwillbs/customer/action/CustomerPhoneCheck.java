@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.customer.db.CustomerDAO;
 import com.itwillbs.customer.db.CustomerDTO;
 
-public class CustomerIdCheck implements Action {
+public class CustomerPhoneCheck implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String id = request.getParameter("id");
+		String phone = request.getParameter("phone");
 		// DB를 조회할 MyBatis
 		CustomerDAO dao = new CustomerDAO();
-		CustomerDTO dto = dao.getCustomer(id);
+		CustomerDTO dto = dao.phoneCheck(phone);
 		
 		String result="";
 		

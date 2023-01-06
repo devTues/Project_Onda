@@ -84,9 +84,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">아이디</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="text"  name="id" class="form-control" id="joinid" placeholder="아이디">
+                                    <input type="text"  name="id" class="form-control" id="id" placeholder="아이디">
                                 </div>
-<!-- 								<div class="dupdiv"></div> -->
+								<div class="dupdiv"></div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">비밀번호</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
@@ -160,10 +160,10 @@
                 $("form[name='login']").validate({
                     rules: {
                         id: {
-                            required: true,
+                            required: true
                         },
                         pass: {
-                            required: true,
+                            required: true
                         }
                     },
                     messages: {
@@ -182,7 +182,16 @@
                     rules: {
                     	id: {
                     		required: true,
-                    		rangelength:[4,30]
+                    		rangelength:[4,30],
+                			remote: {
+                				url: "./CustomerIdCheck.cu",
+                				type: "post",
+                				data: {
+                					id: function() {
+                						return $("#id").val();
+                					}
+                				}
+                			}
                     	},
                     	pass1: {
                             required: true,
@@ -194,7 +203,16 @@
                         name: "required",
                         phone: {
                         	required: true,
-                        	digits:true
+                        	digits:true,
+                        	remote: {
+                				url: "./CustomerPhoneCheck.cu",
+                				type: "post",
+                				data: {
+                					phone: function() {
+                						return $("#phone").val();
+                					}
+                				}
+                			}
                         },
                         email: {
                             required: true,
@@ -206,7 +224,8 @@
                     messages: {
                     	id: {
                             required: "아이디를 입력하세요",
-                            rangelength: "아이디는 4-30자 사이 영문,숫자만 허용합니다"
+                            rangelength: "아이디는 4-30자 사이 영문,숫자만 허용합니다",
+                            remote: "중복된 아이디입니다"
                         },
                         
                         pass1: {
@@ -219,7 +238,8 @@
                         name: "이름을 입력하세요",
                         phone: {
                         	required: "휴대폰 번호를 입력하세요",
-                        	digits: "' - ' 제외 숫자만 입력하세요"
+                        	digits: "' - ' 제외 숫자만 입력하세요",
+                        	remote: "중복된 휴대폰 번호입니다"
                         },
                         email: {
                         	required: "이메일을 입력하세요",
@@ -235,28 +255,7 @@
             });
             
             // 아이디 중복체크
-			$('#joinid').on("keyup", function() {
-				$.ajax({
-					url:'./CustomerIdCheck.cu',
-					data: {'joinid':$('.joinid').val()},
-					success: function(rdata) {
-						$('.dupdiv').html("아이디 중복입니다").css("color", "red");
-					}
-				});
-				
-			});
-			
-			// id="join"
-			$('#join').submit(function() {
-	// 			alert("회원가입");
-				// class="id"
-				if($('.id').val() == ""){
-					alert("아이디 입력하세요");
-					$('.id').focus();
-					return false;
-				}
-			});
-            
+						
             
             // 카카오 회원가입
             window.Kakao.init('46649a5dcd99d3819c79c2f83892ddb9');

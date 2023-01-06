@@ -43,12 +43,10 @@ public class CustomerFrontController extends HttpServlet {
 		} else if(strpath.equals("/CustomerIdCheck.cu")) {
 			action=new CustomerIdCheck();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
-		
 			
-		}  else if(strpath.equals("/CustomerPhoneCheck.cu")) {
-			forward = new ActionForward();
-			forward.setPath("./customer/phoneCheck.jsp");
-			forward.setRedirect(false);	
+		} else if(strpath.equals("/CustomerPhoneCheck.cu")) {
+			action=new CustomerPhoneCheck();
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/CustomerJoinPro.cu")) {
 			action=new CustomerJoinPro();
