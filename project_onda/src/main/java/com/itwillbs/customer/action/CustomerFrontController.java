@@ -27,8 +27,13 @@ public class CustomerFrontController extends HttpServlet {
 		
 		if(strpath.equals("/MainPage.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/mainpage.jsp");
+			forward.setPath("./customer/main.jsp");
 			forward.setRedirect(false);
+			
+		} else if(strpath.equals("/About.cu")) {
+			forward = new ActionForward();
+			forward.setPath("./customer/about.jsp");
+			forward.setRedirect(false);	
 		
 		} else if(strpath.equals("/CustomerAgree.cu")) {
 			forward = new ActionForward();
@@ -37,7 +42,7 @@ public class CustomerFrontController extends HttpServlet {
 		
 		} else if(strpath.equals("/CustomerJoinForm.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/loginTest.jsp");
+			forward.setPath("./customer/loginJoinForm.jsp");
 			forward.setRedirect(false);
 			
 		} else if(strpath.equals("/CustomerIdCheck.cu")) {
@@ -58,7 +63,7 @@ public class CustomerFrontController extends HttpServlet {
 						
 		} else if(strpath.equals("/CustomerLoginForm.cu")) {
 			forward = new ActionForward();
-			forward.setPath("./customer/loginTest.jsp");
+			forward.setPath("./customer/loginJoinForm.jsp");
 			forward.setRedirect(false);
 		
 		} else if(strpath.equals("/CustomerLoginPro.cu")) {
@@ -85,10 +90,6 @@ public class CustomerFrontController extends HttpServlet {
 			
 		} else if(strpath.equals("/CustomerLogout.cu")) {
 			action=new CustomerLogout();
-			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
-			
-		} else if(strpath.equals("/CustomerInfo.cu")) {
-			action=new CustomerInfo();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/CustomerUpdateForm.cu")) {

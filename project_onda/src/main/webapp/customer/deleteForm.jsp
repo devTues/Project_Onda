@@ -38,9 +38,11 @@
 		                            <h6><font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 가입시 기재한 이메일과 동일합니다.</font></h6>
 	                            </div>
                                 <div class="form-group">
+                                	<label for="exampleInputEmail1">아이디</label>
                                     <input type="text" name="id" class="form-control" value="<%=id %>" readonly>
                                 </div>
                                 <div class="form-group">
+                                	<label for="exampleInputEmail1">비밀번호</label>
                                     <input type="password" name="pass" class="form-control" placeholder="비밀번호">
                                 </div>
                                 <div class="col-md-12 mb-3">
