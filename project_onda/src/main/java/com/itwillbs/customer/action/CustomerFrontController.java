@@ -17,7 +17,6 @@ public class CustomerFrontController extends HttpServlet {
 	//메서드 오버라이딩해서 재정의
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String requestURL=request.getRequestURL().toString();
 		String requestURI=request.getRequestURI();
 		String contextPath=request.getContextPath();
 		String strpath=requestURI.substring(contextPath.length());

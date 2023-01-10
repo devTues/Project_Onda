@@ -31,7 +31,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="special-dishes.html">INFO</a>
-                        <a class="dropdown-item" href="special-dishes.html">RESERVATION</a>
+                        <a class="dropdown-item" href="./reservationForm.re">RESERVATION</a>
                         </div>
                     </li>
                 </div>
