@@ -21,54 +21,56 @@
 	<link href="./css/mypageMenu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
 <%
 CustomerDTO dto=(CustomerDTO)request.getAttribute("dto");
 %>
-
-	<body>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 mx-auto">
-                     <div id="first">
-                        <div class="myform form ">
-                         <!-- 창닫기 -> 메인으로 이동 -->
-	                        <div class="close">
-	                            <a href="./CustomerMypage.cu">X</a>
-	                        </div>
-                            <div class="logo mb-3">
-                                <div class="col-md-12 text-center">
-                                    <h2>정보수정</h2>
-                                </div>
-                            </div>
-                            <form action="./CustomerUpdatePro.cu" method="get">
-	                            <div>
-		                            <h6><font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 가입시 기재한 이메일과 동일합니다.</font></h6>
-	                            </div>
-                                <div class="form-group">
-                                    <input type="text" name="id" class="form-control" value="<%=dto.getCus_id() %>" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="pass" class="form-control" placeholder="비밀번호">
-                                </div>
-                                <div class="form-group">
-                                   <input type="text" name="name" class="form-control" value="<%=dto.getCus_name() %>">
-                                </div>
-                                <div class="form-group">
-                                   <input type="text" name="phone" class="form-control" value="<%=dto.getCus_phone() %>">
-                                </div>
-                                <div class="form-group">
-                                   <input type="text" name="email" class="form-control" value="<%=dto.getCus_email() %>">
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">확인</button>
-                                </div>
-                        	</form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>   
-    </body>
+<body>
+  <div class="container">
+     <div class="row">
+         <div class="col-md-5 mx-auto">
+              <div id="first">
+                 <div class="myform form ">
+                  <!-- 창닫기 -> 메인으로 이동 -->
+                  <div class="close">
+                      <a href="./CustomerMypage.cu">X</a>
+                  </div>
+                     <div class="logo mb-3">
+                         <div class="col-md-12 text-center">
+                             <h2>정보수정</h2>
+                         </div>
+                     </div>
+                     <form action="./CustomerUpdatePro.cu" method="get">
+                      <div>
+                       <h6><font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 가입시 기재한 이메일과 동일합니다.</font></h6>
+                      </div>
+                         <div class="form-group">
+                         	<label for="exampleInputEmail1">아이디</label>
+                             <input type="text" name="id" class="form-control" value="<%=dto.getCus_id() %>" readonly>
+                         </div>
+                         <div class="form-group">
+                         	<label for="exampleInputEmail1">비밀번호</label>
+                             <input type="password" name="pass" class="form-control" placeholder="비밀번호">
+                         </div>
+                         <div class="form-group">
+                            <label for="exampleInputEmail1">이름</label>
+                            <input type="text" name="name" class="form-control" value="<%=dto.getCus_name() %>">
+                         </div>
+                         <div class="form-group">
+                            <label for="exampleInputEmail1">휴대폰 번호</label>
+                            <input type="text" name="phone" class="form-control" value="<%=dto.getCus_phone() %>">
+                         </div>
+                         <div class="form-group">
+                            <label for="exampleInputEmail1">이메일</label>
+                            <input type="text" name="email" class="form-control" value="<%=dto.getCus_email() %>">
+                         </div>
+                         <div class="col-md-12 mb-3">
+                             <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">확인</button>
+                         </div>
+                 	</form>
+                 </div>
+             </div>
+         </div>
+     </div>
+  </div>   
 </body>
 </html>

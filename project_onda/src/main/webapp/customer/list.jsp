@@ -16,6 +16,16 @@
 <h1>회원목록</h1>
 <%
 // 세션값 가져오기
+String id = (String)session.getAttribute("id");
+if(id==null) {
+			// 세션값이 없으면
+			response.sendRedirect("CustomerLogin.cu");
+		} else if(! (id.equals("admin"))) {
+			// 세션값이 있으면 => admin 아니면 => main.jsp
+			response.sendRedirect("CustomerMain.cu");
+			
+		}
+
 List<CustomerDTO> customerList=(List<CustomerDTO>)request.getAttribute("customerList");
 
 // 디비작업 기능 => MemberDAO

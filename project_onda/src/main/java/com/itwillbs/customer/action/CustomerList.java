@@ -14,17 +14,17 @@ public class CustomerList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		HttpSession session=request.getSession();
-		String id = (String)session.getAttribute("id");
-		
-		if(id==null) {
-			// 세션값이 없으면
-			response.sendRedirect("CustomerLogin.cu");
-		} else if(! (id.equals("admin"))) {
-			// 세션값이 있으면 => admin 아니면 => main.jsp
-			response.sendRedirect("CustomerMain.cu");
-			
-		}
+//		HttpSession session=request.getSession();
+//		String id = (String)session.getAttribute("id");
+//		
+//		if(id==null) {
+//			// 세션값이 없으면
+//			response.sendRedirect("CustomerLogin.cu");
+//		} else if(! (id.equals("admin"))) {
+//			// 세션값이 있으면 => admin 아니면 => main.jsp
+//			response.sendRedirect("CustomerMain.cu");
+//			
+//		}
 		
 		CustomerDAO dao = new CustomerDAO();
 

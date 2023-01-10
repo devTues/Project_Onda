@@ -1,52 +1,76 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<header>
-    <!-- 헤더 전체 영역 -->
-  <div class="header_area">
-   <nav class="navbar">
-      <!-- 로고 영역 시작 -->
-      <div class="logo_area"> <!-- 로고이미지 누르면 메인페이지 이동 -->
-        <a href="./MainPage.cu" >CAFE ONDA</a>
-      </div>
-      <!-- 로고 영역 끝 -->
-      
-      <!-- 상단 메뉴영역 시작 -->
-      <div class="menu_area">
-          <ul class="menu_area_ul">
-              <li><a href="">ABOUT</a></li>
-              <li><a href="">NOTICE</a></li>
-              <li><a href="">MENU</a></li>
-              <li><a href="">RESERVATION</a></li>
-              <li><a href="">OTHERS</a></li>
-          </ul>
-      </div>
-      <!-- 상단 메뉴영역 끝 -->
-      
-      <!-- 로그인 영역 시작 -->
-      <%
-      String id=(String)session.getAttribute("id");
-      if(id == null) { // 세션값이 없을 경우 보여질 메뉴
-    	  %><div class="login_area">
-          <ul class="login_area_ul">
-            <li><a href="./CustomerLoginForm.cu">MemberShip</a></li>
-            <li><a href="">CART</a></li>
-          </ul>
-          </div>
-          <%
-      } else { // 세션값이 있을 경우 보여질 메뉴
-    	  %><div class="login_area">
-          <ul class="login_area_ul">
-            <li><a href="./CustomerMypage.cu">MY</a></li>
-            <li><a href="">CART</a></li>
-            <li><a href="./CustomerLogout.cu">LOGOUT</a></li>
-          </ul>
-          </div>
-          <%
-      }
-      %>
-      
-      <!-- 로그인 영역 끝 -->
-   </nav>
-  </div>
-</header>  
+<div class="boxed-page">
+ <nav id="navbar-header" class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-center d-flex align-items-center only-desktop" href="./MainPage.cu">
+          <img src="./img/logo.png" alt="">
+      </a>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+            <ul class="navbar-nav d-flex justify-content-between">
+                <li class="nav-item only-desktop">
+                </li>
+                <div class="d-flex flex-lg-row flex-column">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./About.cu">ABOUT</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SERVICE
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="special-dishes.html">NOTICE</a>
+                        <a class="dropdown-item" href="special-dishes.html">REVIEW</a>
+                        <a class="dropdown-item" href="special-dishes.html">Q&A</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="menu.html">MENU</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        RESERVATION
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="special-dishes.html">INFO</a>
+                        <a class="dropdown-item" href="./reservationForm.re">RESERVATION</a>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+            
+            <%
+			 String id=(String)session.getAttribute("id");
+			 if(id == null) { // 세션값이 없을 경우 보여질 메뉴
+			 %>
+		    <ul class="navbar-nav d-flex justify-content-between">
+                <div class="d-flex flex-lg-row flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./CustomerLoginForm.cu">MEMBERSHIP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">CART</a>
+                    </li>
+                </div>
+            </ul>
+			<%
+			 } else { // 세션값이 있을 경우 보여질 메뉴
+			 %>
+			 <ul class="navbar-nav d-flex justify-content-between">
+                <div class="d-flex flex-lg-row flex-column">
+                	<li class="nav-item">
+                        <a class="nav-link" href="./CustomerMypage.cu">MY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./CustomerLogout.cu">LOGOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">CART</a>
+                    </li>
+                </div>
+            </ul>
+			<%
+			 }
+			 %>
+        </div>
+    </div>
+ </nav>
+</div> 

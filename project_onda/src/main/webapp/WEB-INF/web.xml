@@ -9,20 +9,39 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <!-- 회원 컨트롤러 -->
   <servlet>
     <servlet-name>CustomerFrontController</servlet-name>
     <servlet-class>com.itwillbs.customer.action.CustomerFrontController</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>CustomerFrontController</servlet-name>
     <url-pattern>*.cu</url-pattern>
   </servlet-mapping>
+  
+  <!-- 게시판 컨트롤러 -->
   <servlet>
     <servlet-name>BoardFrontController</servlet-name>
     <servlet-class>com.itwillbs.board.action.BoardFrontController</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>BoardFrontController</servlet-name>
     <url-pattern>*.bo</url-pattern>
   </servlet-mapping>
+  
+  <!-- 예약 컨트롤러 -->
+  <servlet>
+    <servlet-name>ResFrontController</servlet-name>
+    <servlet-class>com.itwillbs.res.action.ResFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ResFrontController</servlet-name>
+    <url-pattern>*.re</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
