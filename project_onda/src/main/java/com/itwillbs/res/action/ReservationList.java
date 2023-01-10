@@ -14,17 +14,17 @@ public class ReservationList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		HttpSession session=request.getSession();
-		String id = "id";
+		request.setCharacterEncoding("utf-8");
 		
-		//사용 => ReservationDAO 기억장소 할당(객체생성)
+		HttpSession session = request.getSession();
+		
+		String id = (String) session.getAttribute("id");
+		
 		ReservationDAO dao=new ReservationDAO();
 	
 		List<ReservationDTO> reservationList =dao.getReservationList(id);
-//
-//
+	
 		request.setAttribute("reservationList", reservationList);
-//		
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("./reservation/list.jsp");

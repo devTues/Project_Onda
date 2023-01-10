@@ -12,10 +12,13 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.customer.db.CustomerDTO;
+
 public class ReservationDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt2 = null;
+	PreparedStatement pstmt3 = null;
 	ResultSet rs = null;
 
 	// 디비연결 메서드
@@ -51,9 +54,11 @@ public class ReservationDAO {
 	}
 
 	public void insertReservations(ReservationDTO dto) {
+		
 		try {
 			Connection con = getConnection();
 			String sql2 = "select max(res_num) from reservations";
+			
 			pstmt2 = con.prepareStatement(sql2);
 			rs = pstmt2.executeQuery();
 
@@ -61,7 +66,7 @@ public class ReservationDAO {
 			if (rs.next()) {
 				res_num = rs.getInt("max(res_num)") + 1;
 			}
-
+			
 			String sql="insert into reservations(res_num,cus_id,res_time,res_mem,res_date,res_use_date,res_phone,tb_num,res_name) values(?,?,?,?,?,?,?,?,?)";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, res_num);
@@ -80,7 +85,7 @@ public class ReservationDAO {
 			e.printStackTrace();
 		} finally {
 		}
-		return;
+		
 	}// insertMember() 메서드
 	
 	// List<BoardDTO>  getReservationList() 메서드

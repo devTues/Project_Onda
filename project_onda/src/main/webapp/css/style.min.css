@@ -37,7 +37,7 @@ button:focus {
 .btn:hover,
 a:hover {
   text-decoration: none;
-  color: #e22104; }
+  color: #0489B1; }
 
 .btn-icon {
   display: inline-flex;
@@ -87,7 +87,7 @@ a:hover {
   height: 100px; }
   #navbar-header .navbar-nav .dropdown-menu {
     border: none;
-    border-bottom: 2px solid #f34949;
+    border-bottom: 2px solid #08088A;
     border-radius: 0 !important;
     box-shadow: -5px 8px 20px 0px rgba(229, 16, 2, 0.15); }
 
@@ -448,11 +448,18 @@ a:hover {
     background: #000; }
 
 #gtco-special-dishes h3 span {
-  color: #f34949; }
+  color: #08088A; }
 
 .dishes-text {
   padding-left: 90px; }
-
+  
+.dishes-textl {
+  padding-left: 90px; 
+  padding-right: 50px; }  
+  
+.dishes-textr {
+  padding-right: 50px; 
+  padding-left: 90px; }
 /*=====  End of Special Dishes  ======*/
 /*==================================
 =            RESPONSIVE            =
