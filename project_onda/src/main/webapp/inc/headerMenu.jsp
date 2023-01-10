@@ -46,9 +46,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./CustomerLoginForm.cu">MEMBERSHIP</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="menu.html">CART</a>
-                    </li>
                 </div>
             </ul>
 			<%
