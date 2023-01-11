@@ -506,5 +506,15 @@ a:hover {
     height: 90px; }
   .img-2 {
     height: 500px; } }
+    
+   .icon-required {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #1A6Dff;
+    border-radius: 50%;
+    margin-left: 5px;
+    vertical-align: 5px;
+}
 
 /*=====  End of RESPONSIVE  ======*/

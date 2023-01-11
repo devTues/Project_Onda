@@ -89,15 +89,20 @@ public class ReservationDAO {
 	}// insertMember() 메서드
 	
 	// List<BoardDTO>  getReservationList() 메서드
-	public List<ReservationDTO> getReservationList(String cus_id) {
+	public List<ReservationDTO> getReservationList(String cus_id,int startRow,int pageSize) {
 
 		List<ReservationDTO> reservationList = new ArrayList<ReservationDTO>();
 		try {
 			con = getConnection();
-			String sql = "select * from reservations where cus_id = ? order by res_num ";
+			String sql = "select * "
+					+ " from reservations "
+					+ " where cus_id = ? "
+					+ " order by res_num "
+					+ " limit ?,?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, cus_id);
-			
+			pstmt.setInt(2, startRow-1);
+			pstmt.setInt(3, pageSize);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -151,6 +156,42 @@ public class ReservationDAO {
             close();
         }
         return dto;
+    }
+    
+    // 관리자용 예약목록 조회
+	public List getAdminReservationList(int startRow,int pageSize) {
+		List<ReservationDTO> reservationList=new ArrayList<ReservationDTO>();
+    		
+        try {
+        	con=getConnection();
+			String sql="select * from reservations order by res_num limit ?,?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
+			rs=pstmt.executeQuery();
+            
+            while(rs.next()) {
+            	ReservationDTO dto=new ReservationDTO();
+                dto=new ReservationDTO();
+                dto.setCus_id(sql);
+                dto.setRes_num(rs.getInt("res_num"));
+                dto.setCus_id(rs.getString("cus_id"));
+                dto.setRes_name(rs.getString("res_name"));
+                dto.setTb_num(rs.getString("tb_num"));
+                dto.setRes_mem(rs.getInt("res_mem"));
+                dto.setRes_use_date(rs.getString("res_use_date"));
+                dto.setRes_time(rs.getString("res_time"));
+                dto.setRes_phone(rs.getString("res_phone"));
+                dto.setRes_date(rs.getTimestamp("res_date"));
+                
+                reservationList.add(dto);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            close();
+        }
+        return reservationList;
     }
 	
     public void updateReservation(ReservationDTO dto) {
@@ -222,7 +263,52 @@ public class ReservationDAO {
         }
     }
 
-
+    // 페이징	
+    public int getReservationCount1(String id) {
+		int count=0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql
+			String sql="select count(*) from reservations where cus_id = ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			//4 실행 => 결과 저장
+			rs=pstmt.executeQuery();
+			//5 결과 접근 글개수 가져오기
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return count;
+	}
+    
+    // 관리자 페이징	
+    public int getReservationCount2() {
+		int count=0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql
+			String sql="select count(*) from reservations;";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			//5 결과 접근 글개수 가져오기
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return count;
+	}
+    
 }
 
 

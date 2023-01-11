@@ -31,57 +31,30 @@
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
 <div id="canvas-overlay"></div>
-<!-- Testimonial Section-->
-<!-- <section id="gtco-testimonial" class="overlay bg-fixed section-padding" style="background-image: url(./img/7.jpg);"> -->
-<!--   <div class="container"> -->
-<!--       <div class="section-content"> -->
-<!--           <div class="heading-section text-center"> -->
-<!--               <br><h2>Welcome !!</h2> -->
-<!--           </div> -->
-<!--           <div class="row"> -->
-<!--               Testimonial -->
-<!--               <div class="testi-content testi-carousel owl-carousel"> -->
-<!--                   <div class="testi-item"> -->
-<!--                       <p class="testi-text">Cafe ONDA<br> Open 09:00 ~ Close 24:00</p><br> -->
-<!--                   </div> -->
-<!--                   <div class="testi-item"> -->
-<!--                       <p class="testi-text">Location<br> Haeundae-gu, Busan, Republic of Korea</p><br> -->
-<!--                   </div> -->
-<!--               </div> -->
-<!--               End of Testimonial -->
-<!--           </div> -->
-<!--       </div> -->
-<!--   </div> -->
-<!-- </section> -->
-<!-- End of Testimonial Section-->
-<br>
 <div class="hero">
   <div class="container">
 	<div class="row d-flex align-items-center">
 		<div class="col-lg-6 hero-left">
-		    <h1 class="display-4 mb-5">[ CAFE : ONDA ]</h1>
+		    <h1 class="display-4 mb-5">&emsp;[ CAFE : ONDA ]</h1>
 	    </div>
 	    <div class="col-lg-6 hero-right">
-	    	<div class="owl-carousel owl-theme hero-carousel">
-			    <div class="item">
-			    	<img class="img-fluid" src="./img/1.jpg" alt="">
-			    </div>
-			    <div class="item">
-			    	<img class="img-fluid" src="./img/2.jpg" alt="">
-			    </div>
-			    <div class="item">
+	    	<div class="testi-content testi-carousel owl-carousel">
+			    <div class="testi-item">
 			    	<img class="img-fluid" src="./img/3.jpg" alt="">
 			    </div>
-			    <div class="item">
+			    <div class="testi-item">
+			    	<img class="img-fluid" src="./img/2.jpg" alt="">
+			    </div>
+			    <div class="testi-item">
 			    	<img class="img-fluid" src="./img/4.jpg" alt="">
 			    </div>
-			    <div class="item">
+			    <div class="testi-item">
 			    	<img class="img-fluid" src="./img/5.jpg" alt="">
 			    </div>
-			    <div class="item">
+			    <div class="testi-item">
 			    	<img class="img-fluid" src="./img/6.jpg" alt="">
 			    </div>
-			    <div class="item">
+			    <div class="testi-item">
 			    	<img class="img-fluid" src="./img/7.jpg" alt="">
 			    </div>
 			</div>

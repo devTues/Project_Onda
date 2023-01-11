@@ -86,6 +86,11 @@ public class CustomerFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("./customer/mypage.jsp");
 			forward.setRedirect(false);
+		
+		} else if(strpath.equals("/CustomerAdminpage.cu")) {
+			forward = new ActionForward();
+			forward.setPath("./customer/adminpage.jsp");
+			forward.setRedirect(false);	
 			
 		} else if(strpath.equals("/CustomerLogout.cu")) {
 			action=new CustomerLogout();
@@ -112,7 +117,14 @@ public class CustomerFrontController extends HttpServlet {
 		} else if(strpath.equals("/CustomerList.cu")) {
 			action=new CustomerList();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+		
+		} else if(strpath.equals("/AdminCusDelete.cu")) {
+			action=new AdminCusDelete();
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+
 		}
+		
+		
 			
 		// 이동(경로정보, 이동방식 담아서 오면 이동) ActionForward
 		if(forward !=null) {

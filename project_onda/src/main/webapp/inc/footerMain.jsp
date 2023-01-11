@@ -6,13 +6,13 @@
        			<img src="img/logo.png" class="img-fluid footer-logo mb-3" alt="">
         		<p>CAFE ONDA's SNS <br> Click here !!</p>
         		<nav class="nav nav-mastfoot justify-content-start">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://www.facebook.com/">
                 	<i class="fab fa-facebook-f"></i>
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://twitter.com/">
                 	<i class="fab fa-twitter"></i>
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://www.instagram.com/">
                 	<i class="fab fa-instagram"></i>
                 </a>
             </nav>

@@ -18,16 +18,13 @@ public class ReservationUpdateForm implements Action {
 		int res_num = Integer.parseInt(request.getParameter("res_num"));
 		
 		ReservationDAO dao = new ReservationDAO();
-		ReservationDTO dto = dao.getReservation(res_num); // 기존예약정보
+		ReservationDTO dto = dao.getReservation(res_num);
 		
-		System.out.println("=============================");
 		System.out.println(dto);
-		System.out.println("=============================");
 		
 		TableDAO tDao = new TableDAO();
 		List<TableDTO> list = tDao.getTable();
 		
-		System.out.println("입력됫나요?");
 		request.setAttribute("dto", dto);
 		request.setAttribute("tableList", list);
 

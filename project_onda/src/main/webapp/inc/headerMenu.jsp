@@ -17,9 +17,9 @@
                         SERVICE
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="special-dishes.html">NOTICE</a>
+                        <a class="dropdown-item" href="./NotiList.no">NOTICE</a>
                         <a class="dropdown-item" href="special-dishes.html">REVIEW</a>
-                        <a class="dropdown-item" href="special-dishes.html">Q&A</a>
+                        <a class="dropdown-item" href="./BoardList.bo">Q&A</a>
                         </div>
                     </li>
                     <li class="nav-item active">
@@ -49,7 +49,20 @@
                 </div>
             </ul>
 			<%
-			 } else { // 세션값이 있을 경우 보여질 메뉴
+			 } else if(id.equals("admin")) { // 세션값이 있고 admin일 경우 보여질 메뉴
+			 %>
+			 <ul class="navbar-nav d-flex justify-content-between">
+                <div class="d-flex flex-lg-row flex-column">
+                	<li class="nav-item">
+                        <a class="nav-link" href="./CustomerAdminpage.cu">ADMIN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./CustomerLogout.cu">LOGOUT</a>
+                    </li>
+                </div>
+            </ul>
+			<%
+			 } else { // 세션값이 있고 일반 회원일 경우 보여질 메뉴
 			 %>
 			 <ul class="navbar-nav d-flex justify-content-between">
                 <div class="d-flex flex-lg-row flex-column">
@@ -64,7 +77,7 @@
                     </li>
                 </div>
             </ul>
-			<%
+			<%	 
 			 }
 			 %>
         </div>

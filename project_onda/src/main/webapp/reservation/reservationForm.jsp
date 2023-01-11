@@ -34,6 +34,20 @@
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
+
+<%
+// 세션값이 null이면 로그인페이지로 이동
+String id=(String)session.getAttribute("id");
+if(id==null){
+	%>
+	<script type="text/javascript">
+	alert("로그인 후 이용가능합니다");
+	history.back();
+	</script>
+<%	
+}
+%>
+
 <%
 List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 %>
@@ -53,10 +67,19 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
                     <div class="row mt-5">
 						<div class="col-lg-6 col-md-6 align-self-center py-5">
 							<div class="dishes-textl">							
-								<h5><span>예약 날짜</span></h5>
+								<h5>
+									<span>예약 날짜
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
+								
 								<input type="date" class="form-control" name ="res_use_date" id="res_use_date"><br>
 							
-								<h5><span>예약 시간</span></h5>
+								<h5>
+									<span>예약 시간
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<select size="5" class="form-control" id="time" name="time">
 									<optgroup label="예약시간">
 										<option selected>10:00</option>
@@ -73,10 +96,18 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 									</optgroup>
 								</select> <br>
 							
-								<h5><span>예약 인원</span></h5>
+								<h5>
+									<span>예약 인원
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<input type="number" class="form-control" name="person" min="1" max="8" value="1"><br>
 							
-								<h5><span>예약 테이블</span></h5>
+								<h5>
+									<span>예약 테이블
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<select size="5" class="form-control" id="table" name="table">
 									<optgroup label="일반" >
 									<%
@@ -121,30 +152,43 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 									%>
 									</optgroup>
 								</select> <br>
-								<h6><span class="subheading">※단체석의 경우 6인이상 가능합니다.</span></h6><br>
+								<h6><span class="subheading">※단체석의 경우 6인 이상 가능합니다.</span></h6><br>
 							</div>
 						</div>
 						
 						<div class="col-lg-6 col-md-6 align-self-center py-5">
 					        <div class="dishes-textr">
-								<h5><span>고객성함</span></h5>
+								<h5>
+									<span>예약자 성함
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<input type="text" class="form-control" name="name"><br>
 							
-								<h5><span>휴대폰 번호</span></h5>
+								<h5>
+									<span>휴대폰 번호
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<input type="text" class="form-control" name="phone" placeholder="ex) 01012345678"><br>
 							
-								<h5 class="special-number">약관동의</h5>
+								<h5>
+									<span>약관동의
+									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
+									</span>
+								</h5>
 								<input type="checkbox" name="ch" value="이용약관"> 이용약관 동의(필수)<br><br>
 								<div tabindex="0" class="" style="height: 250px; border:1px solid #dfe0df; margin-top: -5px; border-radius: 4px; padding: 12px 14px; overflow-y: auto; background:#fff; color:#000;">
-									취소 및 환불 약관<br><br>
+									<span class="subheading">
+									1. 취소 및 환불 약관<br><br>
 									올바른 예약문화 정착을 위하여 예약 취소시 환불 기준을 아래와 같이 운영하고 있으니, 꼭 확인을 하시고 신중하게 예약취속와 변경을 하시기 당부드립니다.<br>
 									- 취소 수수료는 예약시점과는 무고나한 이용일 기준입니다. 에약후 바로 환불 요청하셨더라도 취소 환불 규정에 의해 이용일 기준으로 차감되어 환불됩니다.<br>
 									- 예약 일자 변경은 기존 예약취소와 동일하므로 전화 변경이 불가하며 홈페이지 예약조회 및 취소 를 통해 기존 예약 취소 후 다시 예약해 주시면 됩니다.<br>
 									- 환불정보는 카드결제의 경우 카드사로 확인까지 7~14일정도 소요됩니다.<br>
 									- 최종 환불되는 일자는 고객님의 신용카드 결제 일자 및 신용카드사의 환불 규정에 따라 차이가 있을 수 있습니다.<br><br>
-									<span class="subheading">
-									예약 후 이용일까지 남은 기간   취소수수료<br><br>
-									이용 10일 전까지		없음<br>
+									
+									2. 예약 후 이용일까지 남은 기간 취소수수료<br><br>
+									이용 10일 전까지 없음<br>
 									이용 9일 전	총 결제금액의 10% 차감<br>
 									이용 8일 전	총 결제금액의 20% 차감<br>
 									이용 7일 전	총 결제금액의 30% 차감<br>
@@ -167,6 +211,20 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
         </div>
     </div>
 </section>
-</div>    
+</div>
+<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- External JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="./vendor/bootstrap/popper.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js "></script>
+	<script src="./vendor/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+	<!-- Main JS -->
+	<script src="./js/app.min.js "></script>
 </body>
 </html>
