@@ -57,7 +57,7 @@ public class ReservationDAO {
 		
 		try {
 			Connection con = getConnection();
-			String sql2 = "select max(res_num) from reservations";
+			String sql2 = "select max(res_num) from reservation";
 			
 			pstmt2 = con.prepareStatement(sql2);
 			rs = pstmt2.executeQuery();
@@ -67,7 +67,7 @@ public class ReservationDAO {
 				res_num = rs.getInt("max(res_num)") + 1;
 			}
 			
-			String sql="insert into reservations(res_num,cus_id,res_time,res_mem,res_date,res_use_date,res_phone,tb_num,res_name) values(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into reservation(res_num,cus_id,res_time,res_mem,res_date,res_use_date,res_phone,tb_num,res_name) values(?,?,?,?,?,?,?,?,?)";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, res_num);
 			pstmt.setString(2, dto.getCus_id());
@@ -95,7 +95,7 @@ public class ReservationDAO {
 		try {
 			con = getConnection();
 			String sql = "select * "
-					+ " from reservations "
+					+ " from reservation "
 					+ " where cus_id = ? "
 					+ " order by res_num "
 					+ " limit ?,?;";
@@ -133,7 +133,7 @@ public class ReservationDAO {
         ReservationDTO dto=null;
         try {
             con=getConnection();
-            String sql="select * from reservations where res_num=?";
+            String sql="select * from reservation where res_num=?";
             pstmt =con.prepareStatement(sql);
             pstmt.setInt(1, res_num);
             rs=pstmt.executeQuery();
@@ -164,7 +164,7 @@ public class ReservationDAO {
     		
         try {
         	con=getConnection();
-			String sql="select * from reservations order by res_num limit ?,?;";
+			String sql="select * from reservation order by res_num limit ?,?;";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow-1);
 			pstmt.setInt(2, pageSize);
@@ -198,7 +198,7 @@ public class ReservationDAO {
 
 		try {
 			con = getConnection();
-			String sql = "update reservations set cus_id=?,tb_num=?,res_mem=?,res_time=?,res_date=?,res_use_date=?,res_phone=?, res_name=? where res_num=?";
+			String sql = "update reservation set cus_id=?,tb_num=?,res_mem=?,res_time=?,res_date=?,res_use_date=?,res_phone=?, res_name=? where res_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getCus_id());
 			pstmt.setString(2, dto.getTb_num());
@@ -225,7 +225,7 @@ public class ReservationDAO {
 		try {
 			con = getConnection();
 			String sql ="SELECT COUNT(*) AS CNT"
-					+ 	 " FROM RESERVATIONS"
+					+ 	 " FROM RESERVATION"
 					+ 	" WHERE RES_USE_DATE = ?"
 					+ 	 "  AND RES_TIME = ?"
 					+ 	 "  AND TB_NUM = ?";
@@ -252,7 +252,7 @@ public class ReservationDAO {
         
         try {
             con = getConnection();
-            String sql = "delete from reservations where res_num=?";
+            String sql = "delete from reservation where res_num=?";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, res_num);
             pstmt.executeUpdate();
@@ -270,7 +270,7 @@ public class ReservationDAO {
 			//1,2 디비연결
 			con=getConnection();
 			//3 sql
-			String sql="select count(*) from reservations where cus_id = ?;";
+			String sql="select count(*) from reservation where cus_id = ?;";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			//4 실행 => 결과 저장
@@ -294,7 +294,7 @@ public class ReservationDAO {
 			//1,2 디비연결
 			con=getConnection();
 			//3 sql
-			String sql="select count(*) from reservations;";
+			String sql="select count(*) from reservation;";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			//5 결과 접근 글개수 가져오기

@@ -244,8 +244,10 @@ public class CustomerDAO {
 		
 		try {
 			con=getConnection();
-			String sql="select * from customer order by cus_num limit ?,?";
+			String sql="select * from customer order by cus_num limit ?,?;";
 			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow-1);
+			pstmt.setInt(2, pageSize);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {

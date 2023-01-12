@@ -51,7 +51,7 @@ public class TableDAO {
 		List<TableDTO> tableList = new ArrayList<TableDTO>();
 		try {
 			con = getConnection();
-			String sql = "select * from tables";
+			String sql = "select * from res_table";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
