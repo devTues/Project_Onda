@@ -54,5 +54,15 @@
     <url-pattern>*.re</url-pattern>
   </servlet-mapping>
   
+  <!-- 메뉴 컨트롤러 -->
+  <servlet>
+	<servlet-name>MenuFrontController</servlet-name>
+	<servlet-class>com.itwillbs.menu.action.MenuFrontController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+	<servlet-name>MenuFrontController</servlet-name>
+	<url-pattern>*.mn</url-pattern>
+  </servlet-mapping>
   
 </web-app>

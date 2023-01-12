@@ -72,6 +72,7 @@
 					<table class="table table-hover">
 						<thead>
 						<tr>
+							<th scope="col">회원번호</th>
 							<th scope="col">아이디</th>
 							<th scope="col">비밀번호</th>
 							<th scope="col">이름</th>
@@ -87,6 +88,7 @@
 							CustomerDTO dto = customerList.get(i);
 						%>
 						<tr>
+							<td><%=dto.getCus_num() %></td>
 							<td><%=dto.getCus_id()%></td>
 							<td><%=dto.getCus_pass()%></td>
 							<td><%=dto.getCus_name()%></td>
@@ -104,7 +106,7 @@
 					// 10페이지 이전 
 					if(startPage > pageBlock){
 						%>
-					<a href="./AdminResList.re?pageNum=<%=startPage-pageBlock%>">[10페이지 이전] </a>
+					<a href="./CustomerList.cu?pageNum=<%=startPage-pageBlock%>">[10페이지 이전] </a>
 						<%	
 					}
 					
@@ -117,7 +119,7 @@
 					
 					for(int i=startPage;i<=endPage;i++){
 						%>
-						<a href="./AdminResList.re?pageNum=<%=i%>"><%=i %></a>
+						<a href="./CustomerList.cu?pageNum=<%=i%>"><%=i %></a>
 						<%
 					}
 					
@@ -131,7 +133,7 @@
 					//10페이지 다음 
 					if(endPage < pageCount){
 						%>
-						<a href="./AdminResList.re?pageNum=<%=startPage+pageBlock%>">[10페이지 다음]</a>
+						<a href="./CustomerList.cu?pageNum=<%=startPage+pageBlock%>">[10페이지 다음]</a>
 						<%
 					}
 					%>
