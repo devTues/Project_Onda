@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 
 
 public class MenuList implements Action{
@@ -24,8 +24,8 @@ public class MenuList implements Action{
 		int startRow=(currentPage-1)*pageSize+1;
 		int endRow=startRow+pageSize-1;
 		
-		menuDAO dao=new menuDAO();
-		List<menuDTO> menuList =dao.getMenuList(startRow,pageSize);
+		MenuDAO dao=new MenuDAO();
+		List<MenuDTO> menuList =dao.getMenuList(startRow,pageSize);
 		
 		// 한페이지 10개 페이지 번호 보이게 설정
 		int count=dao.getMenuCount();

@@ -24,7 +24,7 @@
                         <div class="myform form ">
                         <!-- 창닫기 -> 메인으로 이동 -->
                         <div class="close">
-                            <a href="./MainPage.cu">X</a>
+                            <a href="javascript:history.back();">X</a>
                         </div>
                         <!-- 창닫기 -> 메인으로 이동 끝 -->
                             <div class="logo mb-3">

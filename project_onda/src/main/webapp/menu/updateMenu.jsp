@@ -1,5 +1,5 @@
 
-<%@page import="com.itwillbs.menu.db.menuDTO"%>
+<%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 
 
 <%
-menuDTO dto = (menuDTO) request.getAttribute("dto");
+MenuDTO dto = (MenuDTO) request.getAttribute("dto");
 %>
 <h1>메뉴 수정</h1>
 <form action="./MenuUpdatePro.mn" method="post" enctype="multipart/form-data">

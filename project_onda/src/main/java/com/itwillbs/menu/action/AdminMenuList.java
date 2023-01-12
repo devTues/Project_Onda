@@ -5,18 +5,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 
 
 
-public class MenuBoardList implements Action{
+public class AdminMenuList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MenuBoardList 실행");
 		//사용 -> BoardDAO 기억장소 할당(객체생성)
-		menuDAO dao = new menuDAO();
+		MenuDAO dao = new MenuDAO();
 		// List<BoardDTO> 리턴할 형 getBoardList()메서드정의 
 
 		// 한 화면에 보여줄 글 개수 설정 (10개)
@@ -51,7 +51,7 @@ public class MenuBoardList implements Action{
 		//dao 주소를 통해서 메서드 호출
 
 		//여러명을 저장하는 List 배열 변수 = dao.menuList();
-		List<menuDTO> menuList = dao.getMenuList(startRow, pageSize);
+		List<MenuDTO> menuList = dao.getMenuList(startRow, pageSize);
 		System.out.println("menuList 생성");
 		
 		// 전체 게시판 글의 개수 알아보기
@@ -100,7 +100,7 @@ public class MenuBoardList implements Action{
 		
 //		이동정보 저장 => ./board/list.jsp
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/menuAdminpage.jsp");
+		forward.setPath("./menu/AdminMenuList.jsp");
 		forward.setRedirect(false);
 
 		return forward;

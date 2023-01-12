@@ -63,7 +63,6 @@
 					                    <div class="dishes-text">
 					                        <h3><span>Location</span></h3>
 					                        <p class="pt-3">부산 해운대구 송정동 111 <br>송정해수욕장 카페 온다</p>
-					                        
 					                    </div>
 					                </div>
 					            </div>

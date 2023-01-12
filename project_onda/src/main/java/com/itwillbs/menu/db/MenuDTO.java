@@ -1,8 +1,7 @@
 package com.itwillbs.menu.db;
 
-public class menuDTO {
+public class MenuDTO {
 
-	
 	private int menu_num;
 	private String menu_name;
 	private int menu_price;

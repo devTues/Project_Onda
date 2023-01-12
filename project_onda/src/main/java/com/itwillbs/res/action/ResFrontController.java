@@ -15,88 +15,52 @@ public class ResFrontController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String requestURI = request.getRequestURI();
-		System.out.println(" Controller : requestURI = " + requestURI);
-
 		String ctxPath = request.getContextPath();
-		System.out.println(" Controller : ctxPath = " + ctxPath);
-
 		String strpath = requestURI.substring(ctxPath.length());
-		System.out.println(" Controller : strpath = " + strpath);
 
 		Action action = null;
 		ActionForward forward = null;
 
-		if (strpath.equals("/reservationForm.re")) {
+		if(strpath.equals("/reservationInfo.re")) {
+			forward=new ActionForward();
+			forward.setPath("./reservation/info.jsp");
+			forward.setRedirect(false);
+		
+		} else if (strpath.equals("/reservationForm.re")) {
 			action = new ReservationForm();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
+		
 		} else if (strpath.equals("/selectTimeTable.re")) { // // 예약시간 예약테이블 조회 (Ajax)
 			action = new SelectTimeTable();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 
 		} else if (strpath.equals("/reservationPro.re")) {
 			action = new ReservationPro();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 
 		} else if (strpath.equals("/reservationList.re")) {
 			action = new ReservationList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 			
 		} else if (strpath.equals("/reservationUpdateForm.re")) {
 			action = new ReservationUpdateForm();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 			
 		} else if (strpath.equals("/reservationUpdatePro.re")) {
 			action = new ReservationUpdatePro();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 			
 		} else if (strpath.equals("/reservationDelete.re")) {
 			action = new ReservationDelete();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 	   
 		} else if (strpath.equals("/AdminResList.re")) { //관리자 예약목록
 			action = new AdminResList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}	
 		
 		} else if (strpath.equals("/AdminResDelete.re")) { //관리자 예약삭제
 			action = new AdminResDelete();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}		
+			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}		
 			
 		}
 

@@ -3,8 +3,8 @@ package com.itwillbs.menu.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -36,7 +36,7 @@ public class MenuUpdatePro implements Action{
 			menu_img = multi.getParameter("oldfile");
 		}
 		
-		menuDTO dto=new menuDTO();
+		MenuDTO dto=new MenuDTO();
 
 		dto.setMenu_num(menu_num);
 		dto.setMenu_name(menu_name);
@@ -45,12 +45,12 @@ public class MenuUpdatePro implements Action{
 		dto.setMenu_img(menu_img);
 		dto.setMenu_category(menu_category);
 		
-		menuDAO dao=new menuDAO();
+		MenuDAO dao=new MenuDAO();
 		dao.updateMenu(dto);
 
 		ActionForward forward = new ActionForward();
 				
-		forward.setPath("./MenuBoardList.mn");
+		forward.setPath("./AdminMenuList.mn");
 		forward.setRedirect(true);
 				
 		return forward;

@@ -47,7 +47,6 @@
 			<%	
 			} 
 			%>
-			<h5><%=id %> 님 안녕하세요 :)</h5>
 			</span>
             <div class="row mb-5">
                 <div class="col-md-12">
@@ -57,9 +56,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 menu-wrap">
+				<div class="col-lg-4 menu-wrap">
                     <div class="heading-menu">
-                        <h3 class="text-center mb-5">회원관리</h3>
+                        <h4 class="text-center mb-5">회원/메뉴</h4>
                     </div>
                     <div class="menus d-flex align-items-center">
                         <div class="menu-img rounded-circle">
@@ -68,7 +67,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="./CustomerList.cu"><h5>회원목록</h5></a>
+                                	<a href="./CustomerList.cu"><h6>회원관리</h6></a>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +79,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="./CustomerUpdateForm.cu"><h5>관리자수정</h5></a>
+                                    <a href="./AdminMenuList.mn"><h6>메뉴관리</h6></a>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +88,7 @@
 
                 <div class="col-lg-4 menu-wrap">
                     <div class="heading-menu">
-                        <h3 class="text-center mb-5">주문/예약</h3>
+                        <h4 class="text-center mb-5">주문/예약</h4>
                     </div>
                     <div class="menus d-flex align-items-center">
                         <div class="menu-img rounded-circle">
@@ -98,7 +97,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                	<a href="#"><h5>주문관리</h5></a>
+                                	<a href="#"><h6>주문관리</h6></a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +109,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="./AdminResList.re"><h5>예약관리</h5></a>
+                                    <a href="./AdminResList.re"><h6>예약관리</h6></a>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +118,7 @@
                 
                 <div class="col-lg-4 menu-wrap">
                     <div class="heading-menu">
-                        <h3 class="text-center mb-5">리뷰/문의</h3>
+                        <h4 class="text-center mb-5">리뷰/문의</h4>
                     </div>
                     <div class="menus d-flex align-items-center">
                         <div class="menu-img rounded-circle">
@@ -128,7 +127,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="#"><h5>리뷰관리</h5></a>
+                                    <a href="#"><h6>리뷰관리</h6></a>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +139,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="#"><h5>문의관리</h5></a>
+                                    <a href="#"><h6>문의관리</h6></a>
                                 </div>
                             </div>
                         </div>

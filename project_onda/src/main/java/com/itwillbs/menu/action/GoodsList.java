@@ -5,8 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 
 
 public class GoodsList implements Action{
@@ -20,9 +20,9 @@ public class GoodsList implements Action{
 		String menu_category = request.getParameter("menu_category");
 		System.out.println("카테고리: "+ menu_category);
 	
-		menuDAO dao = new menuDAO();
+		MenuDAO dao = new MenuDAO();
 		
-		List<menuDTO> goodsList =dao.GoodsList(menu_category);
+		List<MenuDTO> goodsList =dao.GoodsList(menu_category);
 
 
 	

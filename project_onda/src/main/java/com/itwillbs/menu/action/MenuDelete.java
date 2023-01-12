@@ -3,7 +3,7 @@ package com.itwillbs.menu.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
+import com.itwillbs.menu.db.MenuDAO;
 
 
 
@@ -15,7 +15,7 @@ public class MenuDelete implements Action{
 		// delete.jsp?num=1
 		int menu_num = Integer.parseInt(request.getParameter("menu_num"));
 		//BoardDAO 객체생성
-		menuDAO dao=new menuDAO();
+		MenuDAO dao=new MenuDAO();
 		// 리턴할형없음 deleteBoard(int num)메서드 정의
 		// 디비작업 주소를 통해서 deleteBoard(num) 호출
 		dao.deleteMenu(menu_num);
@@ -23,7 +23,7 @@ public class MenuDelete implements Action{
 //		response.sendRedirect("list.jsp");
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath(" /MenuBoardList.mn");
+		forward.setPath(" /AdminMenuList.mn");
 		forward.setRedirect(true);
 		System.out.println("메뉴 삭제 완료");
 		return forward;
