@@ -57,31 +57,47 @@ public class ResFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else if (strpath.equals("/reservationUpdateForm.re")) {
-			// 디비에 가서 num에 대한 글을 가져와서 updateForm.jsp 이동
 			action = new ReservationUpdateForm();
-			// 메서드호출
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else if (strpath.equals("/reservationUpdatePro.re")) {
 			action = new ReservationUpdatePro();
-			// 메서드호출
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if (strpath.equals("/reservationDelete.re")) {
+			
+		} else if (strpath.equals("/reservationDelete.re")) {
 			action = new ReservationDelete();
-			// 메서드호출
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	   
+		} else if (strpath.equals("/AdminResList.re")) { //관리자 예약목록
+			action = new AdminResList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+		
+		} else if (strpath.equals("/AdminResDelete.re")) { //관리자 예약삭제
+			action = new AdminResDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+			
 		}
 
 		// 이동(경로정보, 이동방식 담아서 오면 이동) ActionForward

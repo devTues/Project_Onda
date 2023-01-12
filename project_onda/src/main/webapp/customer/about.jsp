@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Resto - Restaurant Bootstrap 4 Template by GetTemplates.co</title>
     <meta name="description" content="Resto">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -48,8 +47,7 @@
 					                    <h2 class="special-number">01.</h2>
 					                    <div class="dishes-text">
 					                        <h3><span>CAFE ONDA</span></h3>
-					                        <p class="pt-3">송정 해수욕장에 위치한 오션뷰 브런치 카페입니다. 온라인으로 메뉴 주문 및 픽업이 가능하며, 테이블 예약으로 간편하게 이용해보세요.</p>
-					                        <a href="#" class="btn-primary mt-3">book a table</a>
+					                        <p class="pt-3">'ONDA'는 스페인어로 파도, 물결이라는 뜻을 가지고 있으며 한글의 '오다' 라는 뜻과 함께 고객님께서 바다가 보이는 저희 카페에 방문하시길 바라는 마음으로 지었습니다. 온라인으로 메뉴 주문 및 픽업이 가능하며, 테이블 예약으로 간편하게 이용해보세요.</p>
 					                    </div>
 					                </div>
 					                <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
@@ -64,7 +62,7 @@
 					                    <h2 class="special-number">02.</h2>
 					                    <div class="dishes-text">
 					                        <h3><span>Location</span></h3>
-					                        <p class="pt-3">부산 해운대구 송정동 712-2</p>
+					                        <p class="pt-3">부산 해운대구 송정동 111 <br>송정해수욕장 카페 온다</p>
 					                        
 					                    </div>
 					                </div>
@@ -97,10 +95,8 @@
         </div>
     </div>
 </section>
-<a href="https://map.kakao.com/?urlX=1000960&urlY=472810&urlLevel=5&map_type=TYPE_MAP&map_hybrid=false" target="_blank"><img width="504" height="310" src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=10&MX=1000960&MY=472810&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" style="border:1px solid #ccc"></a><div class="hide" style="overflow:hidden;padding:7px 11px;border:1px solid #dfdfdf;border-color:rgba(0,0,0,.1);border-radius:0 0 2px 2px;background-color:#f9f9f9;width:482px;"><strong style="float: left;"><img src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/common/logo_kakaomap.png" width="72" height="16" alt="카카오맵"></strong><div style="float: right;position:relative"><a style="font-size:12px;text-decoration:none;float:left;height:15px;padding-top:1px;line-height:15px;color:#000" target="_blank" href="https://map.kakao.com/?urlX=1000960&urlY=472810&urlLevel=5&map_type=TYPE_MAP&map_hybrid=false">지도 크게 보기</a></div></div>
-
 </div>
-<br>
+<!-- footer -->
 <jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

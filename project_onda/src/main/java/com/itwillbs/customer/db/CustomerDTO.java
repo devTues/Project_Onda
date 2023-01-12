@@ -7,6 +7,7 @@ public class CustomerDTO {
 	private String cus_name;
 	private String cus_phone;
 	private String cus_email;
+	private int cus_num;
 	
 	public String getCus_id() {
 		return cus_id;
@@ -38,6 +39,13 @@ public class CustomerDTO {
 	public void setCus_email(String cus_email) {
 		this.cus_email = cus_email;
 	}
+	public int getCus_num() {
+		return cus_num;
+	}
+	public void setCus_num(int cus_num) {
+		this.cus_num = cus_num;
+	}
+	
 
 	
 

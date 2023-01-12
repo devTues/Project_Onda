@@ -15,6 +15,7 @@ public class CustomerDAO {
 	
 	Connection con=null;
 	PreparedStatement pstmt=null;
+	PreparedStatement pstmt2=null;
 	ResultSet rs=null;
 	
 	// 디비연결 메서드
@@ -55,7 +56,18 @@ public class CustomerDAO {
 		
 		try {
 			con=getConnection();
-			String sql="insert into customer(cus_id,cus_pass,cus_name,cus_phone,cus_email) values(?,?,?,?,?)";
+			
+			String sql2 = "select max(cus_num) from customer";
+			pstmt2 = con.prepareStatement(sql2);
+			// 실행 => 결과 저장
+			rs = pstmt2.executeQuery();
+			// 결과접근 max(num) 가져와서 +1;
+			int cus_num = 0;
+			if(rs.next()) {
+				cus_num= rs.getInt("max(cus_num)")+1;
+			}
+			
+			String sql="insert into customer(cus_id,cus_pass,cus_name,cus_phone,cus_email,cus_num) values(?,?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getCus_id());
@@ -63,6 +75,7 @@ public class CustomerDAO {
 			pstmt.setString(3, dto.getCus_name());
 			pstmt.setString(4, dto.getCus_phone());
 			pstmt.setString(5, dto.getCus_email());
+			pstmt.setInt(6, cus_num);
 			
 			pstmt.executeUpdate(); //sql insert,update,delete 때 사용
 			
@@ -75,13 +88,25 @@ public class CustomerDAO {
 		
 		try {
 			con=getConnection();
-			String sql="insert into customer(cus_id,cus_pass,cus_name,cus_email) values(?,?,?,?)";
+			
+			String sql2 = "select max(num) as cus_num from customer";
+			pstmt2 = con.prepareStatement(sql2);
+			// 실행 => 결과 저장
+			rs = pstmt2.executeQuery();
+			// 결과접근 max(num) 가져와서 +1;
+			int num = 0;
+			if(rs.next()) {
+				num= rs.getInt("num")+1;
+			}
+			
+			String sql="insert into customer(cus_id,cus_pass,cus_name,cus_email,cus_num) values(?,?,?,?,?)";
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getCus_id());
 			pstmt.setString(2, dto.getCus_email());
 			pstmt.setString(3, dto.getCus_name());
 			pstmt.setString(4, dto.getCus_email());
+			pstmt.setInt(5, num);
 			
 			pstmt.executeUpdate();
 			
@@ -214,25 +239,49 @@ public class CustomerDAO {
 	} // 멤버 삭제
 	
 	// 멤버 목록 조회
-	public List getCustomerList() {
+	public List getCustomerList(int startRow,int pageSize) {
 		List<CustomerDTO> customerList=new ArrayList<CustomerDTO>();
 		
 		try {
 			con=getConnection();
-			String sql="select * from customer";
+			String sql="select * from customer order by cus_num limit ?,?";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				CustomerDTO dto=new CustomerDTO();
 				dto.setCus_id(sql);
+				dto.setCus_id(rs.getString("cus_id"));
 				dto.setCus_pass(rs.getString("cus_pass"));
 				dto.setCus_name(rs.getString("cus_name"));
-				
+				dto.setCus_phone(rs.getString("cus_phone"));
+				dto.setCus_email(rs.getString("cus_email"));
+				dto.setCus_num(rs.getInt("cus_num"));
 				customerList.add(dto);
 			}
 		} catch (Exception e) {e.printStackTrace();} finally {close();}
 		return customerList;
 	} // 멤버 목록 조회
 	
+	// 관리자 페이징	
+    public int getCustomerCount() {
+		int count=0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql
+			String sql="select count(*) from customer;";
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			//5 결과 접근 글개수 가져오기
+			if(rs.next()) {
+				count=rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return count;
+	}
 }
