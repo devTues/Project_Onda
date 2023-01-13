@@ -1,13 +1,14 @@
           body{
               padding-top:4.2rem;
               padding-bottom:4.2rem;
-              background:rgba(0, 0, 0, 0.76);
+              background: rgba(0,0,0,.2);
           }
           a{
               text-decoration:none !important;
+              font-family: 'Gowun Dodum', sans-serif;
           }
           h1,h2,h3{
-              font-family: sans-serif, monospace;
+              font-family: 'Gowun Dodum', sans-serif;
           }
           .myform{
               position: relative;
@@ -30,6 +31,7 @@
           }
           .mybtn{
               border-radius:50px;
+              font-family: 'Gowun Dodum', sans-serif;
           }
           .login-or {
               position: relative;
@@ -63,6 +65,7 @@
               border: 1px solid #FFE400;
    			  background-color: #FFE400;
    			  border-color: #FFE400;
+   			  font-family: 'Gowun Dodum', sans-serif;
           }
           form .error {
               color: #ff0000;
@@ -80,7 +83,7 @@
 		    color: black;
 		    text-decoration: none;
 		    background-color: transparent;
-		    font-family: sans-serif;
+		    font-family: 'Gowun Dodum', sans-serif;
 		    font-size:16px;
 		    font-weight:600;
 		    text-align: right;
