@@ -2,16 +2,17 @@
  *	Resto by GetTemplates.co
  *	URL: https://gettemplates.co
  */
+ 
 html {
   overflow-x: hidden; }
 
 body {
-/*   font-family: sans-serif; */
+  font-family: 'Gowun Dodum', sans-serif;
   color: #000;
   background-color: #fff; }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif;
+  font-family: 'Gowun Dodum', sans-serif;
   font-weight: 400; }
 
 h1, h2 {
@@ -109,11 +110,11 @@ a:hover {
 
 .btn-primary {
   display: inline-block;
-  background-color: #f34949;
-  border-color: #f34949;
+  background-color: #B2CCFF;
+  border-color: #B2CCFF;
   color: #fff;
   border-radius: 30px;
-  padding: 9px 25px;
+/*   padding: 9px 25px; */
   text-transform: capitalize;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -125,7 +126,8 @@ a:hover {
     color: #fff; }
 
 .btn-shadow {
-  box-shadow: -5px 8px 20px 0px rgba(229, 16, 2, 0.15); }
+/*   box-shadow: -5px 8px 20px 0px rgba(229, 16, 2, 0.15);  */
+  }
 
 .btn-icon {
   color: #000; }

@@ -13,7 +13,9 @@ public class MenuList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	
+		
+		MenuDAO dao=new MenuDAO();
+		
 		int pageSize= 10;
 		
 		String pageNum=request.getParameter("pageNum");
@@ -24,12 +26,12 @@ public class MenuList implements Action{
 		int startRow=(currentPage-1)*pageSize+1;
 		int endRow=startRow+pageSize-1;
 		
-		MenuDAO dao=new MenuDAO();
+		
 		List<MenuDTO> menuList =dao.getMenuList(startRow,pageSize);
 		
 		// 한페이지 10개 페이지 번호 보이게 설정
 		int count=dao.getMenuCount();
-		int pageBlock=10;
+		int pageBlock=5;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		
 		int endPage=startPage+pageBlock-1;
@@ -49,7 +51,7 @@ public class MenuList implements Action{
 				
 		// 이동정보 저장 => ./center/notice.jsp  
 		ActionForward forward=new ActionForward();
-		forward.setPath("./menu/mainMenu.jsp");
+		forward.setPath("./menu/AdminMenuList.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

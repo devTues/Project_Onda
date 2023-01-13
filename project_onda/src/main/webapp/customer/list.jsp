@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/brands.css">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Josefin+Sans:300,400,700">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
@@ -94,7 +94,7 @@
 							<td><%=dto.getCus_name()%></td>
 							<td><%=dto.getCus_phone()%></td>
 							<td><%=dto.getCus_email()%></td>
-							<td><input type="button" value="회원삭제" 
+							<td><input type="button" value="회원삭제" class="btn btn-primary btn-shadow btn-lg"
 				         		onclick="location.href='./AdminCusDelete.cu?cus_id=<%=dto.getCus_id()%>'"></td>
 						</tr>
 						<%
@@ -106,7 +106,7 @@
 					// 10페이지 이전 
 					if(startPage > pageBlock){
 						%>
-					<a href="./CustomerList.cu?pageNum=<%=startPage-pageBlock%>">[10페이지 이전] </a>
+					<a href="./CustomerList.cu?pageNum=<%=startPage-pageBlock%>">[5페이지 이전] </a>
 						<%	
 					}
 					
@@ -133,7 +133,7 @@
 					//10페이지 다음 
 					if(endPage < pageCount){
 						%>
-						<a href="./CustomerList.cu?pageNum=<%=startPage+pageBlock%>">[10페이지 다음]</a>
+						<a href="./CustomerList.cu?pageNum=<%=startPage+pageBlock%>">[5페이지 다음]</a>
 						<%
 					}
 					%>

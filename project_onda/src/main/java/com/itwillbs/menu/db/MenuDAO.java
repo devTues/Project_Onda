@@ -88,7 +88,7 @@ public class MenuDAO {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu order by menu_num desc limit ?,?";
+			String sql = "select * from menu order by menu_num limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow-1);

@@ -17,15 +17,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/brands.css">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Josefin+Sans:300,400,700">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+	
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.min.css">
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<title>Admin Page</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -60,26 +61,26 @@
                     <div class="heading-menu">
                         <h4 class="text-center mb-5">회원/메뉴</h4>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                	<a href="./CustomerList.cu"><h6>회원관리</h6></a>
+                                	<a href="./CustomerList.cu"><h5>회원관리</h5></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="./AdminMenuList.mn"><h6>메뉴관리</h6></a>
+                                    <a href="./AdminMenuList.mn"><h5>메뉴관리</h5></a>
                                 </div>
                             </div>
                         </div>
@@ -90,26 +91,26 @@
                     <div class="heading-menu">
                         <h4 class="text-center mb-5">주문/예약</h4>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                	<a href="#"><h6>주문관리</h6></a>
+                                	<a href="#"><h5>주문관리</h5></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="./AdminResList.re"><h6>예약관리</h6></a>
+                                    <a href="./AdminResList.re"><h5>예약관리</h5></a>
                                 </div>
                             </div>
                         </div>
@@ -120,26 +121,26 @@
                     <div class="heading-menu">
                         <h4 class="text-center mb-5">리뷰/문의</h4>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="#"><h6>리뷰관리</h6></a>
+                                    <a href="#"><h5>리뷰관리</h5></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="menus d-flex align-items-center">
+                    <div class="menus d-flex align-items-center text-center">
                         <div class="menu-img rounded-circle">
                             <img class="img-fluid" src="img/breakfast-1.jpg" alt="">
                         </div>
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="#"><h6>문의관리</h6></a>
+                                    <a href="#"><h5>문의관리</h5></a>
                                 </div>
                             </div>
                         </div>
