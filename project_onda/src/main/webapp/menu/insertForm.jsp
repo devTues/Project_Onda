@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.menu.db.menuDTO"%>
+<%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,9 +16,9 @@
 </head>
 <body>
 <%
- 	// 세션값 가져오기 -->
+// 세션값 가져오기 -->
  String id = (String) session.getAttribute("menu_num");
- menuDTO dto = new menuDTO();
+ MenuDTO dto = new MenuDTO();
 %> 
 	<h1>신메뉴 등록</h1>
 	<form action="./MenuInsertPro.mn" method="post" enctype="multipart/form-data">

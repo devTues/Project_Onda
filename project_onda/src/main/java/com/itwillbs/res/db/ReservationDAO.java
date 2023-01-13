@@ -159,7 +159,7 @@ public class ReservationDAO {
     }
     
     // 관리자용 예약목록 조회
-	public List getAdminReservationList(int startRow,int pageSize) {
+	public List<ReservationDTO> getAdminReservationList(int startRow,int pageSize) {
 		List<ReservationDTO> reservationList=new ArrayList<ReservationDTO>();
     		
         try {

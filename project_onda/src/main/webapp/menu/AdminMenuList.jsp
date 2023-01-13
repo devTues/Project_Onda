@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.customer.db.CustomerDTO"%>
+<%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -29,13 +29,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.min.css">
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<title>Menu List</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -47,55 +47,57 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>CUSTOMER LIST</h2>
+						<h2>MENU LIST</h2>
 					</div>
 					<div class="row mt-5">
+					<div class="col-md-10 mb-2 text-left">
+						<input type="button" value="메뉴추가" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MenuInsertForm.mn'">
+                    </div>
 					<%
 					//세션값이 null이거나 admin 아니면 알람
 					String id=(String)session.getAttribute("id");
 					if(id==null || !id.equals("admin")){
-						%>
+					%>
 						<script type="text/javascript">
 						alert("관리자만 이용가능합니다");
 						history.back();
 						</script>
-					<%	
-					} 
-					List<CustomerDTO> customerList=(List<CustomerDTO>)request.getAttribute("customerList");
+					<%
+					}
+					
+					List<MenuDTO> menuList=(List<MenuDTO>)request.getAttribute("menuList");
 					//startPage pageBlock currentPage endPage pageCount
-					int startPage = (Integer) request.getAttribute("startPage");
-					int pageBlock = (Integer) request.getAttribute("pageBlock");
-					int currentPage = (Integer) request.getAttribute("currentPage");
-					int endPage = (Integer) request.getAttribute("endPage");
-					int pageCount = (Integer) request.getAttribute("pageCount");
+					int startPage=(Integer)request.getAttribute("startPage");
+					int pageBlock=(Integer)request.getAttribute("pageBlock");
+					int currentPage=(Integer)request.getAttribute("currentPage");
+					int endPage=(Integer)request.getAttribute("endPage");
+					int pageCount=(Integer)request.getAttribute("pageCount");
 					%>
 					<table class="table table-hover">
 						<thead>
 						<tr>
-							<th scope="col">회원번호</th>
-							<th scope="col">아이디</th>
-							<th scope="col">비밀번호</th>
-							<th scope="col">이름</th>
-							<th scope="col">휴대폰 번호</th>
-							<th scope="col">이메일</th>
-							<th scope="col">회원관리</th>
+							<th scope="col">상품번호</th>
+							<th scope="col">상품이름</th>
+							<th scope="col">상품가격</th>
+							<th scope="col">카테고리</th>
+							<th scope="col">이미지</th>
+							<th scope="col">상품관리</th>
 						</tr>
 						</thead>
 						<%
-						for(int i = 0; i<customerList.size(); i++) {
-						//	MemberDTO dto = (MemberDTO)memberList.get(i);
-						//  참조형의 형변환 없이 가져옴
-							CustomerDTO dto = customerList.get(i);
+						for(int i = 0; i<menuList.size(); i++) {
+							MenuDTO dto = menuList.get(i);
 						%>
 						<tr>
-							<td><%=dto.getCus_num() %></td>
-							<td><%=dto.getCus_id()%></td>
-							<td><%=dto.getCus_pass()%></td>
-							<td><%=dto.getCus_name()%></td>
-							<td><%=dto.getCus_phone()%></td>
-							<td><%=dto.getCus_email()%></td>
-							<td><input type="button" value="회원삭제" class="btn btn-primary btn-shadow btn-lg"
-				         		onclick="location.href='./AdminCusDelete.cu?cus_id=<%=dto.getCus_id()%>'"></td>
+							<td><%=dto.getMenu_num()%></td>
+						    <td><%=dto.getMenu_name() %></td>
+						    <td><%=dto.getMenu_price() %></td>
+						    <td><%=dto.getMenu_category() %></td>
+						    <td><%=dto.getMenu_img() %></td>
+							<td><input type="button" value="수정" class="btn btn-primary btn-shadow btn-lg"
+				         		onclick="location.href='./MenuUpdateForm.mn?menu_num=<%=dto.getMenu_num()%>'">
+								<input type="button" value="삭제" class="btn btn-primary btn-shadow btn-lg"
+				         		onclick="location.href='./MenuDelete.mn?menu_num=<%=dto.getMenu_num()%>'"></td>
 						</tr>
 						<%
 						}
@@ -106,7 +108,7 @@
 					// 10페이지 이전 
 					if(startPage > pageBlock){
 						%>
-					<a href="./CustomerList.cu?pageNum=<%=startPage-pageBlock%>">[5페이지 이전] </a>
+					<a href="./AdminMenuList.mn?pageNum=<%=startPage-pageBlock%>">[5페이지 이전] </a>
 						<%	
 					}
 					
@@ -119,7 +121,7 @@
 					
 					for(int i=startPage;i<=endPage;i++){
 						%>
-						<a href="./CustomerList.cu?pageNum=<%=i%>"><%=i %></a>
+						<a href="./AdminMenuList.mn?pageNum=<%=i%>"><%=i %></a>
 						<%
 					}
 					
@@ -133,7 +135,7 @@
 					//10페이지 다음 
 					if(endPage < pageCount){
 						%>
-						<a href="./CustomerList.cu?pageNum=<%=startPage+pageBlock%>">[5페이지 다음]</a>
+						<a href="./AdminMenuList.mn?pageNum=<%=startPage+pageBlock%>">[5페이지 다음]</a>
 						<%
 					}
 					%>
@@ -162,6 +164,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<!-- Main JS -->
 	<script src="./js/app.min.js "></script>
-	
 </body>
 </html>

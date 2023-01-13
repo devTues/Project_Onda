@@ -3,8 +3,8 @@ package com.itwillbs.menu.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 
 
 public class MenuUpdateForm implements Action{
@@ -14,14 +14,14 @@ public class MenuUpdateForm implements Action{
 
 		int menu_num = Integer.parseInt(request.getParameter("menu_num"));
 
-		menuDAO dao = new menuDAO();
+		MenuDAO dao = new MenuDAO();
 		
-		menuDTO dto = dao.getMenu(menu_num);
+		MenuDTO dto = dao.getMenu(menu_num);
 		
 		request.setAttribute("dto", dto);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/updateMenu.jsp");
+		forward.setPath("./menu/updateMenu.jsp");
 		forward.setRedirect(false);
 		
 		

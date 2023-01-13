@@ -1361,7 +1361,6 @@
       this._items = element && element.parentNode ? SelectorEngine.find(SELECTOR_ITEM, element.parentNode) : [];
       return this._items.indexOf(element);
     }
-
     _getItemByOrder(order, activeElement) {
       const isNext = order === ORDER_NEXT;
       return getNextActiveElement(this._items, activeElement, isNext, this._config.wrap);
@@ -1396,7 +1395,6 @@
         }
       }
     }
-
     _updateInterval() {
       const element = this._activeElement || SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
 
@@ -1413,7 +1411,6 @@
         this._config.interval = this._config.defaultInterval || this._config.interval;
       }
     }
-
     _slide(directionOrOrder, element) {
       const order = this._directionToOrder(directionOrOrder);
 
@@ -1521,7 +1518,6 @@
 
       return order === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT;
     } // Static
-
 
     static carouselInterface(element, config) {
       const data = Carousel.getOrCreateInstance(element, config);

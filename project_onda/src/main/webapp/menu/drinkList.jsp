@@ -1,5 +1,5 @@
 
-<%@page import="com.itwillbs.menu.db.menuDTO"%>
+<%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -19,12 +19,10 @@
 
 <body>
 <%
-
 String id=(String)session.getAttribute("cus_id");
 //로그인이 안된 상태면 장바구니 담기 불가----------------------------------------------------
-List<menuDTO> drinkList
-=(List<menuDTO>)request.getAttribute("drinkList");
-
+List<MenuDTO> drinkList
+=(List<MenuDTO>)request.getAttribute("drinkList");
 %>
 
 <h1>Drink</h1>
@@ -60,8 +58,8 @@ List<menuDTO> drinkList
 
 <%
 for(int i = 0; i < drinkList.size(); i++){
-	menuDTO dto = drinkList.get(i); 
-	%>
+	MenuDTO dto = drinkList.get(i);
+%>
 	<ul class="menuList">
 		<li>
 			<dl>

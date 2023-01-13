@@ -239,7 +239,7 @@ public class CustomerDAO {
 	} // 멤버 삭제
 	
 	// 멤버 목록 조회
-	public List getCustomerList(int startRow,int pageSize) {
+	public List<CustomerDTO> getCustomerList(int startRow,int pageSize) {
 		List<CustomerDTO> customerList=new ArrayList<CustomerDTO>();
 		
 		try {

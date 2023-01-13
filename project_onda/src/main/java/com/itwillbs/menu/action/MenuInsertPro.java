@@ -3,8 +3,8 @@ package com.itwillbs.menu.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.menu.db.menuDAO;
-import com.itwillbs.menu.db.menuDTO;
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -39,7 +39,7 @@ public class MenuInsertPro implements Action{
 		// set() get() 메서드 정의
 
 		// BoardDTO객체생성(기억장소 할당)
-		menuDTO dto=new menuDTO();
+		MenuDTO dto=new MenuDTO();
 		// set메서드 호출 파라미터값 저장
 	
 		dto.setMenu_name(menu_name);
@@ -51,13 +51,13 @@ public class MenuInsertPro implements Action{
 
 		// 패키지board 파일이름BoardDAO 자바 클래스 만들기
 		// BoardDAO 객체생성(기억장소 할당)
-		menuDAO dao=new menuDAO();
+		MenuDAO dao=new MenuDAO();
 		// 리턴할형 없음 insertBoard(BoardDTO 주소값 저장하는 변수) 메서드 정의 
 		// BoardDAO주소.insertBoard(BoardDTO 주소)메서드 호출
 		dao.insertMenu(dto);
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./MenuBoardList.mn");
+		forward.setPath("./AdminMenuList.mn");
 		forward.setRedirect(true);
 		return forward;
 	}

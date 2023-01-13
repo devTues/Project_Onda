@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
-public class menuDAO {
+public class MenuDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt2 = null;
@@ -49,7 +49,7 @@ public class menuDAO {
 			}
 	}
 
-	public void insertMenu(menuDTO dto) {
+	public void insertMenu(MenuDTO dto) {
 
 		try {
 			con = getConnection();
@@ -81,15 +81,14 @@ public class menuDAO {
 		close();
 	}
 
-	public List<menuDTO> getMenuList(int startRow, int pageSize) {
-		List<menuDTO> menuList = new ArrayList<menuDTO>();
-		System.out.println("@@@@@@@@@@@@");
+	public List<MenuDTO> getMenuList(int startRow, int pageSize) {
+		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
 		
 		try {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu order by menu_num desc limit ?,?";
+			String sql = "select * from menu order by menu_num limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow-1);
@@ -100,7 +99,7 @@ public class menuDAO {
 			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
 			// => 글하나를 배열한칸에 저장
 			while (rs.next()) {
-				menuDTO dto = new menuDTO();
+				MenuDTO dto = new MenuDTO();
 				dto.setMenu_num(rs.getInt("menu_num"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_price(rs.getInt("menu_price"));
@@ -119,8 +118,8 @@ public class menuDAO {
 		return menuList;
 	}// getList()
 
-	public menuDTO getMenu(int menu_num) {
-		menuDTO dto = null;
+	public MenuDTO getMenu(int menu_num) {
+		MenuDTO dto = null;
 
 		try {
 			con = getConnection();
@@ -133,10 +132,10 @@ public class menuDAO {
 
 			if (rs.next()) {
 
-				dto = new menuDTO();
+				dto = new MenuDTO();
 
 				dto.setMenu_num(rs.getInt("menu_num"));
-				dto.setMenu_name(rs.getString("menu_num"));
+				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_detail(rs.getString("menu_detail"));
 				dto.setMenu_price(rs.getInt("menu_price"));
 				dto.setMenu_img(rs.getString("menu_img"));
@@ -150,12 +149,12 @@ public class menuDAO {
 		return dto;
 	}// getMenu
 
-	public void updateMenu(menuDTO dto) {
+	public void updateMenu(MenuDTO dto) {
 		try {
 			// 1,2 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "update menu set menu_name=? ,menu_price=?, menu_category=?, menu_img=, menu_detail=? where menu_num=?";
+			String sql = "update menu set menu_name=? ,menu_price=?, menu_category=?, menu_img=?, menu_detail=? where menu_num=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getMenu_name());
@@ -212,8 +211,8 @@ public class menuDAO {
 		return count;
 	}//
 
-	public List<menuDTO> DrinkList(String menu_category) {
-		List<menuDTO> drinkList = new ArrayList<menuDTO>();
+	public List<MenuDTO> DrinkList(String menu_category) {
+		List<MenuDTO> drinkList = new ArrayList<MenuDTO>();
 		System.out.println("@ DrinkList@");
 		
 		try {
@@ -233,7 +232,7 @@ public class menuDAO {
 			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
 			// => 글하나를 배열한칸에 저장
 			while (rs.next()) {
-				menuDTO dto = new menuDTO();
+				MenuDTO dto = new MenuDTO();
 				dto.setMenu_num(rs.getInt("menu_num"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_price(rs.getInt("menu_price"));
@@ -253,8 +252,8 @@ public class menuDAO {
 		return drinkList;
 	}// getmenuList()
 	
-	public List<menuDTO> FoodList(String menu_category) {
-		List<menuDTO> foodList = new ArrayList<menuDTO>();
+	public List<MenuDTO> FoodList(String menu_category) {
+		List<MenuDTO> foodList = new ArrayList<MenuDTO>();
 		System.out.println("@@@@@@FoodList@@@@@@");
 		
 		try {
@@ -272,7 +271,7 @@ public class menuDAO {
 			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
 			// => 글하나를 배열한칸에 저장
 			while (rs.next()) {
-				menuDTO dto = new menuDTO();
+				MenuDTO dto = new MenuDTO();
 				dto.setMenu_num(rs.getInt("menu_num"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_price(rs.getInt("menu_price"));
@@ -292,8 +291,8 @@ public class menuDAO {
 		return foodList;
 	}// getmenuList()
 	
-	public List<menuDTO> GoodsList(String menu_category) {
-		List<menuDTO> goodsList = new ArrayList<menuDTO>();
+	public List<MenuDTO> GoodsList(String menu_category) {
+		List<MenuDTO> goodsList = new ArrayList<MenuDTO>();
 		System.out.println("@GoodsList@");
 		
 		try {
@@ -311,7 +310,7 @@ public class menuDAO {
 			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
 			// => 글하나를 배열한칸에 저장
 			while (rs.next()) {
-				menuDTO dto = new menuDTO();
+				MenuDTO dto = new MenuDTO();
 				dto.setMenu_num(rs.getInt("menu_num"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_price(rs.getInt("menu_price"));
