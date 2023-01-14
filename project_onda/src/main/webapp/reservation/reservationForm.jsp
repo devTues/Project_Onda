@@ -37,8 +37,8 @@
 
 <%
 // 세션값이 null이면 로그인페이지로 이동
-String id=(String)session.getAttribute("id");
-if(id==null){
+String cus_id=(String)session.getAttribute("cus_id");
+if(cus_id==null){
 	%>
 	<script type="text/javascript">
 	alert("로그인 후 이용가능합니다");

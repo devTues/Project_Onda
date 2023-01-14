@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
+ 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
@@ -51,8 +51,8 @@
 					<div class="row mt-5">
 					<%
 					//세션값이 null이거나 admin 아니면 알람
-					String id=(String)session.getAttribute("id");
-					if(id==null || !id.equals("admin")){
+					String cus_id=(String)session.getAttribute("cus_id");
+					if(cus_id==null || !cus_id.equals("admin")){
 						%>
 						<script type="text/javascript">
 						alert("관리자만 이용가능합니다");
@@ -105,42 +105,36 @@
 							%>
 					</table>
 					</div>
-					<%
-					// 10페이지 이전 
-					if(startPage > pageBlock){
-						%>
-					<a href="./AdminResList.re?pageNum=<%=startPage-pageBlock%>">[10페이지 이전] </a>
-						<%	
-					}
-					
-					// 이전 currentPage-1
-					if(currentPage > 1){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage-1%>">[1페이지 이전] </a> --%>
-						<%
-					}
-					
-					for(int i=startPage;i<=endPage;i++){
-						%>
-						<a href="./AdminResList.re?pageNum=<%=i%>"><%=i %></a>
-						<%
-					}
-					
-					// 다음 currentPage+1
-					if(currentPage < pageCount){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage+1%>">[1페이지 다음]</a> --%>
-						<%
-					}
-					
-					//10페이지 다음 
-					if(endPage < pageCount){
-						%>
-						<a href="./AdminResList.re?pageNum=<%=startPage+pageBlock%>">[10페이지 다음]</a>
-						<%
-					}
-					%>
-                </div>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+					    	
+					    	<%
+							// 10페이지 이전 
+							if(startPage > pageBlock){
+								%>
+					     	 <li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <%	
+							}
+					    	%>
+					    	
+					    	<%
+					    	for(int i=startPage;i<=endPage;i++){
+								%>
+								<li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=i%>"><%=i %></a></li>
+								<%
+							}
+					    	%>
+					    	
+					      <%
+					       if(endPage < pageCount){
+							%>
+					       <li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					      <%
+							}
+							%>
+					 	</ul>
+					</nav>
+                </div>	
             </div>
         </div>
     </div>

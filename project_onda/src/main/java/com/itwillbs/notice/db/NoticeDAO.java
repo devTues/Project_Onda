@@ -35,13 +35,6 @@ public class NoticeDAO {
 		
 	public void insertBoard(NoticeDTO dto) {
 		
-//		System.out.println("BoardDAO insertBoard()");
-//		System.out.println("BoardDTO 주소값 :"+dto);
-//		System.out.println("BoardDTO name :"+dto.getNt_name());
-//		System.out.println("BoardDTO subject :"+dto.getNt_title());
-//		System.out.println("BoardDTO content :"+dto.getNt_content());
-//		System.out.println("BoardDTO readcount :"+dto.getNt_view());
-//		System.out.println("BoardDTO date :"+dto.getNt_view());
 		try {
 			con=getConnection();
 			String sql2="select max(nt_num) as maxnum from notice_board";
@@ -53,11 +46,11 @@ public class NoticeDAO {
 				num=rs.getInt("maxnum")+1;
 			}
 			
-			String sql="insert into notice_board(nt_num,nt_name,nt_title,nt_content,nt_view,nt_date) values(?,?,?,?,?,?)";
+			String sql="insert into notice_board(nt_num,cus_id,nt_title,nt_content,nt_view,nt_date) values(?,?,?,?,?,?)";
 			pstmt =con.prepareStatement(sql);
 
 			pstmt.setInt(1, num);
-			pstmt.setString(2, dto.getNt_name());
+			pstmt.setString(2, dto.getCus_id());
 			pstmt.setString(3, dto.getNt_title());
 			pstmt.setString(4, dto.getNt_content());
 			pstmt.setInt(5, dto.getNt_view());
@@ -80,7 +73,7 @@ public class NoticeDAO {
 		con=getConnection();
 //		String sql="select * from board order by num desc limit 시작행-1,글개수";
 		String sql="select * from notice_board order by nt_num desc limit ?,?";
-		pstmt =con.prepareStatement(sql);
+		pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, startRow-1);
 		pstmt.setInt(2, pageSize);
 		rs=pstmt.executeQuery();
@@ -89,7 +82,7 @@ public class NoticeDAO {
 			
 			NoticeDTO dto=new NoticeDTO();
 			dto.setNt_num(rs.getInt("nt_num"));
-			dto.setNt_name(rs.getString("nt_name"));
+			dto.setCus_id(rs.getString("cus_id"));
 			dto.setNt_title(rs.getString("nt_title"));
 			dto.setNt_content(rs.getString("nt_content"));
 			dto.setNt_view(rs.getInt("nt_view"));
@@ -120,7 +113,7 @@ public class NoticeDAO {
 				//결과 있으면  => num에 대한 글있음
 				dto=new NoticeDTO();
 				dto.setNt_num(rs.getInt("nt_num"));
-				dto.setNt_name(rs.getString("nt_name"));
+				dto.setCus_id(rs.getString("cus_id"));
 				dto.setNt_title(rs.getString("nt_title"));
 				dto.setNt_content(rs.getString("nt_content"));
 				dto.setNt_view(rs.getInt("nt_view"));
@@ -155,9 +148,9 @@ public class NoticeDAO {
 				try {
 					con = getConnection();
 					
-					String sql="update notice_board set nt_name=?,nt_title=?,nt_content=? where nt_num=?";
+					String sql="update notice_board set cus_id=?,nt_title=?,nt_content=? where nt_num=?";
 					pstmt=con.prepareStatement(sql);
-					pstmt.setString(1, dto.getNt_name());
+					pstmt.setString(1, dto.getCus_id());
 					pstmt.setString(2, dto.getNt_title());
 					pstmt.setString(3, dto.getNt_content());
 					pstmt.setInt(4, dto.getNt_num());
@@ -174,6 +167,7 @@ public class NoticeDAO {
 
 				try {
 					con = getConnection();
+					
 					String sql="delete from notice_board where nt_num=?";
 					pstmt=con.prepareStatement(sql);
 					pstmt.setInt(1, num);

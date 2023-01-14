@@ -10,13 +10,13 @@ public class CustomerFindIdPro implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
+		String cus_name = request.getParameter("cus_name");
+		String cus_phone = request.getParameter("cus_phone");
 		
 		CustomerDAO dao = new CustomerDAO();
-		String id = dao.findId(name, phone);
+		String cus_id = dao.findId(cus_name, cus_phone);
 		
-		request.setAttribute("id", id);
+		request.setAttribute("cus_id", cus_id);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./customer/findIdPro.jsp");	

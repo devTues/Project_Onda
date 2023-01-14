@@ -38,12 +38,12 @@
         	<span class="subheading">
            	<%
 			// 세션값이 null이면 로그인페이지로 이동
-			String id=(String)session.getAttribute("id");
-			if(id==null){
+			String cus_id=(String)session.getAttribute("cus_id");
+			if(cus_id==null){
 				response.sendRedirect("./CustomerLoginForm.cu");
 			}
 			%>
-			<h5><%=id %> 님 안녕하세요 :)</h5>
+			<h5><%=cus_id %> 님 안녕하세요 :)</h5>
 			</span>
             <div class="row mb-5">
                 <div class="col-md-12">
@@ -149,8 +149,8 @@
 </div>    
 
 <%
-if(id != null) {
-	if(id.equals("admin")) {
+if(cus_id != null) {
+	if(cus_id.equals("admin")) {
 	%><a href="./CustomerList.cu">회원목록</a><br>
 	<%
 	}

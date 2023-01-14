@@ -10,14 +10,14 @@ public class CustomerFindPwPro implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
+		String cus_id = request.getParameter("cus_id");
+		String cus_name = request.getParameter("cus_name");
+		String cus_phone = request.getParameter("cus_phone");
 		
 		CustomerDAO dao = new CustomerDAO();
-		String pw = dao.findPw(id, name, phone);
+		String pw = dao.findPw(cus_id, cus_name, cus_phone);
 		
-		request.setAttribute("pass", pw);
+		request.setAttribute("cus_pass", pw);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./customer/findPwPro.jsp");	

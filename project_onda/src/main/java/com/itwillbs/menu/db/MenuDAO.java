@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
+
 public class MenuDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -83,24 +84,29 @@ public class MenuDAO {
 
 	public List<MenuDTO> getMenuList(int startRow, int pageSize) {
 		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
+		System.out.println("@@@@@@@@@@@@");
 		
 		try {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu order by menu_num limit ?,?;";
+			String sql = "select * from menu order by menu_num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
+			
 			pstmt.setInt(1, startRow-1);
 			pstmt.setInt(2, pageSize);
+			// 4 실행=> 결과저장
 			rs = pstmt.executeQuery();
-
+			// 5 while 결과 접근
+			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
+			// => 글하나를 배열한칸에 저장
 			while (rs.next()) {
 				MenuDTO dto = new MenuDTO();
 				dto.setMenu_num(rs.getInt("menu_num"));
 				dto.setMenu_name(rs.getString("menu_name"));
 				dto.setMenu_price(rs.getInt("menu_price"));
 				dto.setMenu_category(rs.getString("menu_category"));
-//				dto.setMenu_detail(rs.getString("menu_detail"));
+				dto.setMenu_detail(rs.getString("menu_detail"));
 				dto.setMenu_img(rs.getString("menu_img"));
 				// 배열 한칸에 글한개 저장
 				menuList.add(dto);
@@ -161,6 +167,7 @@ public class MenuDAO {
 			pstmt.setInt(6, dto.getMenu_num());
 			// 4 실행
 			pstmt.executeUpdate();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -207,6 +214,10 @@ public class MenuDAO {
 		return count;
 	}//
 
+	
+	
+	
+	
 	public List<MenuDTO> DrinkList(String menu_category) {
 		List<MenuDTO> drinkList = new ArrayList<MenuDTO>();
 		System.out.println("@ DrinkList@");
@@ -215,7 +226,7 @@ public class MenuDAO {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu where menu_category=? ";
+			String sql = "select * from menu where menu_category=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, menu_category);
@@ -326,6 +337,5 @@ public class MenuDAO {
 		return goodsList;
 	}// getmenuList()
 	
-}	
-	
+}
 	

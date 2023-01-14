@@ -17,7 +17,7 @@ public class ReservationPro implements Action {
 		
 		HttpSession session = request.getSession();
 		
-		String id = (String) session.getAttribute("id");
+		String cus_id = (String) session.getAttribute("cus_id");
 		
 		String res_use_date=request.getParameter("res_use_date");
 		String time=request.getParameter("time");
@@ -30,7 +30,7 @@ public class ReservationPro implements Action {
 		ReservationDAO dao = new ReservationDAO();
 
 		ReservationDTO dto = new ReservationDTO();
-		dto.setCus_id(id);
+		dto.setCus_id(cus_id);
 	    dto.setRes_use_date(res_use_date);
 	    dto.setRes_phone(phone);
 	    dto.setRes_time(time);

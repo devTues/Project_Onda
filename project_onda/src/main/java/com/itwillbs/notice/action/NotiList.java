@@ -12,14 +12,15 @@ import com.itwillbs.notice.db.NoticeDTO;
 public class NotiList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		NoticeDAO dao=new NoticeDAO();
 
 		int pageSize = 10;
+		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum == null){
 			pageNum = "1";
 		}
+		
 		int currentPage=Integer.parseInt(pageNum);
 		int startRow=(currentPage-1)*pageSize+1;
 		int endRow = startRow + pageSize-1;
@@ -27,12 +28,8 @@ public class NotiList implements Action {
 		List<NoticeDTO> boardList = dao.getBoardList(startRow, pageSize);
 
 		int count = dao.getBoardCount();
-		
-		//페이징
-		//한 화면에 보여줄 페이지 개수 설정(10개 페이지) 
-		int pageBlock = 10; 
+		int pageBlock = 3; 
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-		
 		int endPage=startPage+pageBlock-1;
 		int pageCount = count/pageSize
 		                +(count%pageSize==0 ? 0 : 1);
@@ -40,6 +37,7 @@ public class NotiList implements Action {
 		if(endPage > pageCount){
 			endPage=pageCount;
 		}
+		
 		
 		request.setAttribute("boardList",boardList);
 		request.setAttribute("startPage", startPage);

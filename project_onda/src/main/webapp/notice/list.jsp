@@ -5,99 +5,157 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags -->
+ 	<!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-<title>notice/list2.jsp</title>
-</head>
-<body>
-<h1>NOTICE</h1>
-<%
-List<NoticeDTO> boardList
-= (List<NoticeDTO>)request.getAttribute("boardList");
-int startPage=(Integer)request.getAttribute("startPage");
-int pageBlock=(Integer)request.getAttribute("pageBlock");
-int currentPage=(Integer)request.getAttribute("currentPage");
-int endPage=(Integer)request.getAttribute("endPage");
-int pageCount=(Integer)request.getAttribute("pageCount");
-%>
-<!-- <div id="header"> -->
-<!-- <div class="inner"> -->
-<!--   <ul class="xans-element- xans-layout xans-layout-statelogoff "><li><a href="http://en.momos.co.kr/"></a></li> -->
-<!-- <li><a href="/product/search.html">SEARCH</a></li> -->
-<!-- <li><a href="/order/basket.html">MYCART<span class="count displaynone EC-Layout_Basket-count-display">(<span class="EC-Layout-Basket-count">0</span>)</span></a></li> -->
-<!-- <li><a href="./MemberInfo.me">MYPAGE</a> -->
-<!-- </li> -->
-<!-- <li><a href="/myshop/order/list.html">ORDER</a></li> -->
-<!-- <li> -->
-<!-- <a href="/member/insertForm.jsp">JOIN</a></li> -->
-<!-- <li> -->
-<!-- <a href="/member/loginForm.jsp">LOGIN</a></li> -->
-<!-- </ul> -->
-<!-- </div>  -->
-<!-- </div><hr class="layout"><div id="wrap"> -->
-
- <table class="table">
-<%
-for(int i=0; i < boardList.size(); i++){
-  	NoticeDTO dto = boardList.get(i);
-%>
-<tr><td><%=dto.getNt_num() %></td>
-    <td><%=dto.getNt_name() %></td>
-    <td><a href="./NotiContent.no?num=<%=dto.getNt_num()%>">
-    	<%=dto.getNt_title() %></a></td>
-    <td><%=dto.getNt_date() %></td>
-    <td><%=dto.getNt_view() %></td></tr>    	
-    	<%
-    }
-    %>
-<thead>
-    <tr>
-      <th scope="col">no</th>
-      <th scope="col">name</th>
-      <th scope="col">title</th>
-      <th scope="col">date</th>
-      <th scope="col">view</th>
-    </tr>
-  </thead>
-  <tbody>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
-  </tbody>
-</table>
-<%
-String cus_id = (String)session.getAttribute("cus_id");
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Resto">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="./vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/brands.css">
 
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-	%>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.min.css">
 
-<form id="boardSearchForm" name="" action="/board/list.jsp" method="get" target="_top" enctype="multipart/form-data">
-<input id="board_no" name="board_no" value="1" type="hidden">
-<input id="page" name="page" value="1" type="hidden">
-<input id="board_sort" name="board_sort" value="" type="hidden"><div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-	<fieldset class="boardSearch">
-
-<legend>게시물 검색</legend>
-        <p><select id="search_date" name="search_date" fw-filter="" fw-label="" fw-msg="">
-<option value="week">일주일</option>
-<option value="month">한달</option>
-<option value="month3">세달</option>
-<option value="all">전체</option>
-		</select> 
-<select id="search_key" name="search_key" fw-filter="" fw-label="" fw-msg="">
-<option value="nt_title">제목</option>
-<option value="nt_content">내용</option>
-<option value="cus_id">아이디</option>
-</select><input id="search" name="search" fw-filter="" fw-label="" fw-msg="" class="inputTypeText" placeholder="" value="" type="text"> <a href="#none" onclick="BOARD.form_submit('boardSearchForm');"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_find.gif" alt="찾기"></a></p>
-    </fieldset>
-</div>
-</form>
+    <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<title>Notice</title>
+</head>
+<jsp:include page="../inc/headerMenu.jsp"></jsp:include>
+<body data-spy="scroll" data-target="#navbar">
+<div id="canvas-overlay"></div>
+<div class="boxed-page">
+<section id="gtco-menu" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="heading-section text-center">
+						<h2>NOTICE</h2>
+					</div>
+					<div class="row mt-5">
+					<%
+					List<NoticeDTO> boardList
+					= (List<NoticeDTO>)request.getAttribute("boardList");
+					int startPage=(Integer)request.getAttribute("startPage");
+					int pageBlock=(Integer)request.getAttribute("pageBlock");
+					int currentPage=(Integer)request.getAttribute("currentPage");
+					int endPage=(Integer)request.getAttribute("endPage");
+					int pageCount=(Integer)request.getAttribute("pageCount");
+					%>
+					
+					<table class="table table-hover">
+						<thead>
+						    <tr>
+						      <th scope="col">글번호</th>
+						      <th scope="col">작성자</th>
+						      <th scope="col">글제목</th>
+						      <th scope="col">등록일</th>
+						      <th scope="col">조회수</th>
+						    </tr>
+						<%
+						for(int i=0; i < boardList.size(); i++){
+						  	NoticeDTO dto = boardList.get(i);
+						%>
+						<tr>
+							<td><%=dto.getNt_num() %></td>
+						    <td><%=dto.getCus_id() %></td>
+						    <td><a href="./NotiContent.no?num=<%=dto.getNt_num()%>">
+						    	<%=dto.getNt_title() %></a></td>
+						    <td><%=dto.getNt_date() %></td>
+						    <td><%=dto.getNt_view() %></td>
+					    </tr>    	
+					    	<%
+					    }
+					    %>
+					    </thead>
+					</table>
+					<%
+					String cus_id = (String)session.getAttribute("cus_id");
+					if(cus_id == null) {
+						
+					} else if(cus_id.equals("admin")){
+					%>
+					<div id="table_search">
+					<div class="col-md-10 mb-2 text-left">
+						<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./NotiWrite.no'">
+                    </div>	
+                	</div>
+					<%
+						}
+					%>
+					</div>
+					
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+					    	
+					    	<%
+							// 10페이지 이전 
+							if(startPage > pageBlock){
+								%>
+					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <%	
+							}
+					    	%>
+					    	
+					    	<%
+					    	for(int i=startPage;i<=endPage;i++){
+								%>
+								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<%
+							}
+					    	%>
+					    	
+					      <%
+					       if(endPage < pageCount){
+							%>
+					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					      <%
+							}
+							%>
+					 	</ul>
+					</nav>
+     			</div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>	
 </body>
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-</body>
+<!-- footer -->
+<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- External JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="./vendor/bootstrap/popper.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js "></script>
+	<script src="./vendor/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	<!-- Main JS -->
+	<script src="./js/app.min.js "></script>
 </html>

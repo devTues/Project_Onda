@@ -30,11 +30,12 @@ public class AdminResList implements Action{
 		List<ReservationDTO> reservationList =dao.getAdminReservationList(startRow,pageSize);
 	
 		int count=dao.getReservationCount2();
-		int pageBlock=5; 
+		int pageBlock=3; 
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
 		int pageCount = count/pageSize
                 +(count%pageSize==0 ? 0 : 1);
+		
 		if(endPage > pageCount){
 			endPage=pageCount;
 		}

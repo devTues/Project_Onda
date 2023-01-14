@@ -13,15 +13,15 @@ public class NotiUpdatePro implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		int num=Integer.parseInt(request.getParameter("num"));
-		String name=request.getParameter("name");
-		String subject=request.getParameter("subject");
-		String content=request.getParameter("content");
+		String cus_id=request.getParameter("cus_id");
+		String nt_title=request.getParameter("nt_title");
+		String nt_content=request.getParameter("nt_content");
 
 		NoticeDTO dto=new NoticeDTO();
 		dto.setNt_num(num);
-		dto.setNt_name(name);
-		dto.setNt_title(subject);
-		dto.setNt_content(content);
+		dto.setCus_id(cus_id);
+		dto.setNt_title(nt_title);
+		dto.setNt_content(nt_content);
 
 		NoticeDAO dao=new NoticeDAO();
 		dao.updateBoard(dto);

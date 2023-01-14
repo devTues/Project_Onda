@@ -18,12 +18,12 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="./NotiList.no">NOTICE</a>
-                        <a class="dropdown-item" href="special-dishes.html">REVIEW</a>
+                        <a class="dropdown-item" href="./ReviewList.rv">REVIEW</a>
                         <a class="dropdown-item" href="./BoardList.bo">Q&A</a>
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="menu.html">MENU</a>
+                        <a class="nav-link" href="./MenuDetailPage.mn">MENU</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,8 +38,8 @@
             </ul>
             
             <%
-			 String id=(String)session.getAttribute("id");
-			 if(id == null) { // 세션값이 없을 경우 보여질 메뉴
+			 String cus_id=(String)session.getAttribute("cus_id");
+			 if(cus_id == null) { // 세션값이 없을 경우 보여질 메뉴
 			 %>
 		    <ul class="navbar-nav d-flex justify-content-between">
                 <div class="d-flex flex-lg-row flex-column">
@@ -49,7 +49,7 @@
                 </div>
             </ul>
 			<%
-			 } else if(id.equals("admin")) { // 세션값이 있고 admin일 경우 보여질 메뉴
+			 } else if(cus_id.equals("admin")) { // 세션값이 있고 admin일 경우 보여질 메뉴
 			 %>
 			 <ul class="navbar-nav d-flex justify-content-between">
                 <div class="d-flex flex-lg-row flex-column">
@@ -73,7 +73,7 @@
                         <a class="nav-link" href="./CustomerLogout.cu">LOGOUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="menu.html">CART</a>
+                        <a class="nav-link" href="./CartList.ca">CART</a>
                     </li>
                 </div>
             </ul>

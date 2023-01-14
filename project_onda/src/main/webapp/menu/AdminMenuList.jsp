@@ -8,6 +8,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
  	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +30,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.min.css">
@@ -50,13 +52,10 @@
 						<h2>MENU LIST</h2>
 					</div>
 					<div class="row mt-5">
-					<div class="col-md-10 mb-2 text-left">
-						<input type="button" value="메뉴추가" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MenuInsertForm.mn'">
-                    </div>
 					<%
 					//세션값이 null이거나 admin 아니면 알람
-					String id=(String)session.getAttribute("id");
-					if(id==null || !id.equals("admin")){
+					String cus_id=(String)session.getAttribute("cus_id");
+					if(cus_id==null || !cus_id.equals("admin")){
 					%>
 						<script type="text/javascript">
 						alert("관리자만 이용가능합니다");
@@ -103,42 +102,39 @@
 						}
 						%>
 					</table>
-                	</div>
-                	<%
-					// 10페이지 이전 
-					if(startPage > pageBlock){
-						%>
-					<a href="./AdminMenuList.mn?pageNum=<%=startPage-pageBlock%>">[5페이지 이전] </a>
-						<%	
-					}
-					
-					// 이전 currentPage-1
-					if(currentPage > 1){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage-1%>">[1페이지 이전] </a> --%>
-						<%
-					}
-					
-					for(int i=startPage;i<=endPage;i++){
-						%>
-						<a href="./AdminMenuList.mn?pageNum=<%=i%>"><%=i %></a>
-						<%
-					}
-					
-					// 다음 currentPage+1
-					if(currentPage < pageCount){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage+1%>">[1페이지 다음]</a> --%>
-						<%
-					}
-					
-					//10페이지 다음 
-					if(endPage < pageCount){
-						%>
-						<a href="./AdminMenuList.mn?pageNum=<%=startPage+pageBlock%>">[5페이지 다음]</a>
-						<%
-					}
-					%>
+					</div>
+					<div class="col-md-10 mb-2 text-left">
+						<input type="button" value="메뉴추가" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MenuInsertForm.mn'">
+                    </div>	
+                	<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+					    	
+					    	<%
+							// 10페이지 이전 
+							if(startPage > pageBlock){
+								%>
+					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <%	
+							}
+					    	%>
+					    	
+					    	<%
+					    	for(int i=startPage;i<=endPage;i++){
+								%>
+								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<%
+							}
+					    	%>
+					    	
+					      <%
+					       if(endPage < pageCount){
+							%>
+					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					      <%
+							}
+							%>
+					 	</ul>
+					</nav>
                 </div>	
             </div>
         </div>

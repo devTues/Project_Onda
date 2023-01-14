@@ -17,7 +17,7 @@
 <body>
 <%
 // 세션값 가져오기 -->
- String id = (String) session.getAttribute("menu_num");
+ String cus_id = (String) session.getAttribute("menu_num");
  MenuDTO dto = new MenuDTO();
 %> 
 	<h1>신메뉴 등록</h1>
@@ -25,9 +25,9 @@
 		<table id="insert" class="insertmenu">
 			<tr>
 				<th>카테고리</th>
-				<td><label><input type="radio" name="menu_category" value="음료">음료</label>
-					<label><input type="radio" name="menu_category" value="푸드">푸드</label> 
-					<label><input type="radio" name="menu_category" value="굿즈">굿즈</label>
+				<td><label><input type="radio" name="menu_category" value="drink">drink</label>
+					<label><input type="radio" name="menu_category" value="food">food</label> 
+					<label><input type="radio" name="menu_category" value="goods">goods</label>
 					</td>
 			</tr>
 			<tr>

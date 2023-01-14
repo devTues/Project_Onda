@@ -35,10 +35,10 @@
                             
                             <form action="./CustomerLoginPro.cu" method="post" name="login">
                                 <div class="form-group">
-                                    <input type="text" name="id" class="form-control" id="loginid" aria-describedby="emailHelp" placeholder="아이디">
+                                    <input type="text" name="cus_id" class="form-control" id="cus_id" aria-describedby="emailHelp" placeholder="아이디">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="pass" id="pass" class="form-control" aria-describedby="emailHelp" placeholder="비밀번호">
+                                    <input type="password" name="cus_pass" id="cus_pass" class="form-control" aria-describedby="emailHelp" placeholder="비밀번호">
                                 </div>
                                 
                                 <div class="col-md-12 mb-3">
@@ -48,8 +48,8 @@
                             
                             <!-- 카카오 회원 로그인 시작 -->
 							<form action="./CustomerLoginPro.cu" method="post" name="kakaologin">
-							     <input type="hidden" name="id">
-							     <input type="hidden" name="pass">
+							     <input type="hidden" name="cus_id">
+							     <input type="hidden" name="cus_pass">
                                 <div class="col-md-12 mb-3">
                                    <p class="text-center">
                                        <a href="javascript:kakaoLogin();" class="kakao btn mybtn"><i class="fa fa-google-plus">
@@ -85,29 +85,29 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">아이디</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="text"  name="id" class="form-control" id="id" placeholder="아이디">
+                                    <input type="text"  name="cus_id" class="form-control" id="cus_id" placeholder="아이디">
                                 </div>
 								<div class="dupdiv"></div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">비밀번호</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="password" name="pass1" class="form-control" id="pass1" placeholder="비밀번호">
-                                    <input type="password" name="pass2" class="form-control" id="pass2" placeholder="비밀번호 확인">
+                                    <input type="password" name="cus_pass1" class="form-control" id="cus_pass1" placeholder="비밀번호">
+                                    <input type="password" name="cus_pass2" class="form-control" id="cus_pass2" placeholder="비밀번호 확인">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">이름</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="text"  name="name" class="form-control" id="name" placeholder="이름을 입력하세요">
+                                    <input type="text"  name="cus_name" class="form-control" id="cus_name" placeholder="이름을 입력하세요">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">휴대폰 번호</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="text"  name="phone" class="form-control" id="phone" placeholder="휴대폰 번호">
+                                    <input type="text"  name="cus_phone" class="form-control" id="cus_phone" placeholder="휴대폰 번호">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">이메일</label>
                                     <i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
-                                    <input type="email" name="email"  class="form-control" id="email" placeholder="이메일">
+                                    <input type="email" name="cus_email"  class="form-control" id="cus_email" placeholder="이메일">
                                 </div>
                                 <div class="form-group">
                                     <p class="text-center">이용약관 및 개인정보수집 및 이용 안내 <a href='./CustomerAgree.cu' target='_blank'>자세히 보기</a></p>
@@ -120,12 +120,12 @@
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">가입하기</button>
                                 </div>
                         	</form>
-                        	
+                        	<!-- 카카오 회원가입 -->
                        	    <form action="./KakaoJoin.cu" name="kakaojoin" method="post">
-							     <input type="hidden" name="id">
-							     <input type="hidden" name="pass">
-							     <input type="hidden" name="name">
-							     <input type="hidden" name="email">
+							     <input type="hidden" name="cus_id">
+							     <input type="hidden" name="cus_pass">
+							     <input type="hidden" name="cus_name">
+							     <input type="hidden" name="cus_email">
 								<div class="col-md-12 text-center mb-3">    
                                    <a href="javascript:kakaoJoin();" class="kakao btn mybtn"><i class="fa fa-google-plus">
                                      </i> 카카오 간편회원가입

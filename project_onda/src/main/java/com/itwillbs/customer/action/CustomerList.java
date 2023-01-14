@@ -15,7 +15,6 @@ public class CustomerList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
 		CustomerDAO dao = new CustomerDAO();
 		
 		int pageSize=10;
@@ -37,7 +36,7 @@ public class CustomerList implements Action {
 		int count=dao.getCustomerCount();
 		
 		//한 화면에 보여줄 페이지 개수 설정(10개 페이지) 
-		int pageBlock=5; 
+		int pageBlock=3; 
 		
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		

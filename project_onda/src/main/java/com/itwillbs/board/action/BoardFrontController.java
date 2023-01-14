@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//서블릿(처리담당자)
 public class BoardFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,7 +67,7 @@ public class BoardFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(strpath.equals("/BoardDelete.bo")) {
+		} else if(strpath.equals("/BoardDelete.bo")) {
 			action=new BoardDelete();
 			
 			try {
@@ -77,21 +76,22 @@ public class BoardFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 			
+		 } else if(strpath.equals("/ReplyForm.bo")) {
+			 
+			 forward = new ActionForward();
+				forward.setPath("./board/replyForm.jsp");
+				forward.setRedirect(false);
+				
+		 } else if(strpath.equals("/ReplyPro.bo")) {
+				action=new ReplyPro();
+		
+			try {
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
 		 }
-//		else if(strpath.equals("/BoardReplyForm.bo")) {
-//			 
-//				forward = new ActionForward();
-//				forward.setPath("./board/replyForm.jsp");
-//				forward.setRedirect(false);
-//				
-//		 }else if(strpath.equals("/BoardReplyPro.bo")) 
-//				action=new BoardReplyPro();
-//			try {
-//				forward=action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-
 			//이동
 		if(forward!=null) {
 			if(forward.isRedirect()) {

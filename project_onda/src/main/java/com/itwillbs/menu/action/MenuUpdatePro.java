@@ -45,12 +45,13 @@ public class MenuUpdatePro implements Action{
 		dto.setMenu_img(menu_img);
 		dto.setMenu_category(menu_category);
 		
+		
 		MenuDAO dao=new MenuDAO();
 		dao.updateMenu(dto);
 
 		ActionForward forward = new ActionForward();
 				
-		forward.setPath("./AdminMenuList.mn");
+		forward.setPath("./MenuBoardList.mn");
 		forward.setRedirect(true);
 				
 		return forward;
