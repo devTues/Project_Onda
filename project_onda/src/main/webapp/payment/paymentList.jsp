@@ -71,7 +71,7 @@
 					//메뉴 정보 가져오기
 					PaymentDAO dao = new PaymentDAO();
 						%>
-					<div class="d1">주문목록 내역 총 <b style="color: red; white-space: nowrap;"><%=count%></b> 건</div>
+					<div class="col-md-10 mb-2 d1">주문목록 내역 총 <b style="color: red; white-space: nowrap;"><%=count%></b> 건</div>
 					<table class="table table-hover">
 					<thead>
 						<tr>

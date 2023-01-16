@@ -79,7 +79,7 @@
 											<%
 											if (cus_id == null) {
 											%>
-											<input type="button" class="button" value="로그인하고 담기" onclick="location.href='./CustomerLoginForm.cu'">
+											<input type="button" class="btn btn-primary" value="로그인하고 담기" onclick="location.href='./CustomerLoginForm.cu'">
 											<%
 											} else {
 											%>

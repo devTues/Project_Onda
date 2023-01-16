@@ -6,161 +6,152 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>cart/orderPayList.jsp</title>
+ 	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Resto">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<script type="text/javascript" src="./js/jquery-3.6.3.js"></script>
-<script type="text/javascript">
-	
-	function fun1() {
-		history.back();
-	}
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./vendor/select2/select2.min.css">
+    <link rel="stylesheet" href="./vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/brands.css">
 
-// 	function isChecked() {
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-// 		var checkType = false;
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.min.css">
+    <link rel="stylesheet" href="./css/review.css">
 
-// 		$('.crt_num').each(function(index, item) {
-// 			if (item.checked) {
-// 				checkType = true;
-// 			}
-// 		})
-// 		return checkType;
-// 	}
+    <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<script type="text/javascript" src="./js/jquery-3.6.3.js"></script>
+<script type="text/javascript">   
+   function fun1() {
+      history.back();
+   }
+
 </script>
 </head>
-<body>
-<h1>주문결제 페이지</h1>
-<%
-String cus_id=(String)session.getAttribute("cus_id");
-
-
-// cus_id가 null(세션값이 없으면) loginForm.jsp 이동
-if(cus_id == null) {
-	response.sendRedirect("./CustomerLoginForm.cu");
-}
-
-
-
-
-// String[] chk =request.getParameterValues("box");
-
-// 	out.println("이름:"+name);
-// 	out.println("메모내용:"+memo);
-// 	out.println("<br>");
-// try{
-//    // 선택한 값이 없으면 back.
-//    if(chk == null || chk.length <= 0){
-//      return;
-//    }
-//    for(int i=0; i<chk.length; i++){
-//      out.println("선택한 값 : " + chk[i] + "<br>");
-//    }
-//    out.println(" ");
-// }catch(Exception e){
-//    System.out.println(e);
-// }
-
-
-List<CartDTO> cartList
-=(List<CartDTO>)request.getAttribute("cartList");
-
-
-
-// System.out.println("전달 받은 배열 주소 : "+cartList);
-
-
-
-%>
-	
-
-<%= cus_id %> 님의 주문결제 목록<br>
-
-
-
-<%
-// ArrayList<String> cartList = (ArrayList<String>) session.getAttribute("cartList");
-
-// if (cartList == null) {	// 세션에 장바구니 객체 (cartList)가 만들어지기 전에 장바구니 목록을 보면
-// 	out.println("선택한 상품이 없습니다!");
-	
-// } else {	//cartList에 상품을 1개 이상 저장했으면 
-// 	for (String item : cartList) 
-// 		out.println(item + "<br>");
-// }
-
-List<CartDTO> orderPayList
-=(List<CartDTO>)request.getAttribute("orderPayList");
-
-String menu_name="";
-String menu_img="";
-CartDAO dao = new CartDAO();
-
-// String[] chk = request.getParameterValues("crt_num");
-
-
-// System.out.println("전달 받은 배열 주소 : "+cartList);
-
-%> 
-<form class = "payment" action="./PaymentPro.pa" method="post">
-<table border="1">
-<tr><td>no.</td><td>상품정보</td>
-    <td>수량</td><td>금액</td></tr>
-    <%
-    for(int i=0; i<orderPayList.size(); i++){
-		CartDTO dto=orderPayList.get(i);
-		int menu_num = dto.getMenu_num();
-		int crt_num = dto.getCrt_num();
-		menu_name = dao.getMenuName(menu_num, crt_num);
-		menu_img = dao.getMenuImg(menu_num, crt_num);
-		
-		// TODO
-		// crt_num => 숨기기 또는 1, 2, 3 으로 보이게 제어
-		// menu_num = > 히든
-		// 
-		%>
-
-<tr>
-	<td class="cart_info">
-		<input type="text" id="crt_num_<%=i%>" name="crt_num" class="crt_num" value="<%=dto.getCrt_num() %>" readonly>
-	</td>
-    <td>
-    <input type="text" name="menu_num" id="menu_num_<%=i%>" class="menu_num" value="<%=dto.getMenu_num() %>" readonly>
-    <img src="./upload/<%=menu_img%>" width="300" height="300">
-    <input type="text" name="menu_name" class="menu_name" value="<%=menu_name %>" readonly>
-    </td>
-    <td>
-    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" value="<%=dto.getCrt_count() %>" readonly>
-    </td>
-    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=dto.getCrt_price() %>" readonly></td></tr>   	
-    	<%
-    }
-    %>
-
-<%
-
-%>
-</table>
-<hr>
-<h3>픽업 시간</h3>
- <input type="radio" name="pick_up" value="1분내"> 1분내
- <input type="radio" name="pick_up" value="5분"> 5분
- <input type="radio" name="pick_up" value="10분"> 10분
- <input type="radio" name="pick_up" value="15분"> 15분
- <input type="radio" name="pick_up" value="20분"> 20분
- <hr>
-
-
-<%
-// TODO 모든 금액에 패턴적용하기 => ##,###
-
-int totalPrice = dao.getTotalPrice(cus_id);
-%>
-총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= totalPrice%>" readonly><br>
-<hr>
-<input type="submit" value="결제하기">	
-<input type="button" value="주문수정" onclick="fun1()">
-</form>
-
+<title>ORDER LIST</title>
+</head>
+<jsp:include page="../inc/headerMenu.jsp"></jsp:include>
+<body data-spy="scroll" data-target="#navbar">
+<div id="canvas-overlay"></div>
+<div class="boxed-page">
+<section id="gtco-menu" class="section-padding">
+    <div class="container">
+        <div class="section-content">
+            <div class="row mb-5">
+                <div class="col-md-12">
+                    <div class="heading-section text-center">
+						<h2>ORDER LIST</h2>
+					</div>	
+					<%
+					String cus_id=(String)session.getAttribute("cus_id");
+					
+					if(cus_id == null) {
+					   response.sendRedirect("./CustomerLoginForm.cu");
+					}
+					
+					String[] chk =request.getParameterValues("crt_num");
+					%>
+					<%
+					List<CartDTO> orderPayList
+					=(List<CartDTO>)request.getAttribute("orderPayList");
+					
+					String menu_name="";
+					String menu_img="";
+					CartDAO dao = new CartDAO();
+					%> 
+					<form class = "payment" action="./PaymentPro.pa" method="post">
+					<table class="table">
+					<tr><th>no.</th><th>상품정보</th>
+					    <th>수량</th><th>금액</th></tr>
+					    <%
+					    for(int i=0; i<orderPayList.size(); i++){
+					      CartDTO dto=orderPayList.get(i);
+					      int menu_num = dto.getMenu_num();
+					      int crt_num = dto.getCrt_num();
+					      menu_name = dao.getMenuName(menu_num, crt_num);
+					      menu_img = dao.getMenuImg(menu_num, crt_num);
+					      %>
+					
+					<tr>
+					   <td class="cart_info">
+					      <input type="text" id="crt_num_<%=i%>" name="crt_num" class="crt_num" value="<%=dto.getCrt_num() %>" style="border:0;" readonly>
+					   </td>
+					    <td>
+					    <input type="hidden" name="menu_num" id="menu_num_<%=i%>" class="menu_num" value="<%=dto.getMenu_num() %>" style="border:0;" readonly>
+					    <img src="./upload/<%=menu_img%>" width="50" height="50">
+					    <input type="text" name="menu_name" class="menu_name" value="<%=menu_name %>" style="border:0;" readonly>
+					    </td>
+					    <td>
+					    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" value="<%=dto.getCrt_count() %>" style="border:0;" readonly>
+					    </td>
+					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=dto.getCrt_price() %>" style="border:0;" readonly></td></tr>      
+					       <%
+					    }
+					    %>
+					 
+					</table>
+					<div class="text-center">
+						<h5>픽업 시간</h5>
+						 <input type="radio" name="pick_up" value="1분내"> 1분내
+						 <input type="radio" name="pick_up" value="5분"> 5분
+						 <input type="radio" name="pick_up" value="10분"> 10분
+						 <input type="radio" name="pick_up" value="15분"> 15분
+						 <input type="radio" name="pick_up" value="20분"> 20분
+					</div><br>
+					<%
+					int totalPrice = dao.getTotalPrice(cus_id);
+					%>
+					<div class="text-center">
+						총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= totalPrice%>" readonly><br>
+					</div>
+					<div class="text-right">
+						<input type="submit" class="btn btn-primary" value="결제하기">   
+						<input type="button" class="btn btn-primary" value="주문수정" onclick="fun1()">
+					</div>
+					</form>
+				</div>	
+			</div>			
+        </div>
+    </div>
+</section>
+</div>	
 </body>
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- footer -->
+<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- External JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="./vendor/bootstrap/popper.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+	<script src="./vendor/select2/select2.min.js "></script>
+	<script src="./vendor/owlcarousel/owl.carousel.min.js"></script>
+	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	<!-- Main JS -->
+	<script src="./js/app.min.js "></script>
 </html>
+					

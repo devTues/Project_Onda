@@ -1,7 +1,9 @@
           body{
               padding-top:4.2rem;
               padding-bottom:4.2rem;
-              background: rgba(0,0,0,.2);
+/*               background: rgba(0,0,0,.2); */
+			  background-image: url(../img/wave.png);
+			  background-attachment: fixed;
           }
           a{
               text-decoration:none !important;
@@ -19,7 +21,7 @@
               flex-direction: column;
               width: 100%;
               pointer-events: auto;
-              background-color: #fff;
+              background-color: rgba(117, 190, 218, 0.5);
               background-clip: padding-box;
               border: 1px solid rgba(0,0,0,.2);
               border-radius: 1.1rem;

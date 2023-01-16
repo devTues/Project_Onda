@@ -62,9 +62,9 @@
                             
                             	<div class="col-md-12 mb-3">
                                   <p class="text-center">
-                                    <a href="#" id="signup">회원가입</a>
+                                    <a href="#" id="signup" style="color: black;">회원가입</a>
                                     |
-                                    <a href="./CustomerFindIdPw.cu" target='_blank' id="findidpw">아이디 · 비밀번호 찾기</a>
+                                    <a href="./CustomerFindIdPw.cu" target='_blank' id="findidpw" style="color: black;">아이디 · 비밀번호 찾기</a>
                                   </p>
                                 </div>
                              
@@ -134,7 +134,7 @@
                                
                                <div class="col-md-12 ">
                                     <div class="form-group">
-                                        <p class="text-center"><a href="#" id="signin">기존 회원 로그인</a></p>
+                                        <p class="text-center"><a href="#" id="signin" style="color: black;">기존 회원 로그인</a></p>
                                     </div>
                                 </div>
 							</form>

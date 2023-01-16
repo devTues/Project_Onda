@@ -159,6 +159,55 @@ public class ReviewDAO {
 		return reviewList;
 	}
 	
+	public List<Map<String, Object>> getMyReviewList(String cus_id, int startRow, int pageSize) {
+		List<Map<String, Object>> reviewList = new ArrayList<Map<String, Object>>();
+		Map<String, Object> param = null;
+		
+		try {
+			// 1, 2 단계 DB연결
+			con = getConnection();
+			// 3단계 : sql구문
+			String sql = "select r.* , m.menu_name\r\n"
+						+ "from rv_board r\r\n"
+						+ "join menu m\r\n"
+						+ "on r.menu_num = m.menu_num\r\n"
+						+ "where cus_id=?"
+						+ "order by rv_num desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.setInt(2, startRow-1);
+			pstmt.setInt(3, pageSize);
+			
+			rs = pstmt.executeQuery();
+			
+			// 모든 Review데이터 저장
+			while (rs.next()) {
+				ReviewDTO dto = new ReviewDTO();
+				dto.setRv_num(rs.getInt("rv_num"));
+				dto.setCus_id(rs.getString("cus_id"));
+				dto.setRv_title(rs.getString("rv_title"));
+				dto.setRv_content(rs.getString("rv_content"));
+				dto.setRv_date(rs.getTimestamp("rv_date"));
+				dto.setRv_star(rs.getInt("rv_star"));
+				dto.setRv_view(rs.getInt("rv_view"));
+				dto.setMenu_num(rs.getInt("menu_num"));
+				
+				String menu = rs.getString("menu_name");
+				
+				param = new HashMap<String, Object>();
+				param.put("dto", dto);
+				param.put("menu", menu);
+				
+				reviewList.add(param);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return reviewList;
+	}
+	
 	public int getRvBoardCount() {
 		int count = 0;
 		try {
@@ -168,6 +217,34 @@ public class ReviewDAO {
 			// 3단계: sql구문을 만들고 실행할 준비
 			String sql = "select count(*) as cnt from rv_board";
 			pstmt = con.prepareStatement(sql);
+			
+			// 4단계: 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// 5 결과 접근 글개수 가져오기
+			if(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 마무리
+			close();
+		}
+		
+		return count;
+	}
+	
+	public int getMyRvBoardCount(String cus_id) {
+		int count = 0;
+		try {
+			// 1,2 디비연결
+			con = getConnection();
+
+			// 3단계: sql구문을 만들고 실행할 준비
+			String sql = "select count(*) as cnt from rv_board where cus_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
 			
 			// 4단계: 실행 => 결과 저장
 			rs = pstmt.executeQuery();

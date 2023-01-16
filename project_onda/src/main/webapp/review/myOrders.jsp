@@ -1,5 +1,4 @@
-<%@page import="com.itwillbs.review.db.PaymentDTO"%>
-<%@page import="com.itwillbs.review.db.PaymentDAO"%>
+<%@page import="com.itwillbs.payment.db.PaymentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.review.db.ReviewDAO"%>
 <%@page import="java.net.URLEncoder"%>

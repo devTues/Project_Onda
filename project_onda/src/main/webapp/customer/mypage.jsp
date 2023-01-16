@@ -124,7 +124,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                    <a href="#"><h5>리뷰내역</h5></a>
+                                    <a href="./MyReviewList.rv"><h5>리뷰내역</h5></a>
                                 </div>
                             </div>
                         </div>
