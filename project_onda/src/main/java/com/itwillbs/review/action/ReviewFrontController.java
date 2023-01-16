@@ -24,10 +24,13 @@ public class ReviewFrontController extends HttpServlet {
 			forward.setPath("./review/writeForm.jsp");
 			forward.setRedirect(false);
 			
-		} else if(strpath.equals("/MyOrderForm.rv")) {	
-			forward = new ActionForward();
-			forward.setPath("./review/myOrders.jsp");
-			forward.setRedirect(false);
+		} else if(strpath.equals("/AdminReviewList.rv")) {	
+			action = new AdminReviewList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		} else if(strpath.equals("/ReviewWritePro.rv")) {	
 			action = new ReviewWritePro();
@@ -72,8 +75,15 @@ public class ReviewFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		} else if(strpath.equals("/AdminReviewDelete.rv")) {	
+			action = new AdminReviewDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		// 이동 방법
 		if(forward != null) {
 			if(forward.isRedirect()) {

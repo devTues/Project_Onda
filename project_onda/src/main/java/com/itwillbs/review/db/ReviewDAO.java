@@ -96,12 +96,13 @@ public class ReviewDAO {
 			//게시판 글번호 
 			pstmt.setInt(1, rv_num);
 			pstmt.setString(2, dto.getCus_id());
-			pstmt.setString(3, dto.getRv_title());
-			pstmt.setString(4, dto.getRv_content());
-			pstmt.setTimestamp(5, dto.getRv_date());
-			pstmt.setInt(6, dto.getRv_star());
-			pstmt.setInt(7, dto.getRv_view());
-			pstmt.setInt(8, dto.getMenu_num());
+			pstmt.setInt(3, dto.getMenu_num());
+			pstmt.setString(4, dto.getRv_title());
+			pstmt.setString(5, dto.getRv_content());
+			pstmt.setTimestamp(6, dto.getRv_date());
+			pstmt.setInt(7, dto.getRv_star());
+			pstmt.setInt(8, dto.getRv_view());
+			
 			//4 sql구문 실행
 			pstmt.executeUpdate();
 		} catch (Exception e) {

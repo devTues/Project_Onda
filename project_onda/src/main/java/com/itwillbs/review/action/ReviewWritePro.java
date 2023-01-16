@@ -14,7 +14,7 @@ public class ReviewWritePro implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		// request name,subject,content 파라미터 가져와서 변수에 저장
-		String cus_id = request.getParameter("id");
+		String cus_id = request.getParameter("cus_id");
 		String rv_title = request.getParameter("subject");
 		String rv_content =request.getParameter("content");
 		int rv_star = Integer.parseInt(request.getParameter("star"));

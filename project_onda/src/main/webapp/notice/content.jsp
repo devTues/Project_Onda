@@ -53,12 +53,11 @@
 
 					<table class="table">
 						<thead>
-							<tr><td>글번호</td><td><%=dto.getNt_num() %></td></tr>
-							<tr><td>작성자</td><td><%=dto.getCus_id() %></td></tr>
-							<tr><td>등록일</td><td><%=dto.getNt_date() %></td></tr>
-							<tr><td>조회수</td><td><%=dto.getNt_view() %></td></tr>
-							<tr><td>제목</td><td><%=dto.getNt_title() %></td></tr>
-							<tr><td>글내용</td><td><%=dto.getNt_content() %>
+							<tr><th>글번호</th><td><%=dto.getNt_num() %></td></tr>
+							<tr><th>등록일</th><td><%=dto.getNt_date() %></td></tr>
+							<tr><th>조회수</th><td><%=dto.getNt_view() %></td></tr>
+							<tr><th>제목</th><td><%=dto.getNt_title() %></td></tr>
+							<tr><th>글내용</th><td><%=dto.getNt_content() %>
 					</table>
 					<div class="text-right">
 					<%

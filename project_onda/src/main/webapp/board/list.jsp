@@ -72,7 +72,18 @@
 				    	BoardDTO dto=boardList.get(i);
 				    %>
 					<tr>
-						<td><%=dto.getQna_num() %></td>
+						<td>
+						<%
+					    //답글
+					    if(dto.getQna_re_lev() > 0){
+					    	int w=dto.getQna_re_lev()*10;
+					    %>
+					    <img src="./img/level.gif" width=<%=w %>>	
+					    <img src="./img/re.gif">
+					    <%	
+					    }
+					    %>
+						<%=dto.getQna_num() %></td>
 					    <td><%=dto.getCus_id().replaceAll("(?!.{3}).", "*")%></td>
 					    <td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>">
 					    	<%=dto.getQna_title() %></a></td>

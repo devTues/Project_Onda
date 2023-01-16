@@ -1,13 +1,12 @@
-package menu.action;
+package com.itwillbs.menu.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.menu.db.MenuDAO;
+import com.itwillbs.menu.db.MenuDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import menu.db.MenuDAO;
-import menu.db.MenuDTO;
 
 public class AddCartMenu implements Action{
 

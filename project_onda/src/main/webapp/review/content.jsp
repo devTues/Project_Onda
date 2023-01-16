@@ -54,20 +54,20 @@
 					String menu = (String)request.getAttribute("menu");
 					%>
 					<table class="table">
-						<tr><td>글번호</td><td><%=dto.getRv_num()%></td></tr>
-						<tr><td>작성자</td><td><%=dto.getCus_id()%></td></tr>
-						<tr><td>글제목</td><td><%=dto.getRv_title()%></td></tr>
-						<tr><td>메뉴</td><td><%=menu%></td></tr>
-						<tr><td>등록일</td><td><%=dateFormat.format(dto.getRv_date())%></td></tr>
-						<tr><td>별점</td><td><%
+						<tr><th>글번호</th><td><%=dto.getRv_num()%></td></tr>
+						<tr><th>작성자</th><td><%=dto.getCus_id()%></td></tr>
+						<tr><th>글제목</th><td><%=dto.getRv_title()%></td></tr>
+						<tr><th>메뉴</th><td><%=menu%></td></tr>
+						<tr><th>등록일</th><td><%=dateFormat.format(dto.getRv_date())%></td></tr>
+						<tr><th>별점</th><td><%
 							for(int i = 0; i < dto.getRv_star(); i++) {
 							%>
 							<img src="./img/starImg.png" alt="Star Image" width=20px height=20px>
 							<%
 							}
 							%></td></tr>
-						<tr><td>조회수</td><td><%=dto.getRv_view()%></td></tr>
-						<tr><td>글내용</td><td><%=dto.getRv_content()%></td></tr>
+						<tr><th>조회수</th><td><%=dto.getRv_view()%></td></tr>
+						<tr><th>글내용</th><td><%=dto.getRv_content()%></td></tr>
 					</table>
 					<div class="text-right"> 
 					<%

@@ -1,4 +1,3 @@
-<%@page import="com.itwillbs.review.db.OrdersDTO"%>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,6 +28,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.min.css">
+    <link rel="stylesheet" href="./css/review.css">
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
@@ -53,10 +53,10 @@
 					%>
 					<form action="./ReviewWritePro.rv" name="review" id="review" method="post">
 						<table class="table">
-							<tr><td>작성자</td><td><input type="text" name="cus_id" value="<%=cus_id %>" readonly></td></tr>
-							<tr><td>글제목</td><td><input type="text" name="subject"></td></tr>
-							<tr><td>메뉴</td><td><input type="text" name="menu" value="<%=menu %>" readonly></td></tr>
-							<tr><td>별점</td>
+							<tr><th>작성자</th><td><input type="text" name="cus_id" value="<%=cus_id %>" readonly></td></tr>
+							<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
+							<tr><th>메뉴</th><td><input type="text" name="menu" value="<%=menu %>" ></td></tr>
+							<tr><th>별점</th>
 								<td>	
 								<fieldset>
 								<input type="radio" name="star" value="5" id="rate1"><label for="rate1">★</label>
@@ -65,7 +65,7 @@
 								<input type="radio" name="star" value="2" id="rate4"><label for="rate4">★</label>
 								<input type="radio" name="star" value="1" id="rate5"><label for="rate5">★</label>
 								</fieldset></td></tr>
-							<tr><td>글내용</td><td><textarea class="col-auto form-control" name="content" id="reviewContents"
+							<tr><th>글내용</th><td><textarea class="col-auto form-control" name="content" id="reviewContents"
 								  placeholder="메뉴에 대한 리뷰를 남겨주세요!"></textarea></td></tr>
 						</table>	
 						<div class="text-right">

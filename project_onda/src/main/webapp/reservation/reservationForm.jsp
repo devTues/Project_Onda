@@ -82,7 +82,7 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 								</h5>
 								<select size="5" class="form-control" id="time" name="time">
 									<optgroup label="예약시간">
-										<option selected>10:00</option>
+										<option>10:00</option>
 										<option>11:00</option>
 										<option>12:00</option>
 										<option>13:00</option>
@@ -109,6 +109,7 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 									</span>
 								</h5>
 								<select size="5" class="form-control" id="table" name="table">
+									<option>선택없음</option>
 									<optgroup label="일반" >
 									<%
 									for(int i=0;i<5;i++){
@@ -152,7 +153,7 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 									%>
 									</optgroup>
 								</select> <br>
-								<h6><span class="subheading">※단체석의 경우 6인 이상 가능합니다.</span></h6><br>
+								<h6><span style="color: red;">※ 단체석의 경우 6인 이상 가능합니다.</span></h6><br>
 							</div>
 						</div>
 						

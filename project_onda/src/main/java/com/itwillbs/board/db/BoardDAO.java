@@ -83,7 +83,7 @@ public class BoardDAO {
 		
 	//		String sql="select * from board";
 	//		String sql="select * from board order by num desc limit 시작행-1,글개수";
-		String sql="select * from qna_board order by qna_num desc limit ?,?";
+		String sql="select * from qna_board order by qna_ref desc, qna_re_seq asc limit ?,?";
 		pstmt =con.prepareStatement(sql);
 		pstmt.setInt(1, startRow-1);
 		pstmt.setInt(2, pageSize);
@@ -98,6 +98,11 @@ public class BoardDAO {
 			dto.setQna_content("qna_content");
 			dto.setQna_view(rs.getInt("qna_view"));
 			dto.setQna_reg(rs.getTimestamp("qna_reg"));
+			//답글
+			dto.setQna_ref(rs.getInt("qna_ref"));
+			dto.setQna_re_lev(rs.getInt("qna_re_lev"));
+			dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+			
 
 			boardList.add(dto);
 		}

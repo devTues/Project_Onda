@@ -52,12 +52,12 @@
 					BoardDTO dto = (BoardDTO)request.getAttribute("dto");
 					%>
 					<table class="table">
-						<tr><td>글번호</td><td><%=dto.getQna_num() %></td></tr>
-						<tr><td>작성자</td><td><%=dto.getCus_id() %></td></tr>
-						<tr><td>등록일</td><td><%=dto.getQna_reg() %></td></tr>
-						<tr><td>조회수</td><td><%=dto.getQna_view() %></td></tr>
-						<tr><td>제목</td><td><%=dto.getQna_title() %></td></tr>
-						<tr><td>글내용</td><td><%=dto.getQna_content()%></td></tr>
+						<tr><th>글번호</th><td><%=dto.getQna_num() %></td></tr>
+						<tr><th>작성자</th><td><%=dto.getCus_id() %></td></tr>
+						<tr><th>등록일</th><td><%=dto.getQna_reg() %></td></tr>
+						<tr><th>조회수</th><td><%=dto.getQna_view() %></td></tr>
+						<tr><th>제목</th><td><%=dto.getQna_title() %></td></tr>
+						<tr><th>글내용</th><td><%=dto.getQna_content()%></td></tr>
 					</table>	
 					<div class="text-right">
 					<%

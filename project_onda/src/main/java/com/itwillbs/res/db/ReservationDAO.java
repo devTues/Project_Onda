@@ -264,7 +264,7 @@ public class ReservationDAO {
     }
 
     // 페이징	
-    public int getReservationCount1(String id) {
+    public int getReservationCount1(String cus_id) {
 		int count=0;
 		try {
 			//1,2 디비연결
@@ -272,7 +272,7 @@ public class ReservationDAO {
 			//3 sql
 			String sql="select count(*) from reservation where cus_id = ?;";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, cus_id);
 			//4 실행 => 결과 저장
 			rs=pstmt.executeQuery();
 			//5 결과 접근 글개수 가져오기

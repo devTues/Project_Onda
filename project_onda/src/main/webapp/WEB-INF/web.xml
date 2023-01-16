@@ -87,4 +87,15 @@
 	<url-pattern>*.ca</url-pattern>
   </servlet-mapping>
   
+  <!-- 결제 컨트롤러 -->
+  <servlet>
+	<servlet-name>PaymentFrontController</servlet-name>
+	<servlet-class>com.itwillbs.payment.action.PaymentFrontController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+	<servlet-name>PaymentFrontController</servlet-name>
+	<url-pattern>*.pa</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

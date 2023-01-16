@@ -16,7 +16,7 @@ public class ReviewDelete implements Action{
 		dao.deleteBoard(rv_num);
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./ReviewList.bo");
+		forward.setPath("./ReviewList.rv");
 		forward.setRedirect(true);
 		return forward;
 	}

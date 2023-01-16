@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.menu.db.MenuDAO;
 import com.itwillbs.menu.db.MenuDTO;
 
-
 public class FoodList implements Action{
 
 

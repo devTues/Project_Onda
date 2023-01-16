@@ -1,9 +1,7 @@
-<%@page import="com.itwillbs.menu.db.MenuDTO"%>
+<%@page import="com.itwillbs.payment.db.PaymentDAO"%>
+<%@page import="com.itwillbs.payment.db.PaymentDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,7 +35,13 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>Menu List</title>
+	<title>Payment List</title>
+	<style>
+	 .d1 {
+	 		white-space:nowrap;
+	 		font-weight: bold;
+	 }
+	</style>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -49,71 +53,69 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>MENU LIST</h2>
+                    	<h2>PAYMENT LIST</h2>
 					</div>
 					<div class="row mt-5">
 					<%
-					//세션값이 null이거나 admin 아니면 알람
+					//세션값이 null이면 로그인페이지로 이동
 					String cus_id=(String)session.getAttribute("cus_id");
-					if(cus_id==null || !cus_id.equals("admin")){
-					%>
-						<script type="text/javascript">
-						alert("관리자만 이용가능합니다");
-						history.back();
-						</script>
-					<%
+					if(cus_id==null){
+						response.sendRedirect("./CustomerLoginForm.cu");	
 					}
 					
-					List<MenuDTO> menuList=(List<MenuDTO>)request.getAttribute("menuList");
-					//startPage pageBlock currentPage endPage pageCount
-					int startPage=(Integer)request.getAttribute("startPage");
-					int pageBlock=(Integer)request.getAttribute("pageBlock");
-					int currentPage=(Integer)request.getAttribute("currentPage");
-					int endPage=(Integer)request.getAttribute("endPage");
-					int pageCount=(Integer)request.getAttribute("pageCount");
-					%>
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					List<PaymentDTO> AdminPaymentList 
+									= (List<PaymentDTO>)request.getAttribute("AdminPaymentList");
+					int count 		= (Integer)request.getAttribute("count");
+					int startPage = (Integer) request.getAttribute("startPage");
+					int pageBlock = (Integer) request.getAttribute("pageBlock");
+					int currentPage = (Integer) request.getAttribute("currentPage");
+					int endPage = (Integer) request.getAttribute("endPage");
+					int pageCount = (Integer) request.getAttribute("pageCount");
+					
+					//메뉴 정보 가져오기
+					PaymentDAO dao = new PaymentDAO();
+						%>
+					<div class="d1">주문목록 내역 총 <b style="color: red; white-space: nowrap;"><%=count%></b> 건</div>
 					<table class="table table-hover">
-						<thead>
+					<thead>
 						<tr>
-							<th scope="col">상품번호</th>
-							<th scope="col">상품이름</th>
-							<th scope="col">상품가격</th>
-							<th scope="col">카테고리</th>
-							<th scope="col">이미지</th>
-							<th scope="col">상품관리</th>
+							<th scope="col">날짜/주문번호</th>
+							<th scope="col">주문자명</th>
+							<th scope="col">메뉴</th>
+							<th scope="col">금액/수량</th>
+							<th scope="col">주문관리</th>
 						</tr>
-						</thead>
+							</thead>
 						<%
-						for(int i = 0; i<menuList.size(); i++) {
-							MenuDTO dto = menuList.get(i);
+						for (int i = 0; i < AdminPaymentList.size(); i++) {
+							PaymentDTO dto = AdminPaymentList.get(i);
+							String MenuImg = dao.getMenuImg(dto.getMenu_num());
+							String MenuName = dao.getMenuName(dto.getMenu_num());
 						%>
 						<tr>
-							<td><%=dto.getMenu_num()%></td>
-						    <td><%=dto.getMenu_name() %></td>
-						    <td><%=dto.getMenu_price() %></td>
-						    <td><%=dto.getMenu_category() %></td>
-						    <td><%=dto.getMenu_img() %></td>
-							<td><input type="button" value="수정" class="btn btn-primary btn-shadow btn-lg"
-				         		onclick="location.href='./MenuUpdateForm.mn?menu_num=<%=dto.getMenu_num()%>'">
-								<input type="button" value="삭제" class="btn btn-primary btn-shadow btn-lg"
-				         		onclick="location.href='./MenuDelete.mn?menu_num=<%=dto.getMenu_num()%>'"></td>
-						</tr>
+							<td><span style="color: grey; font-size: 14px"><%=dateFormat.format(dto.getPay_date()) %></span><br>
+								<span style="color: blue; font-weight:bold"><%=dto.getPay_num() %></span></td>
+							<td><%=dto.getCus_id() %></td>
+							<td><img src = "./img/<%=MenuImg %>" alt="Menu Image" width=100px height=100px>
+								<%=MenuName %>
+							</td>
+							<td><%=dto.getPay_price() %>원 / <%=dto.getPay_count() %>개</td>
+							<td><input type="button" value="주문취소" class="btn btn-primary btn-shadow btn-lg"
+									    onclick="location.href='./AdminPaymentDelete.pa?pay_num=<%=dto.getPay_num() %>'"></td>
 						<%
 						}
 						%>
 					</table>
 					</div>
-					<div class="col-md-10 mb-2 text-left">
-						<input type="button" value="메뉴추가" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MenuInsertForm.mn'">
-                    </div>	
-                	<nav aria-label="Page navigation example">
+					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 					    	
 					    	<%
 							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
-					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <li class="page-item"><a class="page-link" href="./AdminPaymentList.pa?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
 					    	%>
@@ -121,7 +123,7 @@
 					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
-								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<li class="page-item"><a class="page-link" href="./AdminPaymentList.pa?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
 					    	%>
@@ -129,13 +131,13 @@
 					      <%
 					       if(endPage < pageCount){
 							%>
-					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					       <li class="page-item"><a class="page-link" href="./AdminPaymentList.pa?pageNum=<%=startPage+pageBlock%>">Next</a></li>
 					      <%
 							}
 							%>
 					 	</ul>
 					</nav>
-                </div>	
+                </div>
             </div>
         </div>
     </div>

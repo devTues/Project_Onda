@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.customer.db.CustomerDTO"%>
 <%@page import="com.itwillbs.notice.db.NoticeDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -70,10 +71,11 @@
 						<%
 						for(int i=0; i < boardList.size(); i++){
 						  	NoticeDTO dto = boardList.get(i);
+						  	CustomerDTO cdto = new CustomerDTO();
 						%>
 						<tr>
 							<td><%=dto.getNt_num() %></td>
-						    <td><%=dto.getCus_id() %></td>
+						    <td>관리자</td>
 						    <td><a href="./NotiContent.no?num=<%=dto.getNt_num()%>">
 						    	<%=dto.getNt_title() %></a></td>
 						    <td><%=dto.getNt_date() %></td>

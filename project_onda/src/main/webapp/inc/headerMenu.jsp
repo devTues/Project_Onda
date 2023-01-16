@@ -22,8 +22,15 @@
                         <a class="dropdown-item" href="./BoardList.bo">Q&A</a>
                         </div>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./MenuDetailPage.mn">MENU</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        MENU
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./DrinkList.mn?menu_category=drink">DRINK</a>
+                        <a class="dropdown-item" href="./FoodList.mnmenu_category=food">FOOD</a>
+                        <a class="dropdown-item" href="./GoodsList.mnmenu_category=goods">GOODS</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
