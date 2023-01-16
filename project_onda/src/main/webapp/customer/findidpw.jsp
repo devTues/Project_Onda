@@ -10,7 +10,7 @@
     <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery-validate/1.19.1/jquery.validate.js"></script>
-    <link href="https://cdn.tutorialjinni.com/font-awesome/5.12.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link href="./css/login.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -31,10 +31,10 @@
                             </div>
                             <form action="./CustomerFindIdPro.cu" method="post" name="findidForm">
                                 <div class="form-group">
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="이름">
+                                    <input type="text" name="cus_name" id="cus_name" class="form-control" placeholder="이름">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="휴대폰 번호">
+                                    <input type="text" name="cus_phone" id="cus_phone" class="form-control" placeholder="휴대폰 번호">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">아이디 찾기</button>
@@ -61,13 +61,13 @@
                             </div>
                             <form action="./CustomerFindPwPro.cu" method="post" name="findpwForm">
                           	    <div class="form-group">
-                                    <input type="text" name="id" class="form-control" id="id" placeholder="아이디">
+                                    <input type="text" name="cus_id" class="form-control" id="cus_id" placeholder="아이디">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="이름">
+                                    <input type="text" name="cus_name" class="form-control" id="cus_name" placeholder="이름">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="휴대폰 번호">
+                                    <input type="text" name="cus_phone" id="cus_phone" class="form-control" placeholder="휴대폰 번호">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">비밀번호 찾기</button>
@@ -98,17 +98,17 @@
             $(function () {
                 $("form[name='findidForm']").validate({
                     rules: {
-                        name: {
+                    	cus_name: {
                             required: true,
                         },
-                        phone: {
+                        cus_phone: {
                             required: true,
                             digits:true
                         }
                     },
                     messages: {
-                        name: "이름을 입력하세요",
-                        phone: {
+                    	cus_name: "이름을 입력하세요",
+                    	cus_phone: {
                             required: "휴대폰 번호를 입력하세요",
                             digits: "' - ' 제외 숫자만 입력하세요"
                         }
@@ -121,15 +121,15 @@
             $(function () {
                 $("form[name='findpwForm']").validate({
                     rules: {
-                    	id: {
+                    	cus_id: {
                     		required: true,
                     	},
-                        name: "required",
-                        phone: {
+                    	cus_name: "required",
+                    	cus_phone: {
                         	required: true,
                         	digits:true
                         },
-                        email: {
+                        cus_email: {
                             required: true,
                             email: true
                         },
@@ -137,11 +137,11 @@
                        	ch2: "required"
                     },
                     messages: {
-                    	id: {
+                    	cus_id: {
                             required: "아이디를 입력하세요",
                         },
-                        name: "이름을 입력하세요",
-                        phone: {
+                        cus_name: "이름을 입력하세요",
+                        cus_phone: {
                         	required: "휴대폰 번호를 입력하세요",
                         	digits: "' - ' 제외 숫자만 입력하세요"
                         },

@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+body{
+	padding: 80px;
+	}
+
+/* -----------메뉴-------------------------------------------------------------------------------------------- */
+.menuList{  /*메뉴 박스*/
+	list-style-type:none;
+	width: 374px;
+	height: 501px;
+	border: 1px solid #d9d9d9;
+	 float: left;
+	 margin-left :10px;
+}
+
+
+.menuList dl{ /*메뉴 이름, 가격, 수량 구역*/
+	position: relative;
+	padding:374px 0 0 0;
+	text-align: right;
+	}
+
+.menuList dt{	
+	padding: 0 0 00px; border-top: 1px solid #fff;
+}
+	
+.menuList .button{
+	margin-top: 5px;
+}
+	
+.menuList .img {
+	position:absolute; /*자유로운 배치 가능*/
+	left: 0;
+	top: 0;
+	align-content: center;
+}
+
+
+
+/*------------------ 카테고리 페이지 -------------------*/
+.cate_list {
+    list-style:none;
+}
+ 
+.cate_list li {
+    float: left;
+    margin-right: 20px;
+}
+
+  .container {
+  
+  width:100%; height:430px; 
+  background-size:cover;  
+  position: relative;
+  width: 100%;
+  height: 25%;
+  margin: -3;
+}
+
+.image {
+list-style-image:none;
+ width: 100%;
+  margin: -3;
+}
+
+.textbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgb( 192,192 ,192);
+}
+
+.container:hover .textbox {
+  opacity: 0.6;
+}
+
+.text {
+  color: white;
+  font-size: 80px;
+  font-family:verdana, sans-serif;
+  position: absolute;
+  top: 80%;
+  left: 90%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: right;
+}
+
+
+.drinkbtn {
+    left: 50%;
+    margin-left: -60.5px;
+    top: 290px;
+    text-align: justify;
+    
+     width: 121px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    height: 34px;
+    line-height: 34px;
+    position: absolute;
+}
+
+
+
+

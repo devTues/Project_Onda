@@ -11,6 +11,7 @@ public class NotiContent implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		int num=Integer.parseInt(request.getParameter("num"));
+		
 		NoticeDAO dao=new NoticeDAO();
 		
 		dao.updateReadcount(num);

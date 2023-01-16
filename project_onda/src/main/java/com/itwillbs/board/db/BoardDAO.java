@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class BoardDAO {
 	
 	Connection con=null;
@@ -35,6 +36,10 @@ public class BoardDAO {
 		
 	public void insertBoard(BoardDTO dto) {
 		
+		int qna_ref=0;
+		int qna_re_seq=1;
+		int qna_re_lev=1;
+		
 		try {
 			con = getConnection();
 			String sql2 = "select max(qna_num) as maxnum from qna_board";
@@ -45,9 +50,10 @@ public class BoardDAO {
 			if(rs.next()) {
 				num=rs.getInt("maxnum")+1;
 			}
-			String sql="insert into qna_board(qna_num,cus_id,qna_title,qna_content,qna_view,qna_reg,"
-					+ "qna_ref,qna_re_seq,qna_re_lev)"
+			String sql="insert into qna_board(qna_num, cus_id, qna_title, qna_content, qna_view, qna_reg,"
+					+ "qna_ref, qna_re_seq, qna_re_lev)"
 					+ "values(?,?,?,?,?,?,?,?,?)";
+			
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, num);
@@ -57,8 +63,8 @@ public class BoardDAO {
 			pstmt.setInt(5, dto.getQna_view());
 			pstmt.setTimestamp(6, dto.getQna_reg());
 			pstmt.setInt(7, dto.getQna_ref());
-			pstmt.setInt(8, dto.getQna_re_seq());
-			pstmt.setInt(9, dto.getQna_re_lev());
+			pstmt.setInt(8,  qna_re_seq);
+			pstmt.setInt(9, qna_re_lev);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -107,6 +113,7 @@ public class BoardDAO {
 	public BoardDTO getBoard(int num) {
 		
 		BoardDTO dto=null;
+		
 		try {
 			con=getConnection();
 			
@@ -122,9 +129,17 @@ public class BoardDAO {
 				dto.setQna_num(rs.getInt("qna_num"));
 				dto.setCus_id(rs.getString("cus_id"));
 				dto.setQna_title(rs.getString("qna_title"));
-				dto.setQna_content("qna_content");
+				dto.setQna_content(rs.getString("qna_content"));
 				dto.setQna_view(rs.getInt("qna_view"));
 				dto.setQna_reg(rs.getTimestamp("qna_reg"));
+				
+				// 답글
+				dto.setQna_ref(rs.getInt("qna_ref"));
+				dto.setQna_re_lev(rs.getInt("qna_re_lev"));				
+				dto.setQna_re_seq(rs.getInt("qna_re_seq"));
+
+				
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -186,8 +201,9 @@ public class BoardDAO {
 			}finally {
 				close();
 			}
-		}//	
-			
+		}	
+		
+		// 전체 qna게시판 
 		public int getBoardCount() {
 			int count=0;
 			try {
@@ -196,6 +212,7 @@ public class BoardDAO {
 				
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
+				
 				if(rs.next()) {
 					count=rs.getInt("count(*)");
 				}
@@ -207,25 +224,134 @@ public class BoardDAO {
 			return count;
 		}
 		
-		public int getSeq() {
-	        int result = 0;
-	        try {
-	        	con=getConnection();
-	            // 시퀀스 값을 가져온다. (DUAL : 시퀀스 값을 가져오기위한 임시 테이블)
-	        	String sql="select qna_ref from qna_board";
-	        	
-	        	pstmt=con.prepareStatement(sql);
-				rs=pstmt.executeQuery();
-	            
-	            if(rs.next())    result = rs.getInt(1);
-	 
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            
-	        } finally {
-	        	close();
-	        }
-	        return result;    
-	    } // end getSeq
+		public void replyBoard(BoardDTO dto) {
+		
+//			int qna_num = dto.getQna_num();
+//			int qna_ref = qna_num;
+		
+			try {
+				con = getConnection();
+				String sql2 = "select max(qna_num) as maxnum from qna_board";
+				pstmt2 = con.prepareStatement(sql2);
+				rs = pstmt2.executeQuery();
+				
+				int num=0;
+				if(rs.next()) {
+					num=rs.getInt("maxnum")+1;
+				}
+				String sql="insert into qna_board(qna_num, cus_id, qna_title, qna_content, qna_view, qna_reg,"
+						+ "qna_ref, qna_re_seq, qna_re_lev)"
+						+ "values(?,?,?,?,?,?,?,?,?)";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, num);
+				pstmt.setString(2, dto.getCus_id());
+				pstmt.setString(3, dto.getQna_title());
+				pstmt.setString(4, dto.getQna_content());
+				pstmt.setInt(5, dto.getQna_view());
+				pstmt.setTimestamp(6, dto.getQna_reg());
+				pstmt.setInt(7, dto.getQna_num());
+				pstmt.setInt(8, dto.getQna_re_lev()+1);
+				pstmt.setInt(9, dto.getQna_re_seq()+1);
+				
+				pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}finally {
+				close();
+			}
+		}
 			
+//			try {
+//				
+//				con = getConnection();
+//				String sql = "select max(qna_num) as maxnum from qna_board";
+//				pstmt = con.prepareStatement(sql);
+//				rs = pstmt.executeQuery();
+//				
+//				int num=0;
+//				if(rs.next()) {
+//					num=rs.getInt("maxnum")+1;
+//				}
+//			}
+			
+			// 답글 리스트
+//			public void List<BoardDTO> replyBoardList(BoardDTO dto) {
+//					
+//				List<BoardDTO> boardList=new ArrayList<BoardDTO>();
+//					
+//				con = getConnection();
+//				
+//				while(rs.next()) {
+//					
+//					BoardDTO dto=new BoardDTO();
+//				
+//				String sql2 = "WITH RECURSIVE cte AS ("
+//						+ "SELECT qna_num, qna_content, qna_ref, qna_seq, "
+//						+ "@rn:=(@rn+1) AS pnum "
+//						+ "FROM  ( SELECT * FROM qna_board ORDER BY qna_num DESC ) t1, "
+//						+ "(SELECT @rn:=0) t2"
+//						+ "WHERE qna_ref = 0"
+//						+ "UNION  ALL"
+//						+ "SELECT q.qna_num, CONCAT(' ▶ ', q.qna_content) as qna_content, q.qna_ref,"
+//						+ "q.qna_seq, p.pnum AS pnum                "
+//						+ "FROM qna_board q INNER JOIN cte p"
+//						+ "ON p.idx = q.qna_ref)"
+//						+ "SELECT * FROM cte ORDER BY pnum, qna_seq";
+//				
+//				pstmt2 =con.prepareStatement(sq2);
+//				pstmt2.setInt(1, startRow-1);
+//				pstmt2.setInt(2, pageSize);
+//				rs=pstmt2.executeQuery();
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();			
+//				
+//			}finally {
+//				
+//				close();
+//			}
+//		}
+			
+			
+		// 페이징	
+	    public int getQnaList(String cus_id) {
+	    	
+			int count=0;
+			try {
+				con=getConnection();
+				
+				String sql="select count(*) from qna_board where cus_id = ?;";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, cus_id);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count=rs.getInt("count(*)");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return count;
+		}	
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+	        
 }//class

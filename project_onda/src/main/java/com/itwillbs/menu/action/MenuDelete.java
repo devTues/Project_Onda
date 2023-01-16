@@ -23,7 +23,7 @@ public class MenuDelete implements Action{
 //		response.sendRedirect("list.jsp");
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath(" /AdminMenuList.mn");
+		forward.setPath("./MenuBoardList.mn");
 		forward.setRedirect(true);
 		System.out.println("메뉴 삭제 완료");
 		return forward;

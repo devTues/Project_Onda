@@ -44,32 +44,20 @@
 					                <h2>ABOUT</h2>
 					            </div>
 					            <div class="row mt-5">
-					                <div class="col-lg-5 col-md-6 align-self-center py-5">
+					                <div class="col-lg-6 col-md-6 align-self-center py-5">
 					                    <h2 class="special-number">01.</h2>
 					                    <div class="dishes-text">
 					                        <h3><span>CAFE ONDA</span></h3>
-					                        <p class="pt-3">'ONDA'는 스페인어로 파도, 물결이라는 뜻을 가지고 있으며 한글의 '오다' 라는 뜻과 함께 고객님께서 바다가 보이는 저희 카페에 방문하시길 바라는 마음으로 지었습니다. 온라인으로 메뉴 주문 및 픽업이 가능하며, 테이블 예약으로 간편하게 이용해보세요.</p>
+					                        <p class="pt-3">'ONDA'는 스페인어로 파도, 물결이라는 뜻을 가지고 있으며 한글의 '오다' 라는 뜻과 함께 고객님께서 바다가 보이는 저희 카페에 방문하시길 바라는 마음으로 지었습니다.<br><br> 온라인으로 간편하게 메뉴 주문을 통하여 대기하지 않고 바로 픽업이 가능하며, 테이블 예약으로 단체 모임 또는 소모임 방문 시 대기없이 이용해보세요.</p>
 					                    </div>
 					                </div>
-					                <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
-					                    <img src="./img/3.jpg" alt="" class="img-fluid shadow w-100">
+					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
+					                    <img src="./img/1.jpg" alt="" class="img-fluid shadow w-100">
 					                </div>
 					            </div>
 					            <div class="row mt-5">
-					                <div class="col-lg-5 col-md-6 align-self-center order-2 order-md-1 mt-4 mt-md-0">
-					                    <img src="./img/6.jpg" alt="" class="img-fluid shadow w-100">
-					                </div>
-					                <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center order-1 order-md-2 py-5">
+					                <div class="col-lg-6 col-md-6 align-self-center py-5">
 					                    <h2 class="special-number">02.</h2>
-					                    <div class="dishes-text">
-					                        <h3><span>Location</span></h3>
-					                        <p class="pt-3">부산 해운대구 송정동 111 <br>송정해수욕장 카페 온다</p>
-					                    </div>
-					                </div>
-					            </div>
-					            <div class="row mt-5">
-					                <div class="col-lg-5 col-md-6 align-self-center py-5">
-					                    <h2 class="special-number">03.</h2>
 					                    <div class="dishes-text">
 					                        <h3><span>Open Hours</span></h3>
 					                        <ul class="list-unstyled open-hours">
@@ -83,8 +71,20 @@
 							             	</ul>
 					                    </div>
 					                </div>
-					                <div class="col-lg-5 offset-lg-2 col-md-6 align-self-center mt-4 mt-md-0">
-					                    <img src="./img/3.jpg" alt="" class="img-fluid shadow w-100">
+					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
+					                    <img src="./img/2.jpg" alt="" class="img-fluid shadow w-100">
+					                </div>
+					            </div>
+					            <div class="row mt-5">
+					                <div class="col-lg-6 col-md-6 align-self-center py-5">
+					                    <h2 class="special-number">03.</h2>
+					                    <div class="dishes-text">
+					                        <h3><span>Location</span></h3>
+					                        <p class="pt-3">송정해수욕장에 위치해 있으며 주차가능합니다.</p>
+					                    </div>
+					                </div>
+					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
+					                    <a href="https://map.kakao.com/?urlX=1000965&urlY=472813&urlLevel=5&map_type=TYPE_MAP&map_hybrid=false" target="_blank"><img src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=10&MX=1000965&MY=472813&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" class="img-fluid shadow w-100"></a>
 					                </div>
 					            </div>
 					        </div>

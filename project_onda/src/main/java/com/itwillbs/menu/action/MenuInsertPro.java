@@ -57,7 +57,7 @@ public class MenuInsertPro implements Action{
 		dao.insertMenu(dto);
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./AdminMenuList.mn");
+		forward.setPath("./MenuBoardList.mn");
 		forward.setRedirect(true);
 		return forward;
 	}

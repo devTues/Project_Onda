@@ -5,17 +5,18 @@ import java.sql.Timestamp;
 public class NoticeDTO {
 	
 	private int nt_num;
-	private String nt_name;
+	private String cus_id;
 	private String nt_title;
 	private String nt_content;
 	private int nt_view;
 	private Timestamp nt_date;
 	
-	public String getNt_name() {
-		return nt_name;
+	
+	public String getCus_id() {
+		return cus_id;
 	}
-	public void setNt_name(String nt_name) {
-		this.nt_name = nt_name;
+	public void setCus_id(String cus_id) {
+		this.cus_id = cus_id;
 	}
 	public int getNt_num() {
 		return nt_num;

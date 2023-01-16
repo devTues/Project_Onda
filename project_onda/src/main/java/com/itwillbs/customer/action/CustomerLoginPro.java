@@ -15,12 +15,12 @@ public class CustomerLoginPro implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
+		String cus_id = request.getParameter("cus_id");
+		String cus_pass = request.getParameter("cus_pass");
 
 		//MemberDAO 객체 생성
 		CustomerDAO dao = new CustomerDAO();
-		CustomerDTO dto=dao.userCheck(id,pass);
+		CustomerDTO dto=dao.userCheck(cus_id,cus_pass);
 
 		//dto null이 아니면 =>"아이디 비밀번호 일치"
 //		    null이면     => "아이디 비밀번호 틀림"
@@ -32,7 +32,7 @@ public class CustomerLoginPro implements Action {
 			// 페이지 상관없이 값이 유지 => 세션값 부여(저장)
 			// session 내장객체생성
 			HttpSession session=request.getSession();
-			session.setAttribute("id", id);
+			session.setAttribute("cus_id", cus_id);
 			
 			// 주소가 변경되면서 이동./main.me 이동
 			ActionForward forward=new ActionForward();

@@ -16,16 +16,16 @@
             $(function() {
                 $("form[name='login']").validate({
                     rules: {
-                        id: {
+                        cus_id: {
                             required: true
                         },
-                        pass: {
+                        cus_pass: {
                             required: true
                         }
                     },
                     messages: {
-                        id: "아이디를 입력하세요",
-                        pass: {
+                        cus_id: "아이디를 입력하세요",
+                        cus_pass: {
                             required: "비밀번호를 입력하세요",
                         }
                     },
@@ -39,7 +39,7 @@
             $(function() {
                 $("form[name='registration']").validate({
                     rules: {
-                    	id: {
+                    	cus_id: {
                     		required: true,
                     		rangelength:[4,30],
                 			remote: { // 아이디 중복체크
@@ -47,20 +47,20 @@
                 				type: "post",
                 				data: {
                 					id: function() {
-                						return $("#id").val();
+                						return $("#cus_id").val();
                 					}
                 				}
                 			}
                     	},
-                    	pass1: {
+                    	cus_pass1: {
                             required: true,
                             rangelength:[6,30]
                         },
-                        pass2: {
-            				equalTo: '#pass1'
+                        cus_pass2: {
+            				equalTo: '#cus_pass1'
             			},
-                        name: "required",
-                        phone: {
+                        cus_name: "required",
+                        cus_phone: {
                         	required: true,
                         	digits:true,
                         	remote: {
@@ -68,12 +68,12 @@
                 				type: "post",
                 				data: {
                 					phone: function() {
-                						return $("#phone").val();
+                						return $("#cus_phone").val();
                 					}
                 				}
                 			}
                         },
-                        email: {
+                        cus_email: {
                             required: true,
                             email: true
                         },
@@ -81,26 +81,26 @@
                        	ch2: "required"
                     },
                     messages: {
-                    	id: {
+                    	cus_id: {
                             required: "아이디를 입력하세요",
                             rangelength: "아이디는 4-30자 사이 영문,숫자만 허용합니다",
                             remote: "중복된 아이디입니다"
                         },
                         
-                        pass1: {
+                        cus_pass1: {
                             required: "비밀번호를 입력하세요",
                             rangelength: "비밀번호는 6-30자 사이 영문,숫자만 허용합니다"
                         },
-                        pass2: {
+                        cus_pass2: {
                         	equalTo: "비밀번호를 재확인하세요"
                         },
-                        name: "이름을 입력하세요",
-                        phone: {
+                        cus_name: "이름을 입력하세요",
+                        cus_phone: {
                         	required: "휴대폰 번호를 입력하세요",
                         	digits: "' - ' 제외 숫자만 입력하세요",
                         	remote: "중복된 휴대폰 번호입니다"
                         },
-                        email: {
+                        cus_email: {
                         	required: "이메일을 입력하세요",
                         	email: "이메일 형식이 아닙니다"
                         },
@@ -124,10 +124,10 @@
                             url: '/v2/user/me',
                             success: (res) => {
             					alert('회원가입 성공! 메인페이지에서 로그인해주세요')
-                                kakaojoin.id.value=res.id;
-                            	kakaojoin.pass.value=res.kakao_account.email;
-                            	kakaojoin.name.value=res.properties.nickname;
-                            	kakaojoin.email.value=res.kakao_account.email;
+                                kakaojoin.cus_id.value=res.id;
+                            	kakaojoin.cus_pass.value=res.kakao_account.email;
+                            	kakaojoin.cus_name.value=res.properties.nickname;
+                            	kakaojoin.cus_email.value=res.kakao_account.email;
             					kakaojoin.submit()
                             },
                             fail: function (error) {
@@ -149,8 +149,8 @@
                         Kakao.API.request({
                             url: '/v2/user/me',
                             success: (res) => {
-                                kakaologin.id.value=res.id;
-                                kakaologin.pass.value=res.kakao_account.email;
+                                kakaologin.cus_id.value=res.id;
+                                kakaologin.cus_pass.value=res.kakao_account.email;
             					kakaologin.submit()
                             },
                             fail: function (error) {

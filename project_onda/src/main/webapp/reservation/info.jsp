@@ -70,7 +70,6 @@
 				                </div>
 				            </div>
 				            <div class="row mt-5">
-				                
 				                <div class="col-lg-6 col-md-6 align-self-center py-5">
 				                    <h2 class="special-number">02.</h2>
 				                    <div class="dishes-text">

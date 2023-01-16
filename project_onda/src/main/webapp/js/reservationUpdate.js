@@ -28,7 +28,7 @@ function check() {
    }
    
    if(document.fr.ch.checked==false) {
-      alert("이용약관 및 개인정보 처리방침에 동의하셔야 가입이 가능합니다.");
+      alert("이용약관 및 개인정보 처리방침에 동의하셔야 이용이 가능합니다.");
       return false;
    }
    document.fr.submit();

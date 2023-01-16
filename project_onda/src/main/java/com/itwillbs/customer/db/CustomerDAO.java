@@ -34,14 +34,14 @@ public class CustomerDAO {
 	} // close 메서드
 	
    // 전화번호 중복 확인
-	public CustomerDTO phoneCheck(String phone) {
+	public CustomerDTO phoneCheck(String cus_phone) {
 		CustomerDTO dto=null;
 		
 		try {
 			con=getConnection();
 			String sql="select * from customer where cus_phone=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, phone);
+			pstmt.setString(1, cus_phone);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -89,14 +89,14 @@ public class CustomerDAO {
 		try {
 			con=getConnection();
 			
-			String sql2 = "select max(num) as cus_num from customer";
+			String sql2 = "select max(cus_num) as cus_num from customer";
 			pstmt2 = con.prepareStatement(sql2);
 			// 실행 => 결과 저장
 			rs = pstmt2.executeQuery();
 			// 결과접근 max(num) 가져와서 +1;
-			int num = 0;
+			int cus_num = 0;
 			if(rs.next()) {
-				num= rs.getInt("num")+1;
+				cus_num= rs.getInt("cus_num")+1;
 			}
 			
 			String sql="insert into customer(cus_id,cus_pass,cus_name,cus_email,cus_num) values(?,?,?,?,?)";
@@ -106,7 +106,7 @@ public class CustomerDAO {
 			pstmt.setString(2, dto.getCus_email());
 			pstmt.setString(3, dto.getCus_name());
 			pstmt.setString(4, dto.getCus_email());
-			pstmt.setInt(5, num);
+			pstmt.setInt(5, cus_num);
 			
 			pstmt.executeUpdate();
 			
@@ -115,15 +115,15 @@ public class CustomerDAO {
 	} // 카카오 KinsertMember 메서드 닫음
 	
 	// userCheck()
-	public CustomerDTO userCheck(String id, String pass) {
+	public CustomerDTO userCheck(String cus_id, String cus_pass) {
 		CustomerDTO dto=null;
 		
 		try {
 			con=getConnection();
 			String sql="select * from customer where cus_id=? and cus_pass=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
+			pstmt.setString(1, cus_id);
+			pstmt.setString(2, cus_pass);
 			
 			ResultSet rs=pstmt.executeQuery();
 			
@@ -139,8 +139,8 @@ public class CustomerDAO {
 	} // userCheck()
 	
 	// 아이디찾기 메서드
-	public String findId(String name, String phone) {
-		String id = null;
+	public String findId(String cus_name, String cus_phone) {
+		String cus_id = null;
 		try {
 			// 1,2 디비연결
 			Connection con = getConnection();
@@ -148,20 +148,20 @@ public class CustomerDAO {
 			String sql = "select cus_id from customer where cus_name=? and cus_phone=?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, phone);
+			pstmt.setString(1, cus_name);
+			pstmt.setString(2, cus_phone);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				id = rs.getString("cus_id");
+				cus_id = rs.getString("cus_id");
 			} 
 		} catch (Exception e) {e.printStackTrace();} finally {close();}
 		
-		return id;
+		return cus_id;
 	}
 	
-	public String findPw(String id, String name, String phone) {
+	public String findPw(String cus_id, String cus_name, String cus_phone) {
 		String pw = null;
 		try {
 			// 1,2 디비연결
@@ -170,9 +170,9 @@ public class CustomerDAO {
 			String sql = "select cus_pass from customer where cus_id=? and cus_name=? and cus_phone=?";
 			
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.setString(2, name);
-			pstmt.setString(3, phone);
+			pstmt.setString(1, cus_id);
+			pstmt.setString(2, cus_name);
+			pstmt.setString(3, cus_phone);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -185,14 +185,14 @@ public class CustomerDAO {
 	}
 	
 	// 멤버정보조회 메서드
-	public CustomerDTO getCustomer(String id) {
+	public CustomerDTO getCustomer(String cus_id) {
 		CustomerDTO dto=null;
 		
 		try {
 			con=getConnection();
 			String sql="select * from customer where cus_id=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, cus_id);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -226,13 +226,13 @@ public class CustomerDAO {
 	} //updateMember()
 	
 	// 멤버 삭제
-	public void deleteCustomer(String id) {
+	public void deleteCustomer(String cus_id) {
 		
 		try {
 			con=getConnection();
 			String sql="delete from customer where cus_id=?";
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, cus_id);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {e.printStackTrace();} finally {close();}

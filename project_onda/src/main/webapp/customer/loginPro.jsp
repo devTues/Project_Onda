@@ -12,17 +12,15 @@
 <%
 // 폼에서 입력한 id,pass => 서버 request에 저장
 // request에 저장된 id,pass 파라미터 => 변수에 저장
-String id = request.getParameter("id");
-String pass = request.getParameter("pass");
+String cus_id = request.getParameter("cus_id");
+String cus_pass = request.getParameter("cus_pass");
 
 //MemberDAO 객체 생성
 CustomerDAO dao = new CustomerDAO();
 // 리턴할 형 MemberDTO userCheck(String id, String pass)
 // 메서드 정의
-System.out.println("디비작업하는 주소 :"+ dao);
 // MemberDTO dto =디비작업주소.userCheck(String id, String pass) 메서드 호출
-CustomerDTO dto=dao.userCheck(id,pass);
-System.out.println("데이터 저장된 리턴받은 주소 :"+ dto);
+CustomerDTO dto=dao.userCheck(cus_id,cus_pass);
 
 //dto null이 아니면 =>"아이디 비밀번호 일치"
 //    null이면     => "아이디 비밀번호 틀림"
@@ -32,7 +30,7 @@ if(dto!=null){
 	//데이터 있으면 => true =>"아이디 비밀번호 일치"
 	out.println("아이디 비밀번호 일치");
 	// 페이지 상관없이 값이 유지 => 세션값 부여(저장)
-	session.setAttribute("id", id);
+	session.setAttribute("cus_id", cus_id);
 	// main.jsp 이동
 	response.sendRedirect("main.jsp");
 }else{

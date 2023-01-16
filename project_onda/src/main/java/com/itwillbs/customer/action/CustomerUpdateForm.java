@@ -13,7 +13,7 @@ public class CustomerUpdateForm implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
+		String cus_id=(String)session.getAttribute("cus_id");
 		
 		//MemberDAO 객체 생성
 		CustomerDAO dao = new CustomerDAO();
@@ -21,7 +21,7 @@ public class CustomerUpdateForm implements Action {
 		// 리턴할 형 MemberDTO getMember(String id)
 		// 메서드 정의
 		// MemberDTO dto=디비작업주소.getMember(id) 메서드 호출
-		CustomerDTO dto = dao.getCustomer(id);
+		CustomerDTO dto = dao.getCustomer(cus_id);
 		
 		// MemberDTO 정보를 request 담아서 오기
 		request.setAttribute("dto", dto);

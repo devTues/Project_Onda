@@ -13,10 +13,10 @@ public class CustomerIdCheck implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String id = request.getParameter("id");
+		String cus_id = request.getParameter("cus_id");
 		// DB를 조회할 MyBatis
 		CustomerDAO dao = new CustomerDAO();
-		CustomerDTO dto = dao.getCustomer(id);
+		CustomerDTO dto = dao.getCustomer(cus_id);
 		
 		String result="";
 		

@@ -14,13 +14,13 @@ public class NotiUpdateForm implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session=request.getSession();
-		String id=(String)session.getAttribute("id");
+		String cus_id=(String)session.getAttribute("cus_id");
 		int num=Integer.parseInt(request.getParameter("num"));
 		
-		if(id == null) {
+		if(cus_id == null) {
 			response.sendRedirect("./MemberLogin.me");
 			
-		} else if(! (id.equals("admin"))) {
+		} else if(! (cus_id.equals("admin"))) {
 			response.sendRedirect("./NotiUpdateForm.no");
 		}
 		

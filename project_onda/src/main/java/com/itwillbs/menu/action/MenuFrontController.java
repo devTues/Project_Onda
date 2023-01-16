@@ -22,7 +22,7 @@ public class MenuFrontController extends HttpServlet{
 			forward=new ActionForward();
 			forward.setPath("./menu/insertForm.jsp");
 			forward.setRedirect(false);
-			
+		
 		} else if(strpath.equals("/MenuInsertPro.mn")) {
 			action=new MenuInsertPro();
 			try {forward=action.execute(request, response);} catch (Exception e) {e.printStackTrace();}

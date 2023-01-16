@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 
+
 public class MenuDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -83,12 +84,13 @@ public class MenuDAO {
 
 	public List<MenuDTO> getMenuList(int startRow, int pageSize) {
 		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
+		System.out.println("@@@@@@@@@@@@");
 		
 		try {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu order by menu_num limit ?,?";
+			String sql = "select * from menu order by menu_num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow-1);
@@ -165,6 +167,7 @@ public class MenuDAO {
 			pstmt.setInt(6, dto.getMenu_num());
 			// 4 실행
 			pstmt.executeUpdate();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -211,6 +214,10 @@ public class MenuDAO {
 		return count;
 	}//
 
+	
+	
+	
+	
 	public List<MenuDTO> DrinkList(String menu_category) {
 		List<MenuDTO> drinkList = new ArrayList<MenuDTO>();
 		System.out.println("@ DrinkList@");
@@ -219,7 +226,7 @@ public class MenuDAO {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu where menu_category=? ";
+			String sql = "select * from menu where menu_category=?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, menu_category);
@@ -330,6 +337,5 @@ public class MenuDAO {
 		return goodsList;
 	}// getmenuList()
 	
-}	
-	
+}
 	

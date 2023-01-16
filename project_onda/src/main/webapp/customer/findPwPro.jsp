@@ -15,7 +15,7 @@
 </head>
 <body>
 <%
-String pass = (String)request.getAttribute("pass");
+String cus_pass = (String)request.getAttribute("cus_pass");
 %>
 
 <div class="container">
@@ -34,9 +34,9 @@ String pass = (String)request.getAttribute("pass");
                     </div>
                     <form action="./CustomerLoginForm.cu" method="post">
                         <%
-						if(pass != null) {
+						if(cus_pass != null) {
 						%>
-						<h6>회원님의 비밀번호는 <%=pass %> 입니다.</h6><br>
+						<h6>회원님의 비밀번호는 <%=cus_pass %> 입니다.</h6><br>
 						<div class="col-md-12 mb-3">
                             <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">로그인 하기</button>
                         </div>

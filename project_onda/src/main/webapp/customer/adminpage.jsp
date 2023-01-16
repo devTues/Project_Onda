@@ -38,8 +38,8 @@
         	<span class="subheading">
            	<%
 			// 세션값이 null이거나 admin 아니면 알람
-			String id=(String)session.getAttribute("id");
-			if(id==null || !id.equals("admin")){
+			String cus_id=(String)session.getAttribute("cus_id");
+			if(cus_id==null || !cus_id.equals("admin")){
 				%>
 				<script type="text/javascript">
 				alert("관리자만 이용가능합니다");

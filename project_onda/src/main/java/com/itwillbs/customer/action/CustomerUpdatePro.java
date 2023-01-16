@@ -17,17 +17,17 @@ public class CustomerUpdatePro implements Action {
 
 		// 폼에서 입력한 파라미터값(id,pass,name)을 서버에 request에 저장
 		// 변수 = request에 저장된 값 가져오기
-		String id = request.getParameter("id");
-		String pass = request.getParameter("pass");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
+		String cus_id = request.getParameter("cus_id");
+		String cus_pass = request.getParameter("cus_pass");
+		String cus_name = request.getParameter("cus_name");
+		String cus_phone = request.getParameter("cus_phone");
+		String cus_email = request.getParameter("cus_email");
 
 		//MemberDAO 객체 생성
 		CustomerDAO dao = new CustomerDAO();
 
 		//MemberDTO dto =디비작업주소.userCheck(String id, String pass) 메서드 호출
-		CustomerDTO dto=dao.userCheck(id,pass);
+		CustomerDTO dto=dao.userCheck(cus_id,cus_pass);
 
 		//dto null이 아니면 =>"아이디 비밀번호 일치" => 수정, 메인이동
 //		    null이면     => "아이디 비밀번호 틀림" => 뒤로이동
@@ -36,11 +36,11 @@ public class CustomerUpdatePro implements Action {
 		//  if 다음행이동=> 데이터 있으면 => true =>"아이디 비밀번호 일치"
 			// 수정할 정보를 MemberDTO에 객체생성 set 호출 저장
 			CustomerDTO dtoUpdate = new CustomerDTO();
-			dtoUpdate.setCus_id(id);
-			dtoUpdate.setCus_pass(pass);
-			dtoUpdate.setCus_name(name);
-			dtoUpdate.setCus_phone(phone);
-			dtoUpdate.setCus_email(email);
+			dtoUpdate.setCus_id(cus_id);
+			dtoUpdate.setCus_pass(cus_pass);
+			dtoUpdate.setCus_name(cus_name);
+			dtoUpdate.setCus_phone(cus_phone);
+			dtoUpdate.setCus_email(cus_email);
 
 			// 리턴할형 없음 void updateMember(수정할정보) 메서드 정의
 			dao.updateCustomer(dtoUpdate);

@@ -16,20 +16,20 @@ public class CustomerDeletePro implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String id=request.getParameter("id");
-		String pass=request.getParameter("pass");
+		String cus_id=request.getParameter("cus_id");
+		String cus_pass=request.getParameter("cus_pass");
 		
 		//MemberDAO 객체생성
 		CustomerDAO dao = new CustomerDAO();
 
 		// MemberDTO dto =디비작업주소.userCheck(id,pass) 메서드 호출
-		CustomerDTO dto=dao.userCheck(id,pass);
+		CustomerDTO dto=dao.userCheck(cus_id, cus_pass);
 	
 		if(dto!=null){
 			//다음행이동=> 데이터 있으면 => true =>"아이디 비밀번호 일치"
 			// 리턴할형없음 void deleteMember(String id) 메서드 정의
 			// deleteMember(id) 메서드 호출
-			dao.deleteCustomer(id);
+			dao.deleteCustomer(cus_id);
 
 			// 세션초기화
 			HttpSession session=request.getSession();

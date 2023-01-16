@@ -11,11 +11,12 @@
     <link href="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.tutorialjinni.com/font-awesome/5.12.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link href="./css/login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<%String id = (String)session.getAttribute("id");%>
+<%String cus_id = (String)session.getAttribute("cus_id");%>
 
     <body>
         <div class="container">
@@ -39,11 +40,11 @@
 	                            </div>
                                 <div class="form-group">
                                 	<label for="exampleInputEmail1">아이디</label>
-                                    <input type="text" name="id" class="form-control" value="<%=id %>" readonly>
+                                    <input type="text" name="cus_id" class="form-control" value="<%=cus_id %>" readonly>
                                 </div>
                                 <div class="form-group">
                                 	<label for="exampleInputEmail1">비밀번호</label>
-                                    <input type="password" name="pass" class="form-control" placeholder="비밀번호">
+                                    <input type="password" name="cus_pass" class="form-control" placeholder="비밀번호">
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">탈퇴하기</button>

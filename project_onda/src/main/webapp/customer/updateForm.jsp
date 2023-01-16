@@ -45,23 +45,23 @@ CustomerDTO dto=(CustomerDTO)request.getAttribute("dto");
                       </div>
                          <div class="form-group">
                          	<label for="exampleInputEmail1">아이디</label>
-                             <input type="text" name="id" class="form-control" value="<%=dto.getCus_id() %>" readonly>
+                             <input type="text" name="cus_id" class="form-control" value="<%=dto.getCus_id() %>" readonly>
                          </div>
                          <div class="form-group">
                          	<label for="exampleInputEmail1">비밀번호</label>
-                             <input type="password" name="pass" class="form-control" placeholder="비밀번호">
+                             <input type="password" name="cus_pass" class="form-control" placeholder="비밀번호">
                          </div>
                          <div class="form-group">
                             <label for="exampleInputEmail1">이름</label>
-                            <input type="text" name="name" class="form-control" value="<%=dto.getCus_name() %>">
+                            <input type="text" name="cus_name" class="form-control" value="<%=dto.getCus_name() %>">
                          </div>
                          <div class="form-group">
                             <label for="exampleInputEmail1">휴대폰 번호</label>
-                            <input type="text" name="phone" class="form-control" value="<%=dto.getCus_phone() %>">
+                            <input type="text" name="cus_phone" class="form-control" value="<%=dto.getCus_phone() %>">
                          </div>
                          <div class="form-group">
                             <label for="exampleInputEmail1">이메일</label>
-                            <input type="text" name="email" class="form-control" value="<%=dto.getCus_email() %>">
+                            <input type="text" name="cus_email" class="form-control" value="<%=dto.getCus_email() %>">
                          </div>
                          <div class="col-md-12 mb-3">
                              <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">확인</button>

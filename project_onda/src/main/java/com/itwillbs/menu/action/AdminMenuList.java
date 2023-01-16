@@ -29,7 +29,7 @@ public class AdminMenuList implements Action{
 		List<MenuDTO> menuList = dao.getMenuList(startRow, pageSize);
 
 		int count = dao.getMenuCount();
-		int pageBlock=5;
+		int pageBlock=3;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
 		int pageCount = count/pageSize

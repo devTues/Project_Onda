@@ -10,12 +10,12 @@
     <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery-validate/1.19.1/jquery.validate.js"></script>
-    <link href="https://cdn.tutorialjinni.com/font-awesome/5.12.0/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <link href="./css/login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <%
-String id = (String)request.getAttribute("id");
+String cus_id = (String)request.getAttribute("cus_id");
 %>
 
 <div class="container">
@@ -34,9 +34,9 @@ String id = (String)request.getAttribute("id");
                     </div>
                     <form action="./CustomerLoginForm.cu" method="post">
                         <%
-						if(id != null) {
+						if(cus_id != null) {
 						%>
-						<h6>회원님의 아이디는 <%=id %> 입니다.</h6><br>
+						<h6>회원님의 아이디는 <%=cus_id %> 입니다.</h6><br>
 						<div class="col-md-12 mb-3">
                             <button type="submit" class="btn btn-block mybtn btn-primary tx-tfm">로그인 하기</button>
                         </div>
