@@ -1,7 +1,13 @@
 function check() {
+	
+	let time = document.fr.time;
+   if(time.value == "선택없음"){
+	  alert("시간 선택해 주세요.");
+	  return false;
+   }
    
    let table = document.fr.table;
-   if(table.value == ""){
+   if(table.value == "선택없음"){
 	  alert("테이블 선택해 주세요.");
 	  return false;
    }

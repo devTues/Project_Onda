@@ -106,7 +106,7 @@
 					if(cus_id != null) {
 						%>
 						<div class="col-md-10 mb-2 text-left">
-							<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MyOrderForm.rv'">
+							<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./paymentList.pa'">
                    		</div>
                    	<%	
 					}	

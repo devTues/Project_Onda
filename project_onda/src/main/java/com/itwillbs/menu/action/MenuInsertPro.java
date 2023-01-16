@@ -8,7 +8,6 @@ import com.itwillbs.menu.db.MenuDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-
 public class MenuInsertPro implements Action{
 
 	@Override

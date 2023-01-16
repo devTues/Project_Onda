@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 BoardDTO dto = (BoardDTO) request.getAttribute("dto");
-String id = (String) session.getAttribute("id");
+String cus_id = (String) session.getAttribute("cus_id");
 %>
 <!DOCTYPE html>
 <html>

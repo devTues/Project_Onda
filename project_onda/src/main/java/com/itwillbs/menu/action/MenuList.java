@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.menu.db.MenuDAO;
 import com.itwillbs.menu.db.MenuDTO;
 
-
 public class MenuList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	
 		MenuDAO dao=new MenuDAO();
 		
 		int pageSize= 10;
@@ -26,12 +25,11 @@ public class MenuList implements Action{
 		int startRow=(currentPage-1)*pageSize+1;
 		int endRow=startRow+pageSize-1;
 		
-		
 		List<MenuDTO> menuList =dao.getMenuList(startRow,pageSize);
 		
-		// 한페이지 10개 페이지 번호 보이게 설정
+		// 한페이지 3개 페이지 번호 보이게 설정
 		int count=dao.getMenuCount();
-		int pageBlock=5;
+		int pageBlock=3;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		
 		int endPage=startPage+pageBlock-1;
@@ -51,7 +49,7 @@ public class MenuList implements Action{
 				
 		// 이동정보 저장 => ./center/notice.jsp  
 		ActionForward forward=new ActionForward();
-		forward.setPath("./menu/AdminMenuList.jsp");
+		forward.setPath("./menu/mainMenu.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

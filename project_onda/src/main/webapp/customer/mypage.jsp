@@ -94,7 +94,7 @@
                         <div class="text-wrap">
                             <div class="row align-items-start">
                                 <div class="col-8">
-                                	<a href="#"><h5>주문내역</h5></a>
+                                	<a href="./paymentList.pa"><h5>주문내역</h5></a>
                                 </div>
                             </div>
                         </div>

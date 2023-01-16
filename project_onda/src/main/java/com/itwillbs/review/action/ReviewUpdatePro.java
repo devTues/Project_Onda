@@ -14,8 +14,8 @@ public class ReviewUpdatePro implements Action {
 				request.setCharacterEncoding("utf-8");
 				// request 정보 가져오기
 				int rv_num = Integer.parseInt(request.getParameter("num"));
-				String rv_title = request.getParameter("subject");
-				String rv_content = request.getParameter("content");
+				String rv_title = request.getParameter("rv_title");
+				String rv_content = request.getParameter("rv_content");
 				int rv_star = Integer.parseInt(request.getParameter("star"));
 
 				ReviewDTO dto=new ReviewDTO();

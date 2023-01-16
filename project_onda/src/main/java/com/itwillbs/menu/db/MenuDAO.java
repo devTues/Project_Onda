@@ -84,13 +84,12 @@ public class MenuDAO {
 
 	public List<MenuDTO> getMenuList(int startRow, int pageSize) {
 		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
-		System.out.println("@@@@@@@@@@@@");
 		
 		try {
 			// 1,2단계 디비연결
 			con = getConnection();
 			// 3 sql
-			String sql = "select * from menu order by menu_num desc limit ?,?";
+			String sql = "select * from menu order by menu_num limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, startRow-1);
@@ -215,9 +214,6 @@ public class MenuDAO {
 	}//
 
 	
-	
-	
-	
 	public List<MenuDTO> DrinkList(String menu_category) {
 		List<MenuDTO> drinkList = new ArrayList<MenuDTO>();
 		System.out.println("@ DrinkList@");
@@ -336,6 +332,7 @@ public class MenuDAO {
 		// 배열의 주소 리턴
 		return goodsList;
 	}// getmenuList()
+	
 	
 }
 	
