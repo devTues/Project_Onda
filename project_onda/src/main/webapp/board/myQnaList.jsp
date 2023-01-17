@@ -1,7 +1,6 @@
-<%@page import="com.itwillbs.customer.db.CustomerDTO"%>
-<%@page import="com.itwillbs.notice.db.NoticeDTO"%>
-<%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.itwillbs.board.db.BoardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>Notice</title>
+	<title>QNA</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -47,21 +46,19 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>NOTICE</h2>
+						<h2>QNA</h2>
 					</div>
 					<div class="row mt-5">
 					<%
-					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					
-					List<NoticeDTO> boardList
-					= (List<NoticeDTO>)request.getAttribute("boardList");
+					List<BoardDTO> myQnaList
+					=(List<BoardDTO>)request.getAttribute("myQnaList");
 					int startPage=(Integer)request.getAttribute("startPage");
 					int pageBlock=(Integer)request.getAttribute("pageBlock");
 					int currentPage=(Integer)request.getAttribute("currentPage");
 					int endPage=(Integer)request.getAttribute("endPage");
 					int pageCount=(Integer)request.getAttribute("pageCount");
-					%>
 					
+					%>
 					<table class="table table-hover">
 						<thead>
 						    <tr>
@@ -71,40 +68,46 @@
 						      <th scope="col">등록일</th>
 						      <th scope="col">조회수</th>
 						    </tr>
-						</thead>    
-						<%
-						for(int i=0; i < boardList.size(); i++){
-						  	NoticeDTO dto = boardList.get(i);
-						  	CustomerDTO cdto = new CustomerDTO();
-						%>
-						<tr>
-							<td><%=dto.getNt_num() %></td>
-						    <td>관리자</td>
-						    <td><a href="./NotiContent.no?num=<%=dto.getNt_num()%>">
-						    	<%=dto.getNt_title() %></a></td>
-						    <td><%=dateFormat.format(dto.getNt_date()) %></td>
-						    <td><%=dto.getNt_view() %></td>
-					    </tr>    	
-					    	<%
-					    }
-					    %>
+					  </thead>
+				    <%
+					 // 날짜 => 모양 문자열 변경
+					SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+				 
+				    for(int i=0; i < myQnaList.size(); i++){
+				    	BoardDTO dto=myQnaList.get(i);
+				    %>
+					<tr>
+						<td><%=dto.getQna_num() %></td>
+					    <td><%=dto.getCus_id() %></td>
+					    <td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>">
+					     <% 
+					    
+				    // 답글 들여쓰기
+					if(dto.getQna_re_lev() > 0) {
+						int w = dto.getQna_re_lev() * 10;
+				    	%> 
+					    <img src="./img/none.png" width="<%=w%>">
+						<% 
+				    }
+					%>
+					    	<%=dto.getQna_title() %></a></td>
+					    <td><%=dateFormat.format(dto.getQna_reg()) %></td>
+					    <td><%=dto.getQna_view() %></td>
+				    </tr>    	
+				   	<%
+				    }
+				    %>
 					</table>
 					<%
 					String cus_id = (String)session.getAttribute("cus_id");
-					if(cus_id == null) {
-						
-					} else if(cus_id.equals("admin")){
+					if(cus_id != null) {
+						%>
+						<div class="col-md-10 mb-2 text-left">
+							<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./BoardWriteForm.bo'">
+						</div>
+						<%	
+					} 
 					%>
-					<div id="table_search">
-					<div class="col-md-10 mb-2 text-left">
-						<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./NotiWrite.no'">
-                    </div>	
-                	</div>
-					<%
-						}
-					%>
-					</div>
-					
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 					    	
@@ -112,7 +115,7 @@
 							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
-					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
 					    	%>
@@ -120,7 +123,7 @@
 					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
-								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
 					    	%>
@@ -128,39 +131,40 @@
 					      <%
 					       if(endPage < pageCount){
 							%>
-					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					       <li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=startPage+pageBlock%>">Next</a></li>
 					      <%
 							}
 							%>
 					 	</ul>
 					</nav>
-     			</div>
-            </div>
-        </div>
-    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 </div>	
 </body>
-	<!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <!-- footer -->
 <jsp:include page="../inc/footerMain.jsp"></jsp:include>
-	<!-- External JS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-	<script src="./vendor/bootstrap/popper.min.js"></script>
-	<script src="./vendor/bootstrap/bootstrap.min.js"></script>
-	<script src="./vendor/select2/select2.min.js "></script>
-	<script src="./vendor/owlcarousel/owl.carousel.min.js"></script>
-	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
-	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- External JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="./vendor/bootstrap/popper.min.js"></script>
+<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+<script src="./vendor/select2/select2.min.js "></script>
+<script src="./vendor/owlcarousel/owl.carousel.min.js"></script>
+<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-	<!-- Main JS -->
-	<script src="./js/app.min.js "></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<!-- Main JS -->
+<script src="./js/app.min.js "></script>
 </html>

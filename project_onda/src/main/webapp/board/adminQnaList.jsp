@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 
@@ -48,14 +49,14 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>RESERVATION INFO</h2>
+						<h2>QNA INFO</h2>
 					</div>
 					
 					<div class="row mt-5">
 					<%
 					//세션값이 null이거나 admin 아니면 알람
-					String id=(String)session.getAttribute("id");
-					if(id==null || !id.equals("admin")){
+					String cus_id=(String)session.getAttribute("cus_id");
+					if(cus_id==null || !cus_id.equals("admin")){
 						%>
 						<script type="text/javascript">
 						alert("관리자만 이용가능합니다");
@@ -63,7 +64,7 @@
 						</script>
 					<%	
 					} 
-					List<BoardDTO> reservationList = (List<BoardDTO>)request.getAttribute("reservationList");
+					List<BoardDTO> boardList = (List<BoardDTO>)request.getAttribute("boardList");
 					//startPage pageBlock currentPage endPage pageCount
 					int startPage = (Integer) request.getAttribute("startPage");
 					int pageBlock = (Integer) request.getAttribute("pageBlock");
@@ -71,78 +72,76 @@
 					int endPage = (Integer) request.getAttribute("endPage");
 					int pageCount = (Integer) request.getAttribute("pageCount");
 					%>
-						<table class="table">
-							<thead>
-							<tr>
-								<th scope="col">예약번호</th>
-								<th scope="col">아이디</th>
-								<th scope="col">이름</th>
-								<th scope="col">테이블</th>
-								<th scope="col">인원</th>
-								<th scope="col">전화번호</th>
-								<th scope="col">매장이용날짜</th>
-								<th scope="col">예약시간</th>
-								<th scope="col">신청일자</th>
-								<th scope="col">예약관리</th>
-							</tr>
+						<table class="table table-hover">
+						<thead>
+						    <tr>
+						      <th scope="col">글번호</th>
+						      <th scope="col">작성자</th>
+						      <th scope="col">글제목</th>
+						      <th scope="col">등록일</th>
+						      <th scope="col">문의관리</th>
+						    </tr>
+					  </thead>
 							<%
-							for (int i = 0; i < reservationList.size(); i++) {
-								ReservationDTO dto = reservationList.get(i);
+							 // 날짜 => 모양 문자열 변경
+							SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+							
+							for (int i = 0; i < boardList.size(); i++) {
+								BoardDTO dto = boardList.get(i);
 							%>
 							<tr>
-								<td><%=dto.getRes_num()%></td>
+								<td><%=dto.getQna_num()%></td>
 								<td><%=dto.getCus_id() %></td>
-								<td><%=dto.getRes_name()%></td>
-								<td><%=dto.getTb_num()%></td>
-								<td><%=dto.getRes_mem()%></td>
-								<td><%=dto.getRes_phone()%></td>
-								<td><%=dto.getRes_use_date()%></td>
-								<td><%=dto.getRes_time()%></td>
-								<td><%=dto.getRes_date()%></td>
-								<td><input type="button" value="예약취소" 
-					         		onclick="location.href='./AdminResDelete.re?res_num=<%=dto.getRes_num()%>'"></td>
-							</tr>
+								<td><%=dto.getQna_title()%></td>
+								<td><%=dateFormat.format(dto.getQna_reg()) %></td>
+								<td>
+								<input type="button" class="btn btn-primary btn-shadow btn-lg" value="문의삭제" 
+					         	onclick="location.href='./AdminQnaDelete.bo?qna_num=<%=dto.getQna_num()%>'">
+								<%
+								if(!dto.getCus_id().equals("admin")) { 
+									%>
+									<input type="button" class="btn btn-primary btn-shadow btn-lg" value="답글달기" 
+					         		onclick="location.href='./ReplyForm.bo?qna_num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
+								<%
+								} 
+								%>
+					         	</td></tr>
 							<%
 							}
 							%>
-							</thead>
+						
 						</table>
 					</div>
-					<%
-					// 10페이지 이전 
-					if(startPage > pageBlock){
-						%>
-					<a href="./AdminResList.re?pageNum=<%=startPage-pageBlock%>">[10페이지 이전] </a>
-						<%	
-					}
-					
-					// 이전 currentPage-1
-					if(currentPage > 1){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage-1%>">[1페이지 이전] </a> --%>
-						<%
-					}
-					
-					for(int i=startPage;i<=endPage;i++){
-						%>
-						<a href="./AdminResList.re?pageNum=<%=i%>"><%=i %></a>
-						<%
-					}
-					
-					// 다음 currentPage+1
-					if(currentPage < pageCount){
-						%>
-					<%-- 	<a href="./reservationList.re?pageNum=<%=currentPage+1%>">[1페이지 다음]</a> --%>
-						<%
-					}
-					
-					//10페이지 다음 
-					if(endPage < pageCount){
-						%>
-						<a href="./AdminResList.re?pageNum=<%=startPage+pageBlock%>">[10페이지 다음]</a>
-						<%
-					}
-					%>
+					<!--  페이징 처리 -->
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+					    	
+					    	<%
+							// 10페이지 이전 
+							if(startPage > pageBlock){
+								%>
+					     	 <li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <%	
+							}
+					    	%>
+					    	
+					    	<%
+					    	for(int i=startPage;i<=endPage;i++){
+								%>
+								<li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=i%>"><%=i %></a></li>
+								<%
+							}
+					    	%>
+					    	
+					      <%
+					       if(endPage < pageCount){
+							%>
+					       <li class="page-item"><a class="page-link" href="./AdminResList.re?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					      <%
+							}
+							%>
+					 	</ul>
+					</nav>
                 </div>
             </div>
         </div>

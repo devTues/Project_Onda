@@ -33,7 +33,7 @@ public class ReplyUpdatePro implements Action {
 		BoardDAO dao=new BoardDAO();
 		dao.updateBoard(dto);
 		ActionForward forward=new ActionForward();
-		forward.setPath("./BoardList.bo");
+		forward.setPath("./ReplyList.bo");
 		forward.setRedirect(true);
 		return forward;
 	}

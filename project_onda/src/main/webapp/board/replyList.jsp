@@ -34,6 +34,11 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	<!--Get your own code at fontawesome.com-->
+	
 	<title>QNA</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
@@ -50,10 +55,8 @@
 					</div>
 					<div class="row mt-5">
 					<%
-					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					
-					List<BoardDTO> boardList
-					=(List<BoardDTO>)request.getAttribute("boardList");
+					List<BoardDTO> reboardList
+					=(List<BoardDTO>)request.getAttribute("reboardList");
 					int startPage=(Integer)request.getAttribute("startPage");
 					int pageBlock=(Integer)request.getAttribute("pageBlock");
 					int currentPage=(Integer)request.getAttribute("currentPage");
@@ -71,42 +74,41 @@
 						    </tr>
 					  </thead>
 				    <%
-				    for(int i=0; i < boardList.size(); i++){
-				    	BoardDTO dto=boardList.get(i);
-				    %>
-					<tr>
-						<td>
-						<%
-					    //답글
-					    if(dto.getQna_re_lev() > 0){
-					    	int w=dto.getQna_re_lev()*10;
-					    %>
-					    <img src="./img/level.gif" width=<%=w %>>	
-					    <img src="./img/re.gif">
-					    <%	
+					 // 날짜 => 모양 문자열 변경
+					SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+				 
+				    for(int i=0; i < reboardList.size(); i++){
+				    	BoardDTO dto = reboardList.get(i);
+				   	 %>
+						<tr> 
+					    <td><%=dto.getQna_num() %></td>
+				   		<td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*")%></td>
+				   		<td>
+					    <% 
+					    
+				    // 답글 들여쓰기
+					if(dto.getQna_re_lev() > 0) {
+						int w = dto.getQna_re_lev() * 10;
+				    	%> 
+					    <img src="./img/none.png" width="<%=w%>">
+<%-- 				    	<i class='fas fa-caret-square-right' style='font-size:24px; color:skyblue' width="<%=w%>"></i> --%>
+						<% 
+				    }
+					%>
+					<a href="./BoardContent.bo?num=<%=dto.getQna_num()%>"><%=dto.getQna_title() %></a></td>
+				    <td><%=dateFormat.format(dto.getQna_reg()) %></td>
+				    <td><%=dto.getQna_view() %></td>
+					    </tr>    	
+					   	<%
 					    }
 					    %>
-						<%=dto.getQna_num() %></td>
-					    <td><%=dto.getCus_id().replaceAll("(?!.{3}).", "*")%></td>
-					    <td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>">
-					    	<%=dto.getQna_title() %></a></td>
-					    <td><%=dateFormat.format(dto.getQna_reg()) %></td>
-					    <td><%=dto.getQna_view() %></td>
-				    </tr>    	
-				   	<%
-				    }
-				    %>
+				    
 					</table>
-					<%
-					String cus_id = (String)session.getAttribute("cus_id");
-					if(cus_id != null) {
-						%>
+					
 						<div class="col-md-10 mb-2 text-left">
 							<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./BoardWriteForm.bo'">
 						</div>
-						<%	
-					} 
-					%>
+
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 					    	
@@ -114,7 +116,7 @@
 							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
-					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <li class="page-item"><a class="page-link" href="./ReplyList.bo?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
 					    	%>
@@ -122,7 +124,7 @@
 					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
-								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<li class="page-item"><a class="page-link" href="./ReplyList.bo?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
 					    	%>
@@ -130,7 +132,7 @@
 					      <%
 					       if(endPage < pageCount){
 							%>
-					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					       <li class="page-item"><a class="page-link" href="./ReplyList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
 					      <%
 							}
 							%>

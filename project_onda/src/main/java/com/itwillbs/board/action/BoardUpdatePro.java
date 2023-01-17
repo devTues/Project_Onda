@@ -17,7 +17,7 @@ public class BoardUpdatePro implements Action{
 		String qna_content=request.getParameter("qna_content");
 
 		BoardDTO dto=new BoardDTO();
-		// set메서드호출 num name subject content 저장
+		
 		dto.setQna_num(num);
 		dto.setCus_id(cus_id);
 		dto.setQna_title(qna_title);
@@ -27,7 +27,7 @@ public class BoardUpdatePro implements Action{
 		
 		dao.updateBoard(dto);
 		ActionForward forward=new ActionForward();
-		forward.setPath("./BoardList.bo");
+		forward.setPath("./ReplyList.bo");
 		forward.setRedirect(true);
 		return forward;
 	}

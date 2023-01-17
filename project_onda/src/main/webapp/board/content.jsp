@@ -63,13 +63,25 @@
 					<%
 					String cus_id=(String)session.getAttribute("cus_id");
 					
-					if(cus_id==null){
+					
+					if(cus_id==null) {
 						
 					} else if(cus_id.equals("admin")) { 
 						%>
 							<input type="button" value="답글" class="btn btn-primary btn-shadow btn-lg"
 							onclick="location.href='./ReplyForm.bo?num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
+							<input type="button" value="글삭제" class="btn btn-primary btn-shadow btn-lg"
+							onclick="location.href='./BoardDelete.bo?num=<%=dto.getQna_num()%>'">
 						<% 
+						
+					} else if(! dto.getCus_id().equals(cus_id)) {
+						%>
+						<script type="text/javascript">
+						alert("본인만 이용가능 합니다");
+						history.back();
+						</script>
+					<%		
+						
 					} else if(dto.getCus_id().equals(cus_id)) { 
 					%>	
 						<input type="button" value="글수정" class="btn btn-primary btn-shadow btn-lg"
@@ -80,7 +92,10 @@
 					} 
 					%>
 						<input type="button" value="글목록" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./BoardList.bo'">
+						onclick="location.href='./ReplyList.bo'">
+						
+						
+						
 					</div>
       			</div>
             </div>

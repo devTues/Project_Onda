@@ -4,29 +4,33 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.board.db.BoardDAO;
 import com.itwillbs.board.db.BoardDTO;
 
-public class ReplyList implements Action {
-
+public class MyQnaList implements Action {
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		
 		BoardDAO dao = new BoardDAO();
 		
 		int pageSize = 10;
 		
 		String pageNum = request.getParameter("pageNum");
+		String cus_id = (String)session.getAttribute("cus_id");
+				
 		if(pageNum == null) {
 			pageNum = "1";
 		}
-		
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1) * pageSize+1;
 		int endRow = startRow + pageSize-1;
 		
-		List<BoardDTO> reboardList = dao.replyBoardList(startRow,pageSize);
+		
+		List<BoardDTO> myQnaList = dao.getMyQnaList(cus_id,startRow,pageSize);
 		
 		// 한페이지 10개 페이지 번호 보이게 설정
 		int count = dao.getBoardCount();
@@ -35,13 +39,13 @@ public class ReplyList implements Action {
 		int endPage = startPage + pageBlock-1;
 		
 		int pageCount = count/pageSize
-                		+ (count % pageSize == 0 ? 0 : 1);
+                		+ (count%pageSize == 0 ? 0 : 1);
 		
 		if(endPage > pageCount) {
 			endPage = pageCount;
 		}
 
-		request.setAttribute("reboardList",reboardList);
+		request.setAttribute("myQnaList", myQnaList);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("currentPage", currentPage);
@@ -49,10 +53,8 @@ public class ReplyList implements Action {
 		request.setAttribute("pageCount", pageCount);
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./board/replyList.jsp");
+		forward.setPath("./board/myQnaList.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}
-	
-
 }

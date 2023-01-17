@@ -19,7 +19,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="./NotiList.no">NOTICE</a>
                         <a class="dropdown-item" href="./ReviewList.rv">REVIEW</a>
-                        <a class="dropdown-item" href="./BoardList.bo">Q&A</a>
+                        <a class="dropdown-item" href="./ReplyList.bo">Q&A</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

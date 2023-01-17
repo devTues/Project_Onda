@@ -18,7 +18,6 @@ public class ReplyPro implements Action {
         BoardDAO dao = new BoardDAO();
         BoardDTO dto  = new BoardDTO();
         
-        
         request.setCharacterEncoding("utf-8");
         // 답글 작성 후 원래 페이지로 돌아가기 위해 페이지 번호가 필요하다.
 //        String pageNum = request.getParameter("page");
@@ -33,8 +32,6 @@ public class ReplyPro implements Action {
         int qna_re_lev = Integer.parseInt(request.getParameter("qna_re_lev"));
         int qna_re_seq = Integer.parseInt(request.getParameter("qna_re_seq"));
         
-       
-        
         // 답글 저장
         dto.setQna_num(qna_num); 
         dto.setCus_id(cus_id);
@@ -47,7 +44,7 @@ public class ReplyPro implements Action {
         
         dao.replyBoard(dto);
         
-        forward.setPath("./BoardList.bo");
+        forward.setPath("./ReplyList.bo");
 		forward.setRedirect(true);
 		return forward;
 	}

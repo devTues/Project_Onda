@@ -61,7 +61,6 @@
 						<input type="hidden" name="qna_ref" value="<%=qna_ref %>" />
 						<input type="hidden" name="qna_re_lev" value="<%=qna_re_lev %>" />
 						<input type="hidden" name="qna_re_seq" value="<%=qna_re_seq %>" />
-					
 						<table class="table">	
 							<tr><th>작성자</th>
 							<td><input type="text" name="cus_id" value="<%=cus_id%>" readonly></td></tr>
@@ -73,7 +72,7 @@
 						<div class="text-right">	
 							<input type="submit" value="답글등록" class="btn btn-primary btn-shadow btn-lg">
 							<input type="button" value="취소하기" class="btn btn-primary btn-shadow btn-lg" onclick="history.go(-1)"/>
-							<input type="button" value="목록보기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./BoardList.bo'"/>
+							<input type="button" value="목록보기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./ReplyList.bo'"/>
 						</div>
 					</form>
 					</div>

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itwillbs.res.action.AdminResDelete;
+import com.itwillbs.res.action.AdminResList;
+
 public class BoardFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,13 +36,6 @@ public class BoardFrontController extends HttpServlet{
 		}
 		 else if(strpath.equals("/BoardWritePro.bo")) {
 			action=new BoardWritePro();
-			try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(strpath.equals("/BoardList.bo")) {
-			action=new BoardList();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
@@ -73,25 +69,49 @@ public class BoardFrontController extends HttpServlet{
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
-			}
+				e.printStackTrace(); }
 			
-		 } else if(strpath.equals("/ReplyForm.bo")) {
-			 
-			 forward = new ActionForward();
-				forward.setPath("./board/replyForm.jsp");
-				forward.setRedirect(false);
-				
-		 } else if(strpath.equals("/ReplyPro.bo")) {
-				action=new ReplyPro();
-		
+		 } else if(strpath.equals("/MyQnaList.bo")) {
+				action=new MyQnaList();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		 } else if(strpath.equals("/ReplyList.bo")) {
+			action=new ReplyList();
 			try {
 				forward=action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+			} 
+			
+		 } else if(strpath.equals("/ReplyForm.bo")) {
+			 
+			 	forward = new ActionForward();
+				forward.setPath("./board/replyForm.jsp");
+				forward.setRedirect(false); 
+				
+		 } else if(strpath.equals("/ReplyPro.bo")) {
+				action=new ReplyPro();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} 
+				
+		} else if (strpath.equals("/AdminQnaList.bo")) { //관리자 문의내역 목록
+				action = new AdminQnaList();
+				try {forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}	
+			
+			} else if (strpath.equals("/AdminQnaDelete.bo")) { //관리자 문의,답변삭제
+				action = new AdminQnaDelete();
+			try {forward=action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}		
+				
 			}
-	
-		 }
+		
 			//이동
 		if(forward!=null) {
 			if(forward.isRedirect()) {

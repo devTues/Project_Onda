@@ -29,7 +29,7 @@ public class BoardWritePro implements Action{
 		dao.insertBoard(dto);
 		
 		ActionForward forward=new ActionForward();
-		forward.setPath("./BoardList.bo");
+		forward.setPath("./ReplyList.bo");
 		forward.setRedirect(true);
 		return forward;
 	}
