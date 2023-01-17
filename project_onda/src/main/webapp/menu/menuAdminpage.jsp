@@ -1,4 +1,5 @@
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -60,6 +61,8 @@
 						</script>
 					<%
 					}
+					DecimalFormat df = new DecimalFormat("###,###");
+					
 					List<MenuDTO> menuList
 					=(List<MenuDTO>)request.getAttribute("menuList");
 					//startPage pageBlock currentPage endPage pageCount
@@ -88,7 +91,7 @@
 						<tr>
 							<td><%=dto.getMenu_num()%></td>
 						    <td><%=dto.getMenu_name() %></td>
-						    <td><%=dto.getMenu_price() %></td>
+						    <td><%=df.format(dto.getMenu_price()) %></td>
 						    <td><%=dto.getMenu_category() %></td>
 						    <td><%=dto.getMenu_img() %></td>
 							<td><input type="button" value="수정" class="btn btn-primary btn-shadow btn-lg"

@@ -57,9 +57,9 @@
 							<tr>
 								<th>카테고리</th>
 								<td>
-								<label><input type="radio" name="menu_category" value="drink"> drink</label> 
-								<label><input type="radio" name="menu_category" value="food"> food</label>
-								<label><input type="radio" name="menu_category" value="goods"> goods</label></td>
+								<label><input type="radio" name="menu_category" value="coffee"> coffee</label> 
+								<label><input type="radio" name="menu_category" value="veberage"> veberage</label>
+								<label><input type="radio" name="menu_category" value="food"> food</label></td>
 							</tr>
 							<tr>
 								<th>메뉴 이름</th>

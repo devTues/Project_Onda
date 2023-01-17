@@ -52,7 +52,7 @@
 					                    </div>
 					                </div>
 					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
-					                    <img src="./img/1.jpg" alt="" class="img-fluid shadow w-100">
+					                    <img src="./img/1.jpg" alt="" class="img-fluid shadow w-100" style="border-radius: 7px;">
 					                </div>
 					            </div>
 					            <div class="row mt-5">
@@ -72,7 +72,7 @@
 					                    </div>
 					                </div>
 					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
-					                    <img src="./img/2.jpg" alt="" class="img-fluid shadow w-100">
+					                    <img src="./img/2.jpg" alt="" class="img-fluid shadow w-100" style="border-radius: 7px;">
 					                </div>
 					            </div>
 					            <div class="row mt-5">
@@ -84,7 +84,7 @@
 					                    </div>
 					                </div>
 					                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
-					                    <a href="https://map.kakao.com/?urlX=1000965&urlY=472813&urlLevel=5&map_type=TYPE_MAP&map_hybrid=false" target="_blank"><img src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=10&MX=1000965&MY=472813&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" class="img-fluid shadow w-100"></a>
+					                    <a href="https://map.kakao.com/?urlX=1000965&urlY=472813&urlLevel=5&map_type=TYPE_MAP&map_hybrid=false" target="_blank"><img src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=10&MX=1000965&MY=472813&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL&logo=kakao_logo" class="img-fluid shadow w-100" style="border-radius: 7px;"></a>
 					                </div>
 					            </div>
 					        </div>

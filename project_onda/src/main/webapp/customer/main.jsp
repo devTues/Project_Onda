@@ -40,22 +40,22 @@
 	    <div class="col-lg-6 hero-right">
 	    	<div class="testi-content testi-carousel owl-carousel">
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/3.jpg" alt="">
+			    	<img class="img-fluid" src="./img/3.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/2.jpg" alt="">
+			    	<img class="img-fluid" src="./img/2.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/4.jpg" alt="">
+			    	<img class="img-fluid" src="./img/4.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/5.jpg" alt="">
+			    	<img class="img-fluid" src="./img/5.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/6.jpg" alt="">
+			    	<img class="img-fluid" src="./img/6.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			    <div class="testi-item">
-			    	<img class="img-fluid" src="./img/7.jpg" alt="">
+			    	<img class="img-fluid" src="./img/7.jpg" alt="" style="border-radius: 7px;">
 			    </div>
 			</div>
 	    </div>

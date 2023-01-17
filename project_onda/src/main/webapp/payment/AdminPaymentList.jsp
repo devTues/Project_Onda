@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwillbs.payment.db.PaymentDAO"%>
 <%@page import="com.itwillbs.payment.db.PaymentDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -62,7 +63,7 @@
 					if(cus_id==null){
 						response.sendRedirect("./CustomerLoginForm.cu");	
 					}
-					
+					DecimalFormat df = new DecimalFormat("###,###");
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					List<PaymentDTO> AdminPaymentList 
 									= (List<PaymentDTO>)request.getAttribute("AdminPaymentList");
@@ -97,10 +98,10 @@
 							<td><span style="color: grey; font-size: 14px"><%=dateFormat.format(dto.getPay_date()) %></span><br>
 								<span style="color: blue; font-weight:bold"><%=dto.getPay_num() %></span></td>
 							<td><%=dto.getCus_id() %></td>
-							<td><img src = "./img/<%=MenuImg %>" alt="Menu Image" width=100px height=100px>
+							<td><img src = "./img/<%=MenuImg %>" alt="Menu Image" width=50px height=50px>
 								<%=MenuName %>
 							</td>
-							<td><%=dto.getPay_price() %>원 / <%=dto.getPay_count() %>개</td>
+							<td><%=df.format(dto.getPay_price()) %>원 / <%=dto.getPay_count() %>개</td>
 							<td><input type="button" value="주문취소" class="btn btn-primary btn-shadow btn-lg"
 									    onclick="location.href='./AdminPaymentDelete.pa?pay_num=<%=dto.getPay_num() %>'"></td>
 						<%

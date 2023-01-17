@@ -56,16 +56,16 @@ public class MenuFrontController extends HttpServlet{
 			forward.setPath("./menu/mainMenu.jsp");
 			forward.setRedirect(false);
 			
-		} else if(strpath.equals("/DrinkList.mn")) {
-			action=new DrinkList();
+		} else if(strpath.equals("/CoffeeList.mn")) {
+			action=new coffeeList();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}		
 		
 		}else if(strpath.equals("/FoodList.mn")) {
 			action=new FoodList();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 		
-		}else if(strpath.equals("/GoodsList.mn")) {
-			action=new GoodsList();
+		}else if(strpath.equals("/VeberageList.mn")) {
+			action=new veberageList();
 			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 		
 		} else if(strpath.equals("/MainMenu.mn")) {

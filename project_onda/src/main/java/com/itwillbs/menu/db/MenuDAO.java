@@ -214,8 +214,8 @@ public class MenuDAO {
 	}//
 
 	
-	public List<MenuDTO> DrinkList(String menu_category) {
-		List<MenuDTO> drinkList = new ArrayList<MenuDTO>();
+	public List<MenuDTO> MenuList(String menu_category) {
+		List<MenuDTO> menuList = new ArrayList<MenuDTO>();
 		System.out.println("@ DrinkList@");
 		
 		try {
@@ -243,95 +243,95 @@ public class MenuDAO {
 				dto.setMenu_detail(rs.getString("menu_detail"));
 				dto.setMenu_img(rs.getString("menu_img"));
 				// 배열 한칸에 글한개 저장
-				drinkList.add(dto);
+				menuList.add(dto);
 			}
-			System.out.println("DAO : 상품목록 모두 저장완료! "+drinkList);
+			System.out.println("DAO : 상품목록 모두 저장완료! "+menuList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
 		// 배열의 주소 리턴
-		return drinkList;
+		return menuList;
 	}// getmenuList()
 	
-	public List<MenuDTO> FoodList(String menu_category) {
-		List<MenuDTO> foodList = new ArrayList<MenuDTO>();
-		System.out.println("@@@@@@FoodList@@@@@@");
-		
-		try {
-			// 1,2단계 디비연결
-			con = getConnection();
-			// 3 sql
-			String sql = "select * from menu where menu_category = ?";
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, menu_category);
-	
-			// 4 실행=> 결과저장
-			rs = pstmt.executeQuery();
-			// 5 while 결과 접근
-			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
-			// => 글하나를 배열한칸에 저장
-			while (rs.next()) {
-				MenuDTO dto = new MenuDTO();
-				dto.setMenu_num(rs.getInt("menu_num"));
-				dto.setMenu_name(rs.getString("menu_name"));
-				dto.setMenu_price(rs.getInt("menu_price"));
-				dto.setMenu_category(rs.getString("menu_category"));
-				dto.setMenu_detail(rs.getString("menu_detail"));
-				dto.setMenu_img(rs.getString("menu_img"));
-				// 배열 한칸에 글한개 저장
-				foodList.add(dto);
-			}
-			System.out.println("DAO : 상품목록 모두 저장완료! "+foodList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		// 배열의 주소 리턴
-		return foodList;
-	}// getmenuList()
-	
-	public List<MenuDTO> GoodsList(String menu_category) {
-		List<MenuDTO> goodsList = new ArrayList<MenuDTO>();
-		System.out.println("@GoodsList@");
-		
-		try {
-			// 1,2단계 디비연결
-			con = getConnection();
-			// 3 sql
-			String sql = "select * from menu where menu_category = ? ";
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, menu_category);
-	
-			// 4 실행=> 결과저장
-			rs = pstmt.executeQuery();
-			// 5 while 결과 접근
-			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
-			// => 글하나를 배열한칸에 저장
-			while (rs.next()) {
-				MenuDTO dto = new MenuDTO();
-				dto.setMenu_num(rs.getInt("menu_num"));
-				dto.setMenu_name(rs.getString("menu_name"));
-				dto.setMenu_price(rs.getInt("menu_price"));
-				dto.setMenu_category(rs.getString("menu_category"));
-				dto.setMenu_detail(rs.getString("menu_detail"));
-				dto.setMenu_img(rs.getString("menu_img"));
-				// 배열 한칸에 글한개 저장
-				goodsList.add(dto);
-			}
-			System.out.println("DAO : 상품목록 모두 저장완료! " + goodsList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		// 배열의 주소 리턴
-		return goodsList;
-	}// getmenuList()
+//	public List<MenuDTO> FoodList(String menu_category) {
+//		List<MenuDTO> foodList = new ArrayList<MenuDTO>();
+//		System.out.println("@@@@@@FoodList@@@@@@");
+//		
+//		try {
+//			// 1,2단계 디비연결
+//			con = getConnection();
+//			// 3 sql
+//			String sql = "select * from menu where menu_category = ?";
+//			pstmt = con.prepareStatement(sql);
+//			
+//			pstmt.setString(1, menu_category);
+//	
+//			// 4 실행=> 결과저장
+//			rs = pstmt.executeQuery();
+//			// 5 while 결과 접근
+//			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
+//			// => 글하나를 배열한칸에 저장
+//			while (rs.next()) {
+//				MenuDTO dto = new MenuDTO();
+//				dto.setMenu_num(rs.getInt("menu_num"));
+//				dto.setMenu_name(rs.getString("menu_name"));
+//				dto.setMenu_price(rs.getInt("menu_price"));
+//				dto.setMenu_category(rs.getString("menu_category"));
+//				dto.setMenu_detail(rs.getString("menu_detail"));
+//				dto.setMenu_img(rs.getString("menu_img"));
+//				// 배열 한칸에 글한개 저장
+//				foodList.add(dto);
+//			}
+//			System.out.println("DAO : 상품목록 모두 저장완료! "+foodList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		// 배열의 주소 리턴
+//		return foodList;
+//	}// getmenuList()
+//	
+//	public List<MenuDTO> GoodsList(String menu_category) {
+//		List<MenuDTO> goodsList = new ArrayList<MenuDTO>();
+//		System.out.println("@GoodsList@");
+//		
+//		try {
+//			// 1,2단계 디비연결
+//			con = getConnection();
+//			// 3 sql
+//			String sql = "select * from menu where menu_category = ? ";
+//			pstmt = con.prepareStatement(sql);
+//			
+//			pstmt.setString(1, menu_category);
+//	
+//			// 4 실행=> 결과저장
+//			rs = pstmt.executeQuery();
+//			// 5 while 결과 접근
+//			// => menuDTO 객체생성 set호출 디비에서 가져온 값저장
+//			// => 글하나를 배열한칸에 저장
+//			while (rs.next()) {
+//				MenuDTO dto = new MenuDTO();
+//				dto.setMenu_num(rs.getInt("menu_num"));
+//				dto.setMenu_name(rs.getString("menu_name"));
+//				dto.setMenu_price(rs.getInt("menu_price"));
+//				dto.setMenu_category(rs.getString("menu_category"));
+//				dto.setMenu_detail(rs.getString("menu_detail"));
+//				dto.setMenu_img(rs.getString("menu_img"));
+//				// 배열 한칸에 글한개 저장
+//				goodsList.add(dto);
+//			}
+//			System.out.println("DAO : 상품목록 모두 저장완료! " + goodsList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			close();
+//		}
+//		// 배열의 주소 리턴
+//		return goodsList;
+//	}// getmenuList()
 	
 	
 }

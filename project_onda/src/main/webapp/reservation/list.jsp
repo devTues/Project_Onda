@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.res.db.ReservationDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,6 +50,7 @@
 					</div>
 					<div class="row mt-5">
 					<%
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					List<ReservationDTO> reservationList 
 					= (List<ReservationDTO>)request.getAttribute("reservationList");
 					int startPage = (Integer) request.getAttribute("startPage");
@@ -85,7 +87,7 @@
 							<td><%=dto.getRes_phone()%></td>
 							<td><%=dto.getRes_use_date()%></td>
 							<td><%=dto.getRes_time()%></td>
-							<td><%=dto.getRes_date()%></td>
+							<td><%=dateFormat.format(dto.getRes_date())%></td>
 							<td><input type="button" value="변경" class="btn btn-primary btn-shadow btn-lg"
 				         		onclick="location.href='./reservationUpdateForm.re?res_num=<%=dto.getRes_num()%>'">
 				         		<input type="button" value="취소" class="btn btn-primary btn-shadow btn-lg"

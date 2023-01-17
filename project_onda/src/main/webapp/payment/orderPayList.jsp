@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwillbs.cart.db.CartDAO"%>
 <%@page import="com.itwillbs.cart.db.CartDTO"%>
 <%@page import="java.util.List"%>
@@ -67,6 +68,8 @@
 					String[] chk =request.getParameterValues("crt_num");
 					%>
 					<%
+					DecimalFormat df = new DecimalFormat("###,###");
+					
 					List<CartDTO> orderPayList
 					=(List<CartDTO>)request.getAttribute("orderPayList");
 					
@@ -93,13 +96,13 @@
 					   </td>
 					    <td>
 					    <input type="hidden" name="menu_num" id="menu_num_<%=i%>" class="menu_num" value="<%=dto.getMenu_num() %>" style="border:0;" readonly>
-					    <img src="./upload/<%=menu_img%>" width="50" height="50">
+					    <img src="./img/<%=menu_img%>" width="50" height="50">
 					    <input type="text" name="menu_name" class="menu_name" value="<%=menu_name %>" style="border:0;" readonly>
 					    </td>
 					    <td>
 					    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" value="<%=dto.getCrt_count() %>" style="border:0;" readonly>
 					    </td>
-					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=dto.getCrt_price() %>" style="border:0;" readonly></td></tr>      
+					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=df.format(dto.getCrt_price()) %>" style="border:0;" readonly></td></tr>      
 					       <%
 					    }
 					    %>
@@ -117,7 +120,7 @@
 					int totalPrice = dao.getTotalPrice(cus_id);
 					%>
 					<div class="text-center">
-						총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= totalPrice%>" readonly><br>
+						총 주문금액 <input type="text" id="total_price" class="total_price" value="<%=df.format(totalPrice)%>" style="width: 70px; border:0; color:blue; font-weight:bold;" readonly>원
 					</div>
 					<div class="text-right">
 						<input type="submit" class="btn btn-primary" value="결제하기">   

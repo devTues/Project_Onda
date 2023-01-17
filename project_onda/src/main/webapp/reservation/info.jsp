@@ -66,7 +66,7 @@
 				                    </div>
 				                </div>
 				                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
-				                    <img src="./img/9.jpg" alt="" class="img-fluid shadow w-100">
+				                    <img src="./img/9.jpg" alt="" class="img-fluid shadow w-100" style="border-radius: 7px;">
 				                </div>
 				            </div>
 				            <div class="row mt-5">
@@ -90,7 +90,7 @@
 				                    </div>
 				                </div>
 				                <div class="col-lg-5 offset-lg-1 col-md-6 align-self-center mt-4 mt-md-0">
-				                    <img src="./img/10.jpg" alt="" class="img-fluid shadow w-100">
+				                    <img src="./img/10.jpg" alt="" class="img-fluid shadow w-100" style="border-radius: 7px;">
 				                </div>
 				            </div>
 				            </div>

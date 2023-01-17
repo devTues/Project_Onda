@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.itwillbs.cart.db.CartDAO"%>
 <%@page import="com.itwillbs.cart.db.CartDTO"%>
 <%@page import="java.util.List"%>
@@ -108,6 +109,8 @@
 					}
 					%>
 					<%
+					DecimalFormat df = new DecimalFormat("###,###");
+					
 					List<CartDTO> cartList
 					=(List<CartDTO>)request.getAttribute("cartList");
 					
@@ -136,17 +139,18 @@
 						</td>
 					    <td>
 					    <input type="hidden" name="menu_num" id="menu_num_<%=i%>" class="menu_num" value="<%=dto.getMenu_num() %>" style="border:0;" readonly>
-					    <img src="./upload/<%=menu_img%>" width="50" height="50">
+					    <img src="./img/<%=menu_img%>" width="50" height="50">
 					    <input type="text" name="menu_name" class="menu_name" value="<%=menu_name %>" style="border:0;" readonly>
 					    </td>
 					    <td>
 					    <!-- TODO 수량에 숫자가 아닌 문자 입력시 alert창 제어하기 -->
-					    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" style="width:40px;" value="<%=dto.getCrt_count() %>">
+<%-- 					    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" style="width:40px;" value="<%=dto.getCrt_count() %>"> --%>
+					    <input type="number" class="crt_count" step="1" min="0" id="crt_count_<%=i%>" name="crt_count" required value="<%=dto.getCrt_count() %>" style="text-align: left; width: 40px; height: 25px;">
 					    <input type="button" id="count_check_<%=i%>" class="count_check" style="background:#B2CCFF; border:#B2CCFF;"  value="수량변경">
 					    <input type="button" class="menu_delete" value="삭제" style="background:#B2CCFF; border:#B2CCFF;"
 					    onclick="location.href='./CartDelete.ca?num=<%=dto.getCrt_num() %>'">
 					    </td>
-					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=dto.getCrt_price() %>" style="border:0;" readonly></td></tr> 
+					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=df.format(dto.getCrt_price()) %>" style="border:0;" readonly></td></tr> 
 					    	<%
 					    }
 					    %>
@@ -157,7 +161,7 @@
 					int totalPrice = dao.getTotalPrice(cus_id);
 					%>
 					<div class="text-center">
-					총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= totalPrice%>" readonly>
+					총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= df.format(totalPrice) %>" style="width: 70px; border:0; color:blue; font-weight:bold;" readonly>원
 					</div>
 					<div class="text-right">
 						<input type="submit" class="btn btn-primary" value="주문하기">	

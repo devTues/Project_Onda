@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.itwillbs.menu.db.MenuDAO;
 import com.itwillbs.menu.db.MenuDTO;
 
-public class DrinkList implements Action{
+public class coffeeList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,12 +19,12 @@ public class DrinkList implements Action{
 	
 		MenuDAO dao = new MenuDAO();
 		
-		List<MenuDTO> drinkList =dao.DrinkList(menu_category);
+		List<MenuDTO> menuList =dao.MenuList(menu_category);
 
-		request.setAttribute("drinkList",drinkList);
+		request.setAttribute("menuList",menuList);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./menu/drinkList.jsp");
+		forward.setPath("./menu/coffeeList.jsp");
 		forward.setRedirect(false);
 
 		return forward;
