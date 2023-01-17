@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,6 +50,8 @@
 					</div>
 					<div class="row mt-5">
 					<%
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					
 					List<BoardDTO> boardList
 					=(List<BoardDTO>)request.getAttribute("boardList");
 					int startPage=(Integer)request.getAttribute("startPage");
@@ -87,7 +90,7 @@
 					    <td><%=dto.getCus_id().replaceAll("(?!.{3}).", "*")%></td>
 					    <td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>">
 					    	<%=dto.getQna_title() %></a></td>
-					    <td><%=dto.getQna_reg() %></td>
+					    <td><%=dateFormat.format(dto.getQna_reg()) %></td>
 					    <td><%=dto.getQna_view() %></td>
 				    </tr>    	
 				   	<%

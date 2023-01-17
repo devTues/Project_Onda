@@ -1,6 +1,7 @@
 <%@page import="com.itwillbs.customer.db.CustomerDTO"%>
 <%@page import="com.itwillbs.notice.db.NoticeDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -50,6 +51,8 @@
 					</div>
 					<div class="row mt-5">
 					<%
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					
 					List<NoticeDTO> boardList
 					= (List<NoticeDTO>)request.getAttribute("boardList");
 					int startPage=(Integer)request.getAttribute("startPage");
@@ -78,7 +81,7 @@
 						    <td>관리자</td>
 						    <td><a href="./NotiContent.no?num=<%=dto.getNt_num()%>">
 						    	<%=dto.getNt_title() %></a></td>
-						    <td><%=dto.getNt_date() %></td>
+						    <td><%=dateFormat.format(dto.getNt_date()) %></td>
 						    <td><%=dto.getNt_view() %></td>
 					    </tr>    	
 					    	<%

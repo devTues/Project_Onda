@@ -28,8 +28,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="./DrinkList.mn?menu_category=drink">DRINK</a>
-                        <a class="dropdown-item" href="./FoodList.mnmenu_category=food">FOOD</a>
-                        <a class="dropdown-item" href="./GoodsList.mnmenu_category=goods">GOODS</a>
+                        <a class="dropdown-item" href="./FoodList.mn?menu_category=food">FOOD</a>
+                        <a class="dropdown-item" href="./GoodsList.mn?menu_category=goods">GOODS</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

@@ -7,7 +7,7 @@
 }
 
 .menu {
-	border: 1px solid red !important;	/* 나중에 지울 것 */
+/* 	border: 1px solid red !important;	나중에 지울 것 */
 	width: 300px; height: 600px;
 	display: inline-block; 
     text-align: center;
