@@ -55,11 +55,11 @@
 
 					<form action="./NotiWritePro.no" method="post">
 						<table class="table">
-							<tr><td>작성자</td>
+							<tr><th>작성자</th>
 							<td><input type="text" name="cus_id" value="<%=cus_id %>" readonly></td></tr>
-							<tr><td>글제목</td>
+							<tr><th>글제목</th>
 							<td><input type="text" name="nt_title"></td></tr>
-							<tr><td>글내용</td>
+							<tr><th>글내용</th>
 							<td><textarea name="nt_content" rows="10" cols="100"></textarea></td></tr>
 						</table>
 						<div class="text-right">

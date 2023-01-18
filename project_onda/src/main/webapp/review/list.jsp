@@ -81,7 +81,7 @@
 					%>
 					<tr>
 						<td><%=dto.getRv_num() %></td>
-						<td><%=dto.getCus_id() %></td>
+						<td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*") %></td>
 						<td><a href="./ReviewContent.rv?num=<%=dto.getRv_num() %>"><%=dto.getRv_title() %></a></td>
 						<td><%=menu %></td>
 						<td><%

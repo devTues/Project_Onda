@@ -62,6 +62,8 @@
 					int currentPage=(Integer)request.getAttribute("currentPage");
 					int endPage=(Integer)request.getAttribute("endPage");
 					int pageCount=(Integer)request.getAttribute("pageCount");
+					int count 		= (Integer)request.getAttribute("count");
+					
 					%>
 					<table class="table table-hover">
 						<thead>
@@ -80,10 +82,23 @@
 				    for(int i=0; i < reboardList.size(); i++){
 				    	BoardDTO dto = reboardList.get(i);
 				   	 %>
-						<tr> 
+						<tr>
 					    <td><%=dto.getQna_num() %></td>
-				   		<td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*")%></td>
-				   		<td>
+				   		
+				   		<%
+				   		String cus_id = dto.getCus_id();
+				   		if(cus_id.equals("admin")){
+				   		%>
+				   			<td><%=dto.getCus_id() %></td>
+				   		<%
+				   		} else {
+				   		%>
+				   			<td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*")%></td>
+				   		<%
+				   		}
+				   		%>
+				   		
+				   		<td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>">
 					    <% 
 					    
 				    // 답글 들여쓰기
@@ -95,7 +110,7 @@
 						<% 
 				    }
 					%>
-					<a href="./BoardContent.bo?num=<%=dto.getQna_num()%>"><%=dto.getQna_title() %></a></td>
+					<%=dto.getQna_title() %></a></td>
 				    <td><%=dateFormat.format(dto.getQna_reg()) %></td>
 				    <td><%=dto.getQna_view() %></td>
 					    </tr>    	
@@ -104,10 +119,16 @@
 					    %>
 				    
 					</table>
-					
+						<%
+						 String cus_id1 = (String)session.getAttribute("cus_id");
+						if(cus_id1!=null) {
+							%>
 						<div class="col-md-10 mb-2 text-left">
 							<input type="button" value="글쓰기" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./BoardWriteForm.bo'">
 						</div>
+							<%
+						}
+						%>
 
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
@@ -132,7 +153,7 @@
 					      <%
 					       if(endPage < pageCount){
 							%>
-					       <li class="page-item"><a class="page-link" href="./ReplyList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					       <li class="page-item"><a class="page-link" href="./ReplyList.bo?pageNum=<%=startPage+pageBlock%>">Next</a></li>
 					      <%
 							}
 							%>

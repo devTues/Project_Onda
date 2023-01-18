@@ -118,7 +118,7 @@
 					String menu_img="";
 					CartDAO dao = new CartDAO();
 					%> 
-					<form action="./OrderPayList.pa" method="post">
+					<form action="./OrderList.pa" method="post">
 						<div class="col-md-10 mb-2 text-left">
 							전체선택 <input type="checkbox" name="check-all" id="check-all" class="check-all" checked="checked">
 						 </div>
@@ -150,7 +150,7 @@
 					    <input type="button" class="menu_delete" value="삭제" style="background:#B2CCFF; border:#B2CCFF;"
 					    onclick="location.href='./CartDelete.ca?num=<%=dto.getCrt_num() %>'">
 					    </td>
-					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=df.format(dto.getCrt_price()) %>" style="border:0;" readonly></td></tr> 
+					    <td><input type="text" id="crt_price_<%=i%>" name="crt_price" class="crt_price" value="<%=dto.getCrt_price() %>" style="border:0;" readonly></td></tr> 
 					    	<%
 					    }
 					    %>
@@ -161,7 +161,7 @@
 					int totalPrice = dao.getTotalPrice(cus_id);
 					%>
 					<div class="text-center">
-					총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= df.format(totalPrice) %>" style="width: 70px; border:0; color:blue; font-weight:bold;" readonly>원
+					총 주문금액 <input type="text" id="total_price" class="total_price" value="<%= totalPrice %>" style="width: 70px; border:0; color:blue; font-weight:bold;" readonly>원
 					</div>
 					<div class="text-right">
 						<input type="submit" class="btn btn-primary" value="주문하기">	

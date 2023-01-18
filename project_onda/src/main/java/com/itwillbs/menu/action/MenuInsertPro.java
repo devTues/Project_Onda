@@ -17,7 +17,7 @@ public class MenuInsertPro implements Action{
 		// request 한글처리
 		
 		
-		String uploadPath = request.getRealPath("/upload");
+		String uploadPath = request.getRealPath("/img");
 		System.out.println(uploadPath);
 		
 		int maxSize = 10*1024*1024;

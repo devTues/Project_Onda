@@ -13,24 +13,23 @@ public class ReplyList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		BoardDAO dao = new BoardDAO();
-		
 		int pageSize = 10;
-		
 		String pageNum = request.getParameter("pageNum");
+		
 		if(pageNum == null) {
+			
 			pageNum = "1";
 		}
-		
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1) * pageSize+1;
 		int endRow = startRow + pageSize-1;
 		
+		BoardDAO dao = new BoardDAO();
 		List<BoardDTO> reboardList = dao.replyBoardList(startRow,pageSize);
 		
 		// 한페이지 10개 페이지 번호 보이게 설정
 		int count = dao.getBoardCount();
-		int pageBlock = 3;
+		int pageBlock = 10;
 		int startPage = (currentPage-1) / pageBlock*pageBlock+1;
 		int endPage = startPage + pageBlock-1;
 		
@@ -47,6 +46,7 @@ public class ReplyList implements Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("count", count);
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("./board/replyList.jsp");

@@ -49,6 +49,7 @@ public class AdminQnaList implements Action{
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("count", count);
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("./board/adminQnaList.jsp");

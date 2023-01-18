@@ -57,7 +57,10 @@ a:hover {
   @media (min-width: 992px) {
     .boxed-page .section-padding {
       padding-top: 50px;
-      padding-bottom: 50px; } }
+      padding-bottom: 50px; } 
+      .boxed-page .section-padding1 {
+      padding-top: 100px;
+      padding-bottom:100px; }}
 
 @media (min-width: 1200px) {
   .boxed-page {

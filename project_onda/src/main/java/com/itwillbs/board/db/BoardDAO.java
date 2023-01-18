@@ -234,7 +234,7 @@ public class BoardDAO {
 		
 		
 		// 나의 qna목록 가져오기
-		public List<BoardDTO> getMyQnaList(String cus_id,int startRow, int pageSize) {
+		public List<BoardDTO> getMyQnaList(String cus_id, int startRow, int pageSize) {
 			List<BoardDTO> myQnaList =new ArrayList<BoardDTO>();
 			
 	        try {
@@ -250,13 +250,12 @@ public class BoardDAO {
 						+ "FROM qna_board q INNER JOIN cte p \r\n"
 						+ "ON p.qna_num = q.qna_ref) \r\n"
 						+ "SELECT * FROM cte ORDER BY pnum, qna_re_seq \r\n"
-						+ "limit ?,?";
+						+ "LIMIT ?, ?";
 				
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, cus_id);
 				pstmt.setInt(2, startRow-1);
 				pstmt.setInt(3, pageSize);
-				
 				rs=pstmt.executeQuery();
 	            
 	            while(rs.next()) {
@@ -284,6 +283,36 @@ public class BoardDAO {
 	        return myQnaList;
 	    }
 		
+		// 나의 qna 글개수
+		public int getMyCount(String cus_id) {
+			int count=0;
+			try {
+				con=getConnection();				
+				String sql="WITH RECURSIVE cte AS (SELECT qna_num, cus_id, qna_title, qna_content, qna_view, qna_reg, qna_ref, qna_re_lev, qna_re_seq, \r\n"
+						+ "@rn:=(@rn+1) AS pnum FROM  ( SELECT * FROM qna_board ORDER BY qna_num DESC ) t1, \r\n"
+						+ "(SELECT @rn:=0) t2 \r\n"
+						+ "WHERE qna_ref = 0 and cus_id = ? \r\n"
+						+ "UNION  ALL \r\n"
+						+ "SELECT q.qna_num, q.cus_id,  CONCAT(' └ ', q.qna_title) as qna_title, q.qna_content, q.qna_view, q.qna_reg, q.qna_ref, \r\n"
+						+ "q.qna_re_lev, q.qna_re_seq, p.pnum AS pnum \r\n"
+						+ "FROM qna_board q INNER JOIN cte p \r\n"
+						+ "ON p.qna_num = q.qna_ref) \r\n"
+						+ "SELECT * FROM cte ORDER BY pnum, qna_re_seq";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, cus_id);
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					count=rs.getInt("count(*)");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return count;
+		}	
 		
 		public void replyBoard(BoardDTO dto) {
 		
@@ -349,8 +378,8 @@ public class BoardDAO {
 							+ "q.qna_re_lev, q.qna_re_seq, p.pnum AS pnum \r\n"
 							+ "FROM qna_board q INNER JOIN cte p \r\n"
 							+ "ON p.qna_num = q.qna_ref) \r\n"
-							+ "SELECT * FROM cte ORDER BY pnum, qna_re_seq"
-							+ "limit ?,?";
+							+ "SELECT * FROM cte ORDER BY pnum, qna_re_seq \r\n"
+							+ "LIMIT ?, ?";
 					
 					pstmt2 =con.prepareStatement(sql2);
 					pstmt2.setInt(1, startRow-1);
@@ -382,9 +411,6 @@ public class BoardDAO {
 			}
 			return reBoardList;
 		}
-		
-			
-		
 			
 			
 		// 관리자용 문의내역 조회

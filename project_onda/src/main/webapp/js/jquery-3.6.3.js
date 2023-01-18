@@ -10752,6 +10752,7 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 } );
 
 
+
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 	jQuery.each( {

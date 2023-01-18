@@ -12,7 +12,6 @@ public class CartFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		String requestURI=request.getRequestURI();
 		System.out.println("requestURI : "+requestURI);
 
@@ -26,21 +25,7 @@ public class CartFrontController extends HttpServlet{
 		ActionForward forward=null;
 		Action action=null;
 		
-		if(strpath.equals("/LoginForm.ca")) {
-			forward=new ActionForward();
-			forward.setPath("./cart/loginForm.jsp");
-			forward.setRedirect(false);
-
-		} else if(strpath.equals("/LoginPro.ca")) {
-			action = new LoginPro();
-			
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(strpath.equals("/Menu.ca")) {
+		if(strpath.equals("/Menu.ca")) {
 			forward=new ActionForward();
 			forward.setPath("./cart/menu.jsp");
 			forward.setRedirect(false);
@@ -95,8 +80,19 @@ public class CartFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 
+		} else if(strpath.equals("/CartTotalPrice.ca")) {
+			action = new CartTotalPrice();
 			
-		}
+			try {
+				// 메서드호출
+				forward=action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		} 
 		
 
 

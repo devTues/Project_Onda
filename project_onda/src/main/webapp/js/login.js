@@ -11,7 +11,7 @@
 	                });
 	            });	
 			});
-            
+			
             // 로그인폼
             $(function() {
                 $("form[name='login']").validate({
@@ -35,6 +35,13 @@
                 });
             });
             
+            //
+			$.validator.addMethod("regexPass", function(value, element, regex){
+			  var regExp = new RegExp(regex);
+			  return regExp.test(value);
+			});
+			
+            
             // 회원가입폼
             $(function() {
                 $("form[name='registration']").validate({
@@ -54,7 +61,7 @@
                     	},
                     	cus_pass1: {
                             required: true,
-                            rangelength:[6,30]
+                            regex: "^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
                         },
                         cus_pass2: {
             				equalTo: '#cus_pass1'
@@ -89,7 +96,7 @@
                         
                         cus_pass1: {
                             required: "비밀번호를 입력하세요",
-                            rangelength: "비밀번호는 6-30자 사이 영문,숫자만 허용합니다"
+                            regex: "8자 이상 숫자,특수문자를 포함해야 합니다"
                         },
                         cus_pass2: {
                         	equalTo: "비밀번호를 재확인하세요"

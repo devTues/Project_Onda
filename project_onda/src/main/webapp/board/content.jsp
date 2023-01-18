@@ -50,38 +50,43 @@
 					<div class="row mt-5">
 					<%
 					BoardDTO dto = (BoardDTO)request.getAttribute("dto");
-					%>
-					<table class="table">
-						<tr><th>글번호</th><td><%=dto.getQna_num() %></td></tr>
-						<tr><th>작성자</th><td><%=dto.getCus_id() %></td></tr>
-						<tr><th>등록일</th><td><%=dto.getQna_reg() %></td></tr>
-						<tr><th>조회수</th><td><%=dto.getQna_view() %></td></tr>
-						<tr><th>제목</th><td><%=dto.getQna_title() %></td></tr>
-						<tr><th>글내용</th><td><%=dto.getQna_content()%></td></tr>
-					</table>	
-					<div class="text-right">
-					<%
 					String cus_id=(String)session.getAttribute("cus_id");
 					
 					
-					if(cus_id==null) {
-						
+					%>
+					<table class="table">
+						<tr><th>글번호</th><td><%=dto.getQna_num() %></td></tr>
+						<tr><th>작성자</th><td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*")%></td></tr>
+						<tr><th>등록일</th><td><%=dto.getQna_reg() %></td></tr>
+						<tr><th>조회수</th><td><%=dto.getQna_view() %></td></tr>
+						<tr><th>제목</th><td><%=dto.getQna_title() %></td></tr>
+						<tr><th>글내용</th><td style="white-space:pre;"><%=dto.getQna_content()%></td></tr>
+					</table>	
+					<div class="text-right">
+					<%
+					
+					
+					if(cus_id == null) {
+						%>
+						<script type="text/javascript">
+						alert("로그인 후 이용가능 합니다");
+						history.back();
+						</script>
+					<%	
+					} else if(dto.getCus_id().equals("admin") && cus_id.equals("admin")) { 
+						%>
+							<input type="button" value="답글수정" class="btn btn-primary btn-shadow btn-lg"
+						onclick="location.href='./ReplyUpdateForm.bo?num=<%=dto.getQna_num()%>'">
+						<input type="button" value="답글삭제" class="btn btn-primary btn-shadow btn-lg"
+						onclick="location.href='./BoardDelete.bo?num=<%=dto.getQna_num()%>'">	
+							
+						<% 
 					} else if(cus_id.equals("admin")) { 
 						%>
 							<input type="button" value="답글" class="btn btn-primary btn-shadow btn-lg"
-							onclick="location.href='./ReplyForm.bo?num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
-							<input type="button" value="글삭제" class="btn btn-primary btn-shadow btn-lg"
-							onclick="location.href='./BoardDelete.bo?num=<%=dto.getQna_num()%>'">
+							onclick="location.href='./ReplyForm.bo?qna_num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
+							
 						<% 
-						
-					} else if(! dto.getCus_id().equals(cus_id)) {
-						%>
-						<script type="text/javascript">
-						alert("본인만 이용가능 합니다");
-						history.back();
-						</script>
-					<%		
-						
 					} else if(dto.getCus_id().equals(cus_id)) { 
 					%>	
 						<input type="button" value="글수정" class="btn btn-primary btn-shadow btn-lg"
@@ -89,6 +94,14 @@
 						<input type="button" value="글삭제" class="btn btn-primary btn-shadow btn-lg"
 						onclick="location.href='./BoardDelete.bo?num=<%=dto.getQna_num()%>'">	
 					<% 
+						
+					} else if(!dto.getCus_id().equals(cus_id) && !dto.getCus_id().equals("admin")) {
+						%>
+						<script type="text/javascript">
+						alert("본인만 이용가능 합니다");
+						history.back();
+						</script>
+					<%		
 					} 
 					%>
 						<input type="button" value="글목록" class="btn btn-primary btn-shadow btn-lg"

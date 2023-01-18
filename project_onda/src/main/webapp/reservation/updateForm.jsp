@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Resto">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- External CSS -->
     <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
@@ -39,7 +40,14 @@
 List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
 ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 %>
+<script type="text/javascript">
+$(document).ready(function() {
 
+    $('#table').val('<%=dto.getTb_num()%>').prop("selected",true);
+    $('#time').val('<%=dto.getRes_time()%>').prop("selected",true);
+
+});
+</script>
 <div id="canvas-overlay"></div>
 <div class="boxed-page">
 <section id="gtco-menu" class="section-padding">
@@ -50,7 +58,6 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
                     <div class="heading-section text-center">
 						<h2>RESERVATION</h2><br>						
                     </div>
-                    
 					<form action="./reservationUpdatePro.re" method="post" name="fr" onsubmit="return check()">
                     <input type="hidden" name="res_num" value="<%=dto.getRes_num()%>">
                     <div class="row mt-5">
@@ -70,17 +77,17 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 								</h5>
 								<select size="5" class="form-control" id="time" name="time" value="<%=dto.getRes_time()%>">
 									<optgroup label="예약시간">
-										<option>10:00</option>
-										<option>11:00</option>
-										<option>12:00</option>
-										<option>13:00</option>
-										<option>14:00</option>
-										<option>15:00</option>
-										<option>16:00</option>
-										<option>17:00</option>
-										<option>18:00</option>
-										<option>19:00</option>
-										<option>20:00</option>
+										<option value="10:00">10:00</option>
+										<option value="11:00">11:00</option>
+										<option value="12:00">12:00</option>
+										<option value="13:00">13:00</option>
+										<option value="14:00">14:00</option>
+										<option value="15:00">15:00</option>
+										<option value="16:00">16:00</option>
+										<option value="17:00">17:00</option>
+										<option value="18:00">18:00</option>
+										<option value="19:00">19:00</option>
+										<option value="20:00">20:00</option>
 									</optgroup>
 								</select> <br>
 							
@@ -89,21 +96,21 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
 									</span>
 								</h5>
-								<input type="number" class="form-control" name="person" min="1" max="8" value="1"><br>
+								<input type="number" class="form-control" name="person" min="1" max="8" value="<%=dto.getRes_mem() %>"><br>
 							
 								<h5>
 									<span>예약 테이블
 									<i aria-hidden="true" class="icon-required"></i> <!-- 파란아이콘 -->
 									</span>
 								</h5>
-								<select size="5" class="form-control" id="table" name="table" value="<%=dto.getTb_num()%>">
+								<select size="5" class="form-control" id="table" name="table"value="<%=dto.getTb_num()%>" >
 									<option>선택없음</option>
 									<optgroup label="일반" >
 									<%
 									for(int i=0;i<5;i++){
 										TableDTO dto1=tableList.get(i);
 									%>
-									<option><%=dto1.getTb_num() %>번 테이블</option>
+									<option value="<%=dto1.getTb_num() %>번 테이블"><%=dto1.getTb_num() %>번 테이블</option>
 									<%
 									}
 									%>
@@ -113,7 +120,7 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 									for(int i=5;i<10;i++){
 										TableDTO dto1=tableList.get(i);
 									%>
-									<option><%=dto1.getTb_num() %>번 테이블</option>
+									<option value="<%=dto1.getTb_num() %>번 테이블"><%=dto1.getTb_num() %>번 테이블</option>
 									<%
 									}
 									%>
@@ -124,7 +131,7 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 									for(int i=10;i<15;i++){
 										TableDTO dto1=tableList.get(i);
 									%>
-									<option><%=dto1.getTb_num() %>번 테이블</option>
+									<option value="<%=dto1.getTb_num() %>번 테이블"><%=dto1.getTb_num() %>번 테이블</option>
 									<%
 									}
 									%>
@@ -132,10 +139,10 @@ ReservationDTO dto = (ReservationDTO)request.getAttribute("dto");
 									
 									<optgroup label="단체" >
 									<%
-									for(int i=15;i<20;i++){
+									for(int i=15;i<tableList.size();i++){
 										TableDTO dto1=tableList.get(i);
 									%>
-									<option><%=dto1.getTb_num() %>번 테이블</option>
+									<option value="<%=dto1.getTb_num() %>번 테이블"><%=dto1.getTb_num() %>번 테이블</option>
 									<%
 									}
 									%>

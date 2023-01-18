@@ -26,8 +26,8 @@ public class PaymentFrontController extends HttpServlet{
 		ActionForward forward=null;
 		Action action=null;
 		
-		if(strpath.equals("/OrderPayList.pm")) {
-			action = new OrderPayList();
+		if(strpath.equals("/OrderList.pa")) {
+			action = new OrderList();
 			
 			try {
 				// 메서드호출
@@ -39,10 +39,10 @@ public class PaymentFrontController extends HttpServlet{
 		} 
 		
 		// 테스트용 --------------------------------------------
-		else if(strpath.equals("/payment_test.pa")) {
-			forward = new ActionForward();
-			forward.setPath("./payment/payment_test.jsp");
-			forward.setRedirect(false);
+//		else if(strpath.equals("/payment_test.pa")) {
+//			forward = new ActionForward();
+//			forward.setPath("./payment/payment_test.jsp");
+//			forward.setRedirect(false);
 			
 //		} if(strpath.equals("/payment.pa")) {
 //			forward = new ActionForward();
@@ -50,8 +50,10 @@ public class PaymentFrontController extends HttpServlet{
 //			forward.setRedirect(false);
 		// ---------------------------------------------
 
-		}  else if(strpath.equals("/PaymentPro.pa")) {
-			action = new PaymentPro();
+//		}  
+		
+		else if(strpath.equals("/PaymentInsertPro.pa")) {
+			action = new PaymentInsertPro();
 			
 			try {
 				// 메서드호출
@@ -59,16 +61,7 @@ public class PaymentFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(strpath.equals("/MenuPayPro.pa")) {
-//			action = new MenuPayPro();
 			
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
 		} else if(strpath.equals("/paymentList.pa")) {
 			action = new paymentList();
 			
@@ -99,16 +92,11 @@ public class PaymentFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		
-		} else if(strpath.equals("/OrderPayList.pa")) {
-			action = new OrderPayList();
-				
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		} else if(strpath.equals("/PayComplete.pa")) {
+	         forward = new ActionForward();
+	         forward.setPath("./payment/payComplete.jsp");
+	         forward.setRedirect(false);
+	      }
 		
 		
 		

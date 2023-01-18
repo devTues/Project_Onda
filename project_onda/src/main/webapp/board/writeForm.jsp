@@ -57,7 +57,14 @@
 							<tr><td>작성자</td>
 							<td><input type="text" name="cus_id" value="<%=cus_id %>" readonly></td></tr>
 							<tr><td>글제목</td>
-							<td><input type="text" name="qna_title"></td></tr>
+							<td><select name="qna_title">
+									<option selected>선택하세요</option>
+									<option>예약문의</option>
+									<option>매장문의</option>
+									<option>메뉴문의</option>
+									<option>기타문의</option>
+								</select>
+							</td></tr>
 							<tr><td>글내용</td>
 							<td><textarea name="qna_content" rows="10" cols="100"></textarea></td></tr>
 						</table>

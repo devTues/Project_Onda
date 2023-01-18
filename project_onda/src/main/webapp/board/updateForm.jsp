@@ -7,6 +7,7 @@
  	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
@@ -50,14 +51,27 @@
 					<%
 					BoardDTO dto=(BoardDTO)request.getAttribute("dto");
 					%>
+					<script type="text/javascript">
+					$(document).ready(function() {
+					
+				        $('#qna_title').val('<%=dto.getQna_title() %>').prop("selected",true);
+					
+					});
+					</script>
 					<form action="./BoardUpdatePro.bo" method="post">
 						<input type="hidden" name="qna_num" value="<%=dto.getQna_num()%>">
 						<table class="table">	
-							<tr><td>작성자</td>
+							<tr><th>작성자</th>
 							<td><input type="text" name="qna_name" value="<%=dto.getCus_id()%>" readonly></td></tr>
-							<tr><td>글제목</td>
-							<td><input type="text" name="qna_title" value="<%=dto.getQna_title()%>"></td></tr>							
-							<tr><td>글내용</td>
+							<tr><th>글제목</th>
+							<td><select name="qna_title" id="qna_title">
+									<option>선택하세요</option>
+									<option value="예약문의">예약문의</option>
+									<option value="매장문의">매장문의</option>
+									<option value="메뉴문의">메뉴문의</option>
+									<option value="기타문의">기타문의</option>
+								</select></td></tr>							
+							<tr><th>글내용</th>
 							<td><textarea name="qna_content" rows="10" cols="100"><%=dto.getQna_content() %></textarea></td></tr>
 						</table>
 						<div class="text-right">

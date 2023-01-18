@@ -1,7 +1,9 @@
+var submitCheck = false;
+
 function check() {
    
    let time = document.fr.time;
-   if(time.value == "선택없음"){
+   if(time.value == ""){
 	  alert("시간 선택해 주세요.");
 	  return false;
    }
@@ -37,6 +39,12 @@ function check() {
       alert("이용약관 및 개인정보 처리방침에 동의하셔야 이용이 가능합니다.");
       return false;
    }
+   
+   if(submitCheck == false) {
+		alert("시간과 테이블을 다시 선택해주세요.");
+		return false;
+	}
+	
    document.fr.submit();
    
 }
@@ -51,8 +59,7 @@ window.onload = function() {
 	let maxdate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000*39).toISOString().slice(0, 10);
 	dateElement2.setAttribute("max", maxdate);
 	
-	// 테이블 null인거 싫어서 default 설정
-	$("#table option:eq(0)").prop("selected", true); //첫번째 option 선택
+
 };
 
 $(document).ready(function() {
@@ -74,10 +81,16 @@ $(document).ready(function() {
 			success: function(rdata){
 				// 예약 가능 여부
 				var ResAvail = rdata == 0 ? true : false;
+				submitCheck = true;
+				
 				if(!ResAvail){
 					alert("예약불가");
+					submitCheck = false;
 				}
 			}
 		});
 	}
+	
 })
+
+

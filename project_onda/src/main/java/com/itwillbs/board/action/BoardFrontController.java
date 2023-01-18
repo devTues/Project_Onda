@@ -78,7 +78,14 @@ public class BoardFrontController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-		 } else if(strpath.equals("/ReplyList.bo")) {
+		 }else if(strpath.equals("/MyContent.bo")) {
+				action=new MyContent();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(strpath.equals("/ReplyList.bo")) {
 			action=new ReplyList();
 			try {
 				forward=action.execute(request, response);
@@ -100,6 +107,21 @@ public class BoardFrontController extends HttpServlet{
 					e.printStackTrace();
 				} 
 				
+		 } else if(strpath.equals("/ReplyUpdateForm.bo")) {
+				action=new ReplyUpdateForm();
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		 } else if(strpath.equals("/ReplyUpdatePro.bo")) {
+				action=new ReplyUpdatePro();
+				
+				try {
+					forward=action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
 		} else if (strpath.equals("/AdminQnaList.bo")) { //관리자 문의내역 목록
 				action = new AdminQnaList();
 				try {forward=action.execute(request, response);

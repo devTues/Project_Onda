@@ -18,7 +18,7 @@ public class AdminQnaDelete implements Action {
       dao.deleteBoard(qna_num);
 
       ActionForward forward = new ActionForward();
-      forward.setPath("./ReplyList.bo");
+      forward.setPath("./AdminQnaList.bo");
       forward.setRedirect(true);
       return forward;
 

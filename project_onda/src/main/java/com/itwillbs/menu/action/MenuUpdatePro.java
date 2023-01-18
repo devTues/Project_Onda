@@ -14,7 +14,7 @@ public class MenuUpdatePro implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MenuUpdatePro 실행");
-		String uploadPath = request.getRealPath("/upload");
+		String uploadPath = request.getRealPath("/img");
 		System.out.println(uploadPath);
 
 		int maxSize= 10*1024*1024;

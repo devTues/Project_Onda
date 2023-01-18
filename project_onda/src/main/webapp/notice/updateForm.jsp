@@ -53,11 +53,11 @@
 					<form action="./NotiUpdatePro.no" method="post">
 						<input type="hidden" name="num" value="<%=dto.getNt_num()%>">
 						<table class="table">
-							<tr><td>글쓴이</td>
+							<tr><th>글쓴이</th>
 							<td><input type="text" name="cus_id" value="<%=dto.getCus_id() %>" readonly></td></tr>
-							<tr><td>글제목</td>
+							<tr><th>글제목</th>
 							<td><input type="text" name="nt_title" value="<%=dto.getNt_title()%>"></td></tr>
-							<tr><td>글내용</td>
+							<tr><th>글내용</th>
 							<td><textarea name="nt_content" rows="10" cols="100"><%=dto.getNt_content() %></textarea></td></tr>
 						</table>
 						<div class="text-right">

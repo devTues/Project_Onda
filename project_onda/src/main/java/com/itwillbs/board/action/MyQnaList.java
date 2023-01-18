@@ -14,9 +14,6 @@ public class MyQnaList implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		
-		BoardDAO dao = new BoardDAO();
-		
 		int pageSize = 10;
 		
 		String pageNum = request.getParameter("pageNum");
@@ -29,17 +26,16 @@ public class MyQnaList implements Action {
 		int startRow = (currentPage-1) * pageSize+1;
 		int endRow = startRow + pageSize-1;
 		
-		
-		List<BoardDTO> myQnaList = dao.getMyQnaList(cus_id,startRow,pageSize);
+		BoardDAO dao = new BoardDAO();
+		List<BoardDTO> myQnaList = dao.getMyQnaList(cus_id, startRow, pageSize);
 		
 		// 한페이지 10개 페이지 번호 보이게 설정
-		int count = dao.getBoardCount();
-		int pageBlock = 3;
-		int startPage = (currentPage-1) / pageBlock*pageBlock+1;
-		int endPage = startPage + pageBlock-1;
+		int count = dao.getMyCount(cus_id);
 		
-		int pageCount = count/pageSize
-                		+ (count%pageSize == 0 ? 0 : 1);
+		int pageBlock = 3;
+		int startPage = ((currentPage - 1) / pageBlock) * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		int pageCount = count / pageSize + ((count % pageSize != 0) ? 1 : 0);
 		
 		if(endPage > pageCount) {
 			endPage = pageCount;
@@ -51,6 +47,7 @@ public class MyQnaList implements Action {
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("count", count);
 		
 		ActionForward forward=new ActionForward();
 		forward.setPath("./board/myQnaList.jsp");

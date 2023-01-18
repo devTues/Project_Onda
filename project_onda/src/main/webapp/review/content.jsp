@@ -55,7 +55,7 @@
 					%>
 					<table class="table">
 						<tr><th>글번호</th><td><%=dto.getRv_num()%></td></tr>
-						<tr><th>작성자</th><td><%=dto.getCus_id()%></td></tr>
+						<tr><th>작성자</th><td><%=dto.getCus_id().replaceAll("(?!.{4}).", "*")%></td></tr>
 						<tr><th>글제목</th><td><%=dto.getRv_title()%></td></tr>
 						<tr><th>메뉴</th><td><%=menu%></td></tr>
 						<tr><th>등록일</th><td><%=dateFormat.format(dto.getRv_date())%></td></tr>
@@ -67,7 +67,7 @@
 							}
 							%></td></tr>
 						<tr><th>조회수</th><td><%=dto.getRv_view()%></td></tr>
-						<tr><th>글내용</th><td><%=dto.getRv_content()%></td></tr>
+						<tr><th>글내용</th><td style="white-space:pre;"><%=dto.getRv_content()%></td></tr>
 					</table>
 					<div class="text-right"> 
 					<%

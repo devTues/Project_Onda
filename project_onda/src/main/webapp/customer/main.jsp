@@ -31,7 +31,7 @@
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar" class="static-layout">
 <div id="canvas-overlay"></div>
-<div class="hero">
+<div class="boxed-page">
   <div class="container">
 	<div class="row d-flex align-items-center">
 		<div class="col-lg-6 hero-left">

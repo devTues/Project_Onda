@@ -50,7 +50,7 @@
 					<%
 					// BoardDTO dto = (BoardDTO) request.getAttribute("dto");
 					String cus_id = (String) session.getAttribute("cus_id");
-					int num = Integer.parseInt(request.getParameter("num"));
+					int num = Integer.parseInt(request.getParameter("qna_num"));
 					int qna_ref = Integer.parseInt(request.getParameter("qna_ref"));
 					int qna_re_lev = Integer.parseInt(request.getParameter("qna_re_lev"));
 					int qna_re_seq = Integer.parseInt(request.getParameter("qna_re_seq"));
@@ -61,11 +61,18 @@
 						<input type="hidden" name="qna_ref" value="<%=qna_ref %>" />
 						<input type="hidden" name="qna_re_lev" value="<%=qna_re_lev %>" />
 						<input type="hidden" name="qna_re_seq" value="<%=qna_re_seq %>" />
+					
 						<table class="table">	
 							<tr><th>작성자</th>
 							<td><input type="text" name="cus_id" value="<%=cus_id%>" readonly></td></tr>
 							<tr><th>제목</th>
-							<td><input type="text" name="qna_title" required="required" /></td></tr>
+							<td><select name="qna_title">
+									<option selected>선택하세요</option>
+									<option>[답변] 예약문의</option>
+									<option>[답변] 매장문의</option>
+									<option>[답변] 메뉴문의</option>
+									<option>[답변] 기타문의</option>
+								</select></td></tr>
 							<tr><th>내용</th>
 							<td><textarea rows="15" cols="50" name="qna_content" required="required"></textarea></td></tr>
 						</table>

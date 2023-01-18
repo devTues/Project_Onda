@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.notice.db.NoticeDTO"%>
+<%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,6 +7,7 @@
  	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
@@ -32,7 +33,7 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>Notice</title>
+	<title>QNA</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -44,39 +45,39 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>NOTICE</h2>
+						<h2>글수정</h2>
 					</div>
 					<div class="row mt-5">
 					<%
-					NoticeDTO dto=(NoticeDTO)request.getAttribute("dto");
+					BoardDTO dto=(BoardDTO)request.getAttribute("dto");
 					%>
-
-					<table class="table">
-						<thead>
-							<tr><th>글번호</th><td><%=dto.getNt_num() %></td></tr>
-							<tr><th>등록일</th><td><%=dto.getNt_date() %></td></tr>
-							<tr><th>조회수</th><td><%=dto.getNt_view() %></td></tr>
-							<tr><th>제목</th><td><%=dto.getNt_title() %></td></tr>
-							<tr><th>글내용</th><td style="white-space:pre;"><%=dto.getNt_content() %>
-					</table>
-					<div class="text-right">
-					<%
-					String cus_id=(String)session.getAttribute("cus_id");
+					<script type="text/javascript">
+					$(document).ready(function() {
 					
-					if(cus_id==null) {
-						
-					} else if(cus_id.equals("admin")) {
-					%>
-						<input type="button" value="글수정" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiUpdateForm.no?num=<%=dto.getNt_num()%>'">
-						<input type="button" value="글삭제" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiDelete.no?num=<%=dto.getNt_num()%>'">
-					<%
-					} 
-					%>
-						<input type="button" value="글목록" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiList.no'">
-					</div>
+				        $('#qna_title').val('<%=dto.getQna_title() %>').prop("selected",true);
+					
+					});
+					</script>
+					<form action="./ReplyUpdatePro.bo" method="post">
+						<input type="hidden" name="qna_num" value="<%=dto.getQna_num()%>">
+						<table class="table">	
+							<tr><th>작성자</th>
+							<td><input type="text" name="qna_name" value="<%=dto.getCus_id()%>" readonly></td></tr>
+							<tr><th>글제목</th>
+							<td><select id="qna_title">
+									<option selected>선택하세요</option>
+									<option value="[답변] 예약문의">[답변] 예약문의</option>
+									<option value="[답변] 매장문의">[답변] 매장문의</option>
+									<option value="[답변] 메뉴문의">[답변] 메뉴문의</option>
+									<option value="[답변] 기타문의">[답변] 기타문의</option>
+								</select></td></tr>							
+							<tr><th>글내용</th>
+							<td><textarea name="qna_content" rows="10" cols="100"><%=dto.getQna_content() %></textarea></td></tr>
+						</table>
+						<div class="text-right">
+							<input type="submit" value="글수정" class="btn btn-primary btn-shadow btn-lg">
+						</div>
+					</form>
 					</div>
       			</div>
             </div>
@@ -108,3 +109,4 @@
 	<!-- Main JS -->
 	<script src="./js/app.min.js "></script>
 </html>
+					

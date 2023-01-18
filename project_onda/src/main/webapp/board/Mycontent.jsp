@@ -1,4 +1,5 @@
-<%@page import="com.itwillbs.notice.db.NoticeDTO"%>
+<%@page import="com.itwillbs.board.db.BoardDTO"%>
+<%@page import="com.itwillbs.board.db.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>Notice</title>
+	<title>QNA</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
@@ -44,39 +45,55 @@
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>NOTICE</h2>
+						<h2>QNA</h2>
 					</div>
 					<div class="row mt-5">
 					<%
-					NoticeDTO dto=(NoticeDTO)request.getAttribute("dto");
+					BoardDTO dto = (BoardDTO)request.getAttribute("dto");
 					%>
-
 					<table class="table">
-						<thead>
-							<tr><th>글번호</th><td><%=dto.getNt_num() %></td></tr>
-							<tr><th>등록일</th><td><%=dto.getNt_date() %></td></tr>
-							<tr><th>조회수</th><td><%=dto.getNt_view() %></td></tr>
-							<tr><th>제목</th><td><%=dto.getNt_title() %></td></tr>
-							<tr><th>글내용</th><td style="white-space:pre;"><%=dto.getNt_content() %>
-					</table>
+						<tr><th>글번호</th><td><%=dto.getQna_num() %></td></tr>
+						<tr><th>작성자</th><td><%=dto.getCus_id() %></td></tr>
+						<tr><th>등록일</th><td><%=dto.getQna_reg() %></td></tr>
+						<tr><th>조회수</th><td><%=dto.getQna_view() %></td></tr>
+						<tr><th>제목</th><td><%=dto.getQna_title() %></td></tr>
+						<tr><th>글내용</th><td style="white-space:pre;"><%=dto.getQna_content()%></td></tr>
+					</table>	
 					<div class="text-right">
 					<%
 					String cus_id=(String)session.getAttribute("cus_id");
 					
-					if(cus_id==null) {
+					if(cus_id == null) {
+											
+										} 
+					else if(cus_id.equals("admin")) { 
+						%>
+							<input type="button" value="답글" class="btn btn-primary btn-shadow btn-lg"
+							onclick="location.href='./ReplyForm.bo?qna_num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
+						<% 
 						
-					} else if(cus_id.equals("admin")) {
-					%>
+					}else if(!dto.getCus_id().equals(cus_id) && !dto.getCus_id().equals("admin")) {
+						%>
+						<script type="text/javascript">
+						alert("본인만 이용가능 합니다");
+						history.back();
+						</script>
+					<%		
+						
+					} else if(dto.getCus_id().equals(cus_id)) { 
+					%>	
 						<input type="button" value="글수정" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiUpdateForm.no?num=<%=dto.getNt_num()%>'">
+						onclick="location.href='./BoardUpdateForm.bo?num=<%=dto.getQna_num()%>'">
 						<input type="button" value="글삭제" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiDelete.no?num=<%=dto.getNt_num()%>'">
-					<%
+						onclick="location.href='./BoardDelete.bo?num=<%=dto.getQna_num()%>'">	
+					<% 
 					} 
 					%>
 						<input type="button" value="글목록" class="btn btn-primary btn-shadow btn-lg"
-						onclick="location.href='./NotiList.no'">
-					</div>
+						onclick="location.href='./MyQnaList.bo'">
+						
+						
+						
 					</div>
       			</div>
             </div>
@@ -108,3 +125,4 @@
 	<!-- Main JS -->
 	<script src="./js/app.min.js "></script>
 </html>
+
