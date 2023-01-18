@@ -51,7 +51,7 @@ function check() {
 
 window.onload = function() {
 	let dateElement = document.getElementById('res_use_date');
-	let mindate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+	let mindate = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000*2).toISOString().slice(0, 10);
 	dateElement.setAttribute("min", mindate);
 
 
