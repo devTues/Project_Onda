@@ -132,10 +132,6 @@
                         Kakao.API.request({
                             url: '/v2/user/me',
                             success: (res) => {
-								alert(res)
-								alert(res.id)
-								alert(res.kakao_account.email)
-								alert(res.properties.nickname)
                                 kakaojoin.cus_id.value=res.id;
                             	kakaojoin.cus_pass.value=res.kakao_account.email;
                             	//kakaojoin.cus_name.value=res.properties.nickname;
