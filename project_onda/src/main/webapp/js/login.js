@@ -70,6 +70,7 @@
                         cus_phone: {
                         	required: true,
                         	digits:true,
+                        	rangelength:[11,11],
                         	remote: {
                 				url: "./CustomerPhoneCheck.cu",
                 				type: "post",
@@ -105,6 +106,7 @@
                         cus_phone: {
                         	required: "휴대폰 번호를 입력하세요",
                         	digits: "' - ' 제외 숫자만 입력하세요",
+                        	rangelength: "휴대폰 번호는 11자리입니다",
                         	remote: "중복된 휴대폰 번호입니다"
                         },
                         cus_email: {
@@ -130,12 +132,16 @@
                         Kakao.API.request({
                             url: '/v2/user/me',
                             success: (res) => {
-            					alert('회원가입 성공! 메인페이지에서 로그인해주세요')
+								alert(res)
+								alert(res.id)
+								alert(res.kakao_account.email)
+								alert(res.properties.nickname)
                                 kakaojoin.cus_id.value=res.id;
                             	kakaojoin.cus_pass.value=res.kakao_account.email;
-                            	kakaojoin.cus_name.value=res.properties.nickname;
+                            	//kakaojoin.cus_name.value=res.properties.nickname;
                             	kakaojoin.cus_email.value=res.kakao_account.email;
             					kakaojoin.submit()
+            					alert('회원가입 성공! 메인페이지에서 로그인해주세요')
                             },
                             fail: function (error) {
                                 console.log(error);

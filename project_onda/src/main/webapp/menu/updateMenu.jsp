@@ -35,6 +35,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 	<title>MENU UPDATE</title>
 </head>
+<script type="text/javascript">   
+function radio() {
+      if(document.menu.menu_category[0].checked==false && document.menu.menu_category[1].checked==false &&
+      document.menu.menu_category[2].checked==false) {
+      alert("카테고리를 선택해주세요");
+      return false;
+   }
+      document.menu.submit();
+}
+</script>  
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
 <div id="canvas-overlay"></div>
@@ -51,7 +61,7 @@
 					<%
 					MenuDTO dto = (MenuDTO) request.getAttribute("dto");
 					%>
-					<form action="./MenuUpdatePro.mn" method="post" enctype="multipart/form-data">
+					<form action="./MenuUpdatePro.mn" method="post" enctype="multipart/form-data" name="menu" onsubmit="return radio()">
 						<input type="hidden" name="menu_num" value="<%=dto.getMenu_num()%>">
 						<table class="table">
 							<tr>

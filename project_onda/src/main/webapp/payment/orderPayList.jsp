@@ -41,7 +41,15 @@
    function fun1() {
       history.back();
    }
-
+   
+   function radio() {
+      if(document.pay.pick_up[0].checked==false && document.pay.pick_up[1].checked==false &&
+      document.pay.pick_up[2].checked==false && document.pay.pick_up[3].checked==false &&document.pay.pick_up[4].checked==false){
+      alert("픽업시간을 선택해주세요");
+      return false;
+      }
+      document.pay.submit();
+   }      
 </script>
 </head>
 <title>ORDER LIST</title>
@@ -77,7 +85,7 @@
 					String menu_img="";
 					CartDAO dao = new CartDAO();
 					%> 
-					<form class = "payment" action="./PaymentPro.pa" method="post">
+					<form class = "payment" action="./PaymentPro.pa" method="post" name="pay" onsubmit="return radio()">
 					<table class="table">
 					<tr><th>no.</th><th>상품정보</th>
 					    <th>수량</th><th>금액</th></tr>

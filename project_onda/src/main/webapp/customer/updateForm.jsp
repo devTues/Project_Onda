@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tutorialjinni.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.tutorialjinni.com/jquery-validate/1.19.1/jquery.validate.js"></script>
+    <script src="./js/customerUpdate.js"></script>
     <link href="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://cdn.tutorialjinni.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.tutorialjinni.com/font-awesome/5.12.0/css/all.css" rel="stylesheet">
@@ -39,7 +40,7 @@ CustomerDTO dto=(CustomerDTO)request.getAttribute("dto");
                              <h2>정보수정</h2>
                          </div>
                      </div>
-                     <form action="./CustomerUpdatePro.cu" method="get">
+                     <form action="./CustomerUpdatePro.cu" method="get" name="update">
                       <div>
                        <h6><font color="#0000FF">※ 카카오 간편가입 회원은 비밀번호가 가입시 기재한 이메일과 동일합니다.</font></h6>
                       </div>
