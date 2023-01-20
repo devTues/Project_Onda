@@ -11,10 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 //처리담당자(서블릿을 상속)
 public class CustomerFrontController extends HttpServlet {
-	//서블릿 파일이 동작할때 => 자동으로 메서드 호출 service()
-	//	                 doGet() doPost()
-	//웹서버에서 서블릿이 동작할때 자동으로 메서드 호출되면
-	//메서드 오버라이딩해서 재정의
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI=request.getRequestURI();
@@ -124,8 +120,6 @@ public class CustomerFrontController extends HttpServlet {
 
 		}
 		
-		
-			
 		// 이동(경로정보, 이동방식 담아서 오면 이동) ActionForward
 		if(forward !=null) {
 			if(forward.isRedirect()) {

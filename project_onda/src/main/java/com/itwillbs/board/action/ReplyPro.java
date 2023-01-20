@@ -19,8 +19,6 @@ public class ReplyPro implements Action {
         BoardDTO dto  = new BoardDTO();
         
         request.setCharacterEncoding("utf-8");
-        // 답글 작성 후 원래 페이지로 돌아가기 위해 페이지 번호가 필요하다.
-//        String pageNum = request.getParameter("page");
         String cus_id = request.getParameter("cus_id");
         String qna_title = request.getParameter("qna_title");
         String qna_content = request.getParameter("qna_content");

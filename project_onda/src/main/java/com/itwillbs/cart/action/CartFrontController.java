@@ -13,14 +13,8 @@ public class CartFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String requestURI=request.getRequestURI();
-		System.out.println("requestURI : "+requestURI);
-
 		String contextPath=request.getContextPath();
-		System.out.println("contextPath : " + contextPath);
-		System.out.println("contextPath길이 : " + contextPath.length());
-
 		String strpath=request.getServletPath();
-		System.out.println("뽑은 주소 strpath : "+strpath);
 
 		ActionForward forward=null;
 		Action action=null;
@@ -32,75 +26,29 @@ public class CartFrontController extends HttpServlet{
 			
 		} else if(strpath.equals("/CartAddPro.ca")) {
 			action = new CartAddPro();
-
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/CartList.ca")) {
 			action=new CartList();
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 
 		} else if(strpath.equals("/CartInsertPro.ca")) {
 			action = new CartAddPro();
-
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 
 		} else if(strpath.equals("/CartUpdate.ca")) {
 			action = new CartUpdate();
-			
-			try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/CartDelete.ca")) {
 			action = new CartDelete();
-			
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 
 		} else if(strpath.equals("/CartTotalPrice.ca")) {
 			action = new CartTotalPrice();
-			
-			try {
-				// 메서드호출
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-			
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 		} 
 		
-
-
-
-
-
-
-
 
 		if(forward != null) {
 			if(forward.isRedirect()) {

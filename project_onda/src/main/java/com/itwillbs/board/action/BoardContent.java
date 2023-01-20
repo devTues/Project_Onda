@@ -12,7 +12,6 @@ public class BoardContent implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		int num = Integer.parseInt(request.getParameter("num"));
-//		String qna_content = request.getParameter("qna_content");
 		
 		BoardDAO dao=new BoardDAO();
 		

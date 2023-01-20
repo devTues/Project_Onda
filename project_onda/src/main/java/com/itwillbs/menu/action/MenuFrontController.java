@@ -75,17 +75,10 @@ public class MenuFrontController extends HttpServlet{
 		} 
 			
 		
-//		이동 (-> (request)정보가 있으면 이동)
 			if(forward != null) {
 				if(forward.isRedirect()) {
-					
-					// true : 주소변경 되면서 이동
-					System.out.println("true:"+ forward.getPath() +" sendRedirect() 이동");
 					response.sendRedirect(forward.getPath());
 				} else {
-					
-					// false : 주소변경 안되면서 이동
-					System.out.println("false:"+ forward.getPath() +"foward() 이동");
 					RequestDispatcher dis
 					=request.getRequestDispatcher(forward.getPath());
 					dis.forward(request, response);	
@@ -93,14 +86,6 @@ public class MenuFrontController extends HttpServlet{
 				
 			}
 	}
-	
-	
-	
-
-	
-	
-	
-	
 	
 	
 

@@ -13,14 +13,8 @@ public class NotiFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String requestURI=request.getRequestURI();
-		System.out.println("requestURI : "+requestURI);
-		
 		String contextPath=request.getContextPath();
-		System.out.println("contextPath : " + contextPath);
-		System.out.println("contextPath길이 : " + contextPath.length());
-		
 		String strpath=requestURI.substring(contextPath.length());
-		System.out.println("뽑은 주소 strpath : "+strpath);
 		
 		ActionForward forward=null;
 		Action action=null;
@@ -32,18 +26,12 @@ public class NotiFrontController extends HttpServlet{
 			
 		} else if(strpath.equals("/NotiWritePro.no")) {
 			action=new NotiWritePro();
-			try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		}else if(strpath.equals("/NotiList.no")) {
 			action=new NotiList();
-			try {
-				forward=action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		}else if(strpath.equals("/NotiContent.no")) {
 			action=new NotiContent();
 			try {

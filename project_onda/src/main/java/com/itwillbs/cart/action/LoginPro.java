@@ -15,7 +15,6 @@ public class LoginPro implements Action{
 		String cus_id=request.getParameter("cus_id");
 		
 		CartDAO dao = new CartDAO();
-		System.out.println("디비작업하는 주소 : " + dao);
 		
 		HttpSession session= request.getSession();
 		session.setAttribute("cus_id", cus_id);

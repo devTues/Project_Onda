@@ -26,71 +26,44 @@ public class ReviewFrontController extends HttpServlet {
 			
 		} else if(strpath.equals("/AdminReviewList.rv")) {	
 			action = new AdminReviewList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/ReviewWritePro.rv")) {	
 			action = new ReviewWritePro();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/ReviewList.rv")) {	
 			action = new ReviewList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		} else if(strpath.equals("/MyReviewList.rv")) {	
 			action = new MyReviewList();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+				
 		} else if(strpath.equals("/ReviewContent.rv")) {	
 			action = new ReviewContent();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		} else if(strpath.equals("/ReviewUpdateForm.rv")) {	
 			action = new ReviewUpdateForm();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		} else if(strpath.equals("/ReviewUpdatePro.rv")) {	
 			action = new ReviewUpdatePro();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		} else if(strpath.equals("/ReviewDelete.rv")) {	
 			action = new ReviewDelete();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
 			
 		} else if(strpath.equals("/AdminReviewDelete.rv")) {	
 			action = new AdminReviewDelete();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			try {forward = action.execute(request, response);} catch (Exception e) {e.printStackTrace();}
+			
 		}
+		
+		
+		
 		// 이동 방법
 		if(forward != null) {
 			if(forward.isRedirect()) {

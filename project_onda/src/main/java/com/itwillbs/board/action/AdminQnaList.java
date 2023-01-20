@@ -18,7 +18,6 @@ public class AdminQnaList implements Action{
 		BoardDAO dao=new BoardDAO();
 	
 		int pageSize=10;
-		System.out.println("pageSize="+pageSize);
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -31,8 +30,6 @@ public class AdminQnaList implements Action{
 		List<BoardDTO> boardList = dao.getAdminQnaList(startRow,pageSize);
 	
 		int count = dao.getQnaCount();
-		//readcount
-		
 		int pageBlock=3; 
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
