@@ -230,7 +230,32 @@ public class CustomerDAO {
 		
 		try {
 			con=getConnection();
-			String sql="delete from customer where cus_id=?";
+			String sql="delete from cart where cus_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.executeUpdate();
+			
+			sql="delete from qna_board where cus_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.executeUpdate();
+			
+			sql="delete from rv_board where cus_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.executeUpdate();
+			
+			sql="delete from reservation where cus_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.executeUpdate();
+			
+			sql="delete from payment where cus_id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, cus_id);
+			pstmt.executeUpdate();
+			
+			sql="delete from customer where cus_id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, cus_id);
 			pstmt.executeUpdate();

@@ -1,7 +1,11 @@
-
 <%@page import="com.itwillbs.menu.db.MenuDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,18 +37,8 @@
 
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>MENU UPDATE</title>
+	<title>Menu List</title>
 </head>
-<script type="text/javascript">   
-function radio() {
-      if(document.menu.menu_category[0].checked==false && document.menu.menu_category[1].checked==false &&
-      document.menu.menu_category[2].checked==false) {
-      alert("카테고리를 선택해주세요");
-      return false;
-   }
-      document.menu.submit();
-}
-</script>  
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
 <div id="canvas-overlay"></div>
@@ -55,55 +49,98 @@ function radio() {
             <div class="row mb-5">
                 <div class="col-md-12">
                     <div class="heading-section text-center">
-						<h2>MENU UPDATE</h2>
+						<h2>MENU LIST</h2>
 					</div>
 					<div class="row mt-5">
 					<%
-					MenuDTO dto = (MenuDTO) request.getAttribute("dto");
+					//세션값이 null이거나 admin 아니면 알람
+					String cus_id=(String)session.getAttribute("cus_id");
+					if(cus_id==null || !cus_id.equals("admin")){
 					%>
-					<form action="./MenuUpdatePro.mn" method="post" enctype="multipart/form-data" name="menu" onsubmit="return radio()">
-						<input type="hidden" name="menu_num" value="<%=dto.getMenu_num()%>">
-						<table class="table">
-							<tr>
-								<th>카테고리</th>
-								<td>
-								<label><input type="radio" name="menu_category" value="coffee"> coffee</label> 
-								<label><input type="radio" name="menu_category" value="veberage"> veberage</label>
-								<label><input type="radio" name="menu_category" value="food"> food</label></td>
-							</tr>
-							<tr>
-								<th>메뉴 이름</th>
-								<td><input type="text" name="menu_name" value="<%=dto.getMenu_name()%>"></td>
-							</tr>
-							<tr>
-								<th>가격</th>
-								<td><input type="text" name="menu_price" value="<%=dto.getMenu_price()%>"></td>
-							</tr>
-							<tr>
-								<th>상세설명</th>
-								<td><textarea name="menu_detail" rows="10"cols="100"><%=dto.getMenu_detail()%></textarea></td>
-							</tr>
-							<tr>
-								<th>이미지</th>
-								<td><input type="file" name="menu_img"> <%=dto.getMenu_img()%>
-									<input type="hidden" name="oldfile" value="<%=dto.getMenu_img()%>">
-								
-						</table>
-						<div class="text-right">
-						<input type="submit" value="메뉴수정" class="btn btn-primary">
-						</div>
-					</form>
+						<script type="text/javascript">
+						alert("관리자만 이용가능합니다");
+						history.back();
+						</script>
+					<%
+					}
+					
+					List<MenuDTO> menuList=(List<MenuDTO>)request.getAttribute("menuList");
+					//startPage pageBlock currentPage endPage pageCount
+					int startPage=(Integer)request.getAttribute("startPage");
+					int pageBlock=(Integer)request.getAttribute("pageBlock");
+					int currentPage=(Integer)request.getAttribute("currentPage");
+					int endPage=(Integer)request.getAttribute("endPage");
+					int pageCount=(Integer)request.getAttribute("pageCount");
+					%>
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th scope="col">상품번호</th>
+							<th scope="col">상품이름</th>
+							<th scope="col">상품가격</th>
+							<th scope="col">카테고리</th>
+							<th scope="col">이미지</th>
+							<th scope="col">상품관리</th>
+						</tr>
+						</thead>
+						<%
+						for(int i = 0; i<menuList.size(); i++) {
+							MenuDTO dto = menuList.get(i);
+						%>
+						<tr>
+							<td><%=dto.getMenu_num()%></td>
+						    <td><%=dto.getMenu_name() %></td>
+						    <td><%=dto.getMenu_price() %></td>
+						    <td><%=dto.getMenu_category() %></td>
+						    <td><%=dto.getMenu_img() %></td>
+							<td><input type="button" value="수정" class="btn btn-primary btn-shadow btn-lg"
+				         		onclick="location.href='./MenuUpdateForm.mn?menu_num=<%=dto.getMenu_num()%>'">
+								<input type="button" value="삭제" class="btn btn-primary btn-shadow btn-lg"
+				         		onclick="location.href='./MenuDelete.mn?menu_num=<%=dto.getMenu_num()%>'"></td>
+						</tr>
+						<%
+						}
+						%>
+					</table>
 					</div>
-      			</div>
+					<div class="col-md-10 mb-2 text-left">
+						<input type="button" value="메뉴추가" class="btn btn-primary btn-shadow btn-lg" onclick="location.href='./MenuInsertForm.mn'">
+                    </div>	
+                	<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+					    	
+					    	<%
+							// 10페이지 이전 
+							if(startPage > pageBlock){
+								%>
+					     	 <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <%	
+							}
+					    	%>
+					    	
+					    	<%
+					    	for(int i=startPage;i<=endPage;i++){
+								%>
+								<li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=i%>"><%=i %></a></li>
+								<%
+							}
+					    	%>
+					    	
+					      <%
+					       if(endPage < pageCount){
+							%>
+					       <li class="page-item"><a class="page-link" href="./NotiList.no?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					      <%
+							}
+							%>
+					 	</ul>
+					</nav>
+                </div>	
             </div>
         </div>
     </div>
 </section>
-</div>	
-</body>
-	<!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+</div>
 <!-- footer -->
 <jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
@@ -123,4 +160,5 @@ function radio() {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<!-- Main JS -->
 	<script src="./js/app.min.js "></script>
+</body>
 </html>

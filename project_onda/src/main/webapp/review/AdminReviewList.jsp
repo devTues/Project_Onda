@@ -109,7 +109,7 @@
 							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
-					     	 <li class="page-item"><a class="page-link" href="./ReviewList.rv?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
+					     	 <li class="page-item"><a class="page-link" href="./AdminReviewList.rv?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
 					    	%>
@@ -117,7 +117,7 @@
 					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
-								<li class="page-item"><a class="page-link" href="./ReviewList.rv?pageNum=<%=i%>"><%=i %></a></li>
+								<li class="page-item"><a class="page-link" href="./AdminReviewList.rv?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
 					    	%>
@@ -125,7 +125,7 @@
 					      <%
 					       if(endPage < pageCount){
 							%>
-					       <li class="page-item"><a class="page-link" href="./ReviewList.rv?pageNum=<%=startPage+pageBlock%>">Next</a></li>
+					       <li class="page-item"><a class="page-link" href="./AdminReviewList.rv?pageNum=<%=startPage+pageBlock%>">Next</a></li>
 					      <%
 							}
 							%>

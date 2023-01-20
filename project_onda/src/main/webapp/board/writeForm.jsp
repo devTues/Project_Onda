@@ -66,7 +66,7 @@
 								</select>
 							</td></tr>
 							<tr><td>글내용</td>
-							<td><textarea name="qna_content" rows="10" cols="100"></textarea></td></tr>
+							<td><textarea name="qna_content" rows="10" cols="100" placeholder="부적절한 게시글의 경우 관리자 임의로 삭제 될 수 있습니다."></textarea></td></tr>
 						</table>
 						<div class="text-right">
 							<input type="submit" value="글쓰기" class="btn btn-primary btn-shadow btn-lg">

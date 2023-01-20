@@ -219,7 +219,7 @@ public class PaymentDAO {
 		try {
 			con = getConnection();
 			
-			String sql = "select * from payment where cus_id = ?";
+			String sql = "select * from payment where cus_id = ? order by pay_num desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, cus_id);
 

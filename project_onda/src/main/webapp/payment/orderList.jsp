@@ -99,7 +99,7 @@
 					
 					<tr>
 					   <td class="cart_info">
-					      <input type="text" id="crt_num_<%=i%>" name="crt_num" class="crt_num" value="<%=dto.getCrt_num() %>" style="border:0;" readonly>
+					      <input type="text" id="crt_num_<%=i%>" name="crt_num" class="crt_num" value="<%=i + 1 %>" style="border:0;" readonly>
 					   </td>
 					    <td>
 					    <input type="hidden" name="menu_num" id="menu_num_<%=i%>" class="menu_num" value="<%=dto.getMenu_num() %>" style="border:0;" readonly>
@@ -122,7 +122,7 @@
 						</div>
 						<table class="table">
 						 <tr>
-						 <th><input type="radio" name="pick_up" value="즉시"> 즉시</th>
+						 <th><input type="radio" name="pick_up" value="즉시" checked> 즉시</th>
 						 <th><input type="radio" name="pick_up" value="5분"> 5분</th>
 						 <th><input type="radio" name="pick_up" value="10분"> 10분</th>
 						 <th><input type="radio" name="pick_up" value="15분"> 15분</th>
@@ -141,33 +141,44 @@
 					
 					<script type="text/javascript">
 	
-	function requestPay() {
-	   var IMP = window.IMP;  
-	   IMP.init('imp84126554'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
-	     IMP.request_pay({
-	       pg: 'html5_inicis',
-	       pay_method: "card",
-	       merchant_uid : 'merchant_'+new Date().getTime(),
-	       name : '<%=menu_name%>' + ' 외 ' + <%=orderList.size()-1 %> + '건' ,   // 상품 이름
-	       amount : <%=totalPrice %>,      // 가격
-	       buyer_name : '<%=cus_id %>',
-	     }, function (rsp) { // callback
-	         if (rsp.success) {
-	            var msg = "결제가 완료되었습니다.";
-	            alert(msg);
-	            $(".payment").submit();
-	            
-	         } else {
-	            var msg = '결제에 실패하였습니다.\n';
-	             msg += '에러내용 : ' + rsp.error_msg;
-	             alert(msg);
-	         }
-	     });
-	   }
-	   
-	function fun1() {
-		history.back();
-	}
+// 					function radio() {
+// 					     if(document.pay.pick_up[0].checked==false && document.pay.pick_up[1].checked==false &&
+// 						     document.pay.pick_up[2].checked==false && document.pay.pick_up[3].checked==false &&document.pay.pick_up[4].checked==false){
+// 						     alert("픽업시간을 선택해주세요");
+// 						     return false;
+					      
+// 					   }      
+					
+					function requestPay() {
+						 
+						   var IMP = window.IMP;  
+						   IMP.init('imp84126554'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+						     IMP.request_pay({
+						       pg: 'html5_inicis',
+						       pay_method: "card",
+						       merchant_uid : 'merchant_'+new Date().getTime(),
+						       name : '<%=menu_name%>' + ' 외 ' + <%=orderList.size()-1 %> + '건' ,   // 상품 이름
+						       amount : <%=totalPrice %>,      // 가격
+						       buyer_name : '<%=cus_id %>',
+						     }, function (rsp) { // callback
+						         if (rsp.success) {
+						            var msg = "결제가 완료되었습니다.";
+						            alert(msg);
+						            $(".payment").submit();
+						            
+						         } else {
+						            var msg = '결제에 실패하였습니다.\n';
+						             msg += '에러내용 : ' + rsp.error_msg;
+						             alert(msg);
+						             
+						         }
+						     });
+						
+					 }
+					   
+					function fun1() {
+						history.back();
+					}
 </script>
 					
 					</div>

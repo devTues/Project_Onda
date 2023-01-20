@@ -79,7 +79,7 @@
 							</tr>	
 						</table>
 						<div class="text-right">
-							<input type="submit" value="메뉴추가">
+							<input type="submit" value="메뉴추가" class="btn btn-primary">
 						</div>
 					</form>
 					</div>

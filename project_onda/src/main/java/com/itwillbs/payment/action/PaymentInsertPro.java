@@ -60,7 +60,6 @@ public class PaymentInsertPro implements Action {
 		}
 		
 		// 내결제 페이지 이동
-
 		ActionForward forward=new ActionForward();
 		forward.setPath("./PayComplete.pa");
 		forward.setRedirect(true);

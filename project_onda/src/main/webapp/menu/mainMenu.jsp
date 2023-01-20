@@ -1,5 +1,3 @@
-
-<%@page import="com.itwillbs.menu.db.MenuDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,21 +28,13 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="./css/style.min.css">
-
+	<link rel="stylesheet" type="text/css" href="./css/default.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="./css/style.css"> -->
+	
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-	<title>MENU UPDATE</title>
+	<title>MENU</title>
 </head>
-<script type="text/javascript">   
-function radio() {
-      if(document.menu.menu_category[0].checked==false && document.menu.menu_category[1].checked==false &&
-      document.menu.menu_category[2].checked==false) {
-      alert("카테고리를 선택해주세요");
-      return false;
-   }
-      document.menu.submit();
-}
-</script>  
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
 <body data-spy="scroll" data-target="#navbar">
 <div id="canvas-overlay"></div>
@@ -54,47 +44,34 @@ function radio() {
         <div class="section-content">
             <div class="row mb-5">
                 <div class="col-md-12">
-                    <div class="heading-section text-center">
-						<h2>MENU UPDATE</h2>
-					</div>
-					<div class="row mt-5">
-					<%
-					MenuDTO dto = (MenuDTO) request.getAttribute("dto");
-					%>
-					<form action="./MenuUpdatePro.mn" method="post" enctype="multipart/form-data" name="menu" onsubmit="return radio()">
-						<input type="hidden" name="menu_num" value="<%=dto.getMenu_num()%>">
-						<table class="table">
-							<tr>
-								<th>카테고리</th>
-								<td>
-								<label><input type="radio" name="menu_category" value="coffee"> coffee</label> 
-								<label><input type="radio" name="menu_category" value="veberage"> veberage</label>
-								<label><input type="radio" name="menu_category" value="food"> food</label></td>
-							</tr>
-							<tr>
-								<th>메뉴 이름</th>
-								<td><input type="text" name="menu_name" value="<%=dto.getMenu_name()%>"></td>
-							</tr>
-							<tr>
-								<th>가격</th>
-								<td><input type="text" name="menu_price" value="<%=dto.getMenu_price()%>"></td>
-							</tr>
-							<tr>
-								<th>상세설명</th>
-								<td><textarea name="menu_detail" rows="10"cols="100"><%=dto.getMenu_detail()%></textarea></td>
-							</tr>
-							<tr>
-								<th>이미지</th>
-								<td><input type="file" name="menu_img"> <%=dto.getMenu_img()%>
-									<input type="hidden" name="oldfile" value="<%=dto.getMenu_img()%>">
-								
-						</table>
-						<div class="text-right">
-						<input type="submit" value="메뉴수정" class="btn btn-primary">
+					<div class="menu_section_inner">
+						<img src="./img/Main-coffee2.jpg" class="image"  width="800" height="400"
+						alt="Picsum">
+						<div class="textbox">
+							<a class="text" href="./DrinkList.mn?menu_category=drink"
+								title="상세페이지 이동">DRINK</a>
 						</div>
-					</form>
 					</div>
-      			</div>
+					
+					<div class="menu_section_inner">
+						<img src="./img/Main-food2.jpg" class="image" width="800" height="400"
+							alt="Picsum">
+						<div class="textbox">
+							<a class="text" href="./FoodList.mn?menu_category=food"
+								title="상세페이지 이동">FOOD</a>
+						</div>
+					</div>
+				
+					<div class="menu_section_inner">
+						<img src="./img/Main-goods2.jpg"class="image" width="800" height="400"
+							alt="Picsum">
+						<div class="textbox">
+							<a class="text" href="./GoodsList.mn?menu_category=goods"
+								title="상세페이지 이동">GOODS</a>
+						</div>
+					</div>
+					
+				</div>
             </div>
         </div>
     </div>

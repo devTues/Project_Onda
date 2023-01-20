@@ -10,9 +10,6 @@ public class CustomerLogout implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
-		
-		
 		// 세션값 초기화(세션내장객체 전체 삭제)
 		HttpSession session=request.getSession();
 		session.invalidate();
