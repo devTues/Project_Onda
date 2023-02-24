@@ -53,48 +53,47 @@
 						</div>
            	 		</div>		
 						<div class="row">
-								<%
-								String cus_id = (String) session.getAttribute("cus_id");
-								//로그인이 안된 상태면 장바구니 담기 불가----------------------------------------------------
-								DecimalFormat df = new DecimalFormat("###,###");
+						<%
+						String cus_id = (String) session.getAttribute("cus_id");
+						//로그인이 안된 상태면 장바구니 담기 불가----------------------------------------------------
+						DecimalFormat df = new DecimalFormat("###,###");
 
-								List<MenuDTO> menuList = (List<MenuDTO>) request.getAttribute("menuList");
+						List<MenuDTO> menuList = (List<MenuDTO>) request.getAttribute("menuList");
 
-								for (int i = 0; i < menuList.size(); i++) {
-									MenuDTO dto = menuList.get(i);
-								%>
-								
-								<div class="col-lg-4 menu-wrap">
-									<div class="heading-menu">
-										<form action="./CartAddPro.ca" method="post" class="menu">
-											<input type="hidden" id="menu_num" name="menu_num" value="<%=dto.getMenu_num()%>"> 
-											<input type="hidden" id="menu_category" name="menu_category" value="<%=dto.getMenu_category()%>"> 
-											<img src="./img/<%=dto.getMenu_img()%>" alt="MenuImg" width="225" style="border-radius: 7px;">
-											<h4 class="menu-title"><%=dto.getMenu_name()%></h4>
-											<p>
-												<%=dto.getMenu_detail()%>
-											</p>
-											<b style="font-size: 17px"><%=df.format(dto.getMenu_price())%>원</b> <br>
-											<div class ="menu-num">
-											수량:  <input type="number" class="number" step="1" min="0" id="crt_num" name="crt_count" required value="0" style="text-align: left; width: 40px; height: 17px;"> <br>
-											</div>
-											<%
-											if (cus_id == null) {
-											%>
-											<input type="button" class="btn btn-primary" value="로그인하고 담기" onclick="location.href='./CustomerLoginForm.cu'">
-											<%
-											} else {
-											%>
-												<input type="submit" class="btn btn-primary" value="장바구니">
-											<%
-											}
-											%>
-										</form>
-								  	</div>
-								</div>
-								<%
-								}
-								%>
+						for (int i = 0; i < menuList.size(); i++) {
+							MenuDTO dto = menuList.get(i);
+						%>
+						<div class="col-lg-4 menu-wrap">
+							<div class="heading-menu">
+								<form action="./CartAddPro.ca" method="post" class="menu">
+									<input type="hidden" id="menu_num" name="menu_num" value="<%=dto.getMenu_num()%>"> 
+									<input type="hidden" id="menu_category" name="menu_category" value="<%=dto.getMenu_category()%>"> 
+									<img src="./img/<%=dto.getMenu_img()%>" alt="MenuImg" width="225" style="border-radius: 7px;">
+									<h4 class="menu-title"><%=dto.getMenu_name()%></h4>
+									<p>
+										<%=dto.getMenu_detail()%>
+									</p>
+									<b style="font-size: 17px"><%=df.format(dto.getMenu_price())%>원</b> <br>
+									<div class ="menu-num">
+									수량:  <input type="number" class="number" step="1" min="0" id="crt_num" name="crt_count" required value="0" style="text-align: left; width: 40px; height: 17px;"> <br>
+									</div>
+									<%
+									if (cus_id == null) {
+									%>
+										<input type="button" class="btn btn-primary" value="로그인하고 담기" onclick="location.href='./CustomerLoginForm.cu'">
+									<%
+									} else {
+									%>
+										<input type="submit" class="btn btn-primary" value="장바구니">
+									<%
+									}
+									%>
+								</form>
+						  	</div>
+						</div>
+						<%
+						}
+						%>
 					</div>	
 				</div>
 			</div>

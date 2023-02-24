@@ -81,7 +81,6 @@
 					    <td><%=dto.getCus_id() %></td>
 					    <td><a href="./MyContent.bo?num=<%=dto.getQna_num()%>">
 					     <% 
-					    
 				    // 답글 들여쓰기
 					if(dto.getQna_re_lev() > 0) {
 						int w = dto.getQna_re_lev() * 10;
@@ -97,7 +96,6 @@
 				   	<%
 				    }
 				    %>
-				    
 					</table>
 					<%
 					String cus_id = (String)session.getAttribute("cus_id");
@@ -111,25 +109,17 @@
 					%>
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
-					    	
 					    	<%
-							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
 					     	 <li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
-					    	%>
-					    	
-					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
 								<li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
-					    	%>
-					    	
-					      <%
 					       if(endPage < pageCount){
 							%>
 					       <li class="page-item"><a class="page-link" href="./MyQnaList.bo?pageNum=<%=startPage+pageBlock%>">Next</a></li>

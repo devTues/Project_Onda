@@ -1,13 +1,11 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    	<!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
@@ -49,7 +47,6 @@
                     <div class="heading-section text-center">
 						<h2>QNA LIST</h2>
 					</div>
-					
 					<div class="row mt-5">
 					<%
 					//세션값이 null이거나 admin 아니면 알람
@@ -64,75 +61,67 @@
 					} 
 					List<BoardDTO> boardList = (List<BoardDTO>)request.getAttribute("boardList");
 					//startPage pageBlock currentPage endPage pageCount
-					int startPage=(Integer)request.getAttribute("startPage");
-					int pageBlock=(Integer)request.getAttribute("pageBlock");
-					int currentPage=(Integer)request.getAttribute("currentPage");
-					int endPage=(Integer)request.getAttribute("endPage");
-					int pageCount=(Integer)request.getAttribute("pageCount");
-					int count 		= (Integer)request.getAttribute("count");
+					int startPage = (Integer)request.getAttribute("startPage");
+					int pageBlock = (Integer)request.getAttribute("pageBlock");
+					int currentPage = (Integer)request.getAttribute("currentPage");
+					int endPage = (Integer)request.getAttribute("endPage");
+					int pageCount = (Integer)request.getAttribute("pageCount");
+					int count = (Integer)request.getAttribute("count");
 					%>
-						<table class="table table-hover">
-						<thead>
-						    <tr>
-						      <th scope="col">글번호</th>
-						      <th scope="col">작성자</th>
-						      <th scope="col">글제목</th>
-						      <th scope="col">등록일</th>
-						      <th scope="col">문의관리</th>
-						    </tr>
-					 	 </thead>
-							<%
-							 // 날짜 => 모양 문자열 변경
-							SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
-							
-							for (int i = 0; i < boardList.size(); i++) {
-								BoardDTO dto = boardList.get(i);
+					<table class="table table-hover">
+					<thead>
+					    <tr>
+					      <th scope="col">글번호</th>
+					      <th scope="col">작성자</th>
+					      <th scope="col">글제목</th>
+					      <th scope="col">등록일</th>
+					      <th scope="col">문의관리</th>
+					    </tr>
+				 	 </thead>
+					 <%
+					 // 날짜 => 모양 문자열 변경
+					 SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+					
+					 for (int i = 0; i < boardList.size(); i++) {
+					 	BoardDTO dto = boardList.get(i);
+					 %>
+					 <tr>
+				 		<td><%=dto.getQna_num()%></td>
+				 		<td><%=dto.getCus_id() %></td>
+				 		<td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>"><%=dto.getQna_title()%></a></td>
+				 		<td><%=dateFormat.format(dto.getQna_reg()) %></td>
+						<td>
+						<input type="button" class="btn btn-primary btn-shadow btn-lg" value="문의삭제" 
+			         	onclick="location.href='./AdminQnaDelete.bo?qna_num=<%=dto.getQna_num()%>'">
+						<%
+						if(!dto.getCus_id().equals("admin")) { 
 							%>
-							<tr>
-								<td><%=dto.getQna_num()%></td>
-								<td><%=dto.getCus_id() %></td>
-								<td><a href="./BoardContent.bo?num=<%=dto.getQna_num()%>"><%=dto.getQna_title()%></a></td>
-								<td><%=dateFormat.format(dto.getQna_reg()) %></td>
-								<td>
-								<input type="button" class="btn btn-primary btn-shadow btn-lg" value="문의삭제" 
-					         	onclick="location.href='./AdminQnaDelete.bo?qna_num=<%=dto.getQna_num()%>'">
-								<%
-								if(!dto.getCus_id().equals("admin")) { 
-									%>
-									<input type="button" class="btn btn-primary btn-shadow btn-lg" value="답글달기" 
-					         		onclick="location.href='./ReplyForm.bo?qna_num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
-								<%
-								} 
-								%>
-					         	</td></tr>
-							<%
-							}
-							%>
+							<input type="button" class="btn btn-primary btn-shadow btn-lg" value="답글달기" 
+			         		onclick="location.href='./ReplyForm.bo?qna_num=<%=dto.getQna_num()%>&qna_ref=<%=dto.getQna_ref()%>&qna_re_lev=<%=dto.getQna_re_lev()%>&qna_re_seq=<%=dto.getQna_re_seq()%>'">
+						<%
+						} 
+						%>
+			         	</td></tr>
+					 <%
+					 }
+					 %>
 						
-						</table>
+					</table>
 					</div>
 					<!--  페이징 처리 -->
 					<nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
-					    	
 					    	<%
-							// 10페이지 이전 
 							if(startPage > pageBlock){
 								%>
 					     	 <li class="page-item"><a class="page-link" href="./AdminQnaList.bo?pageNum=<%=startPage-pageBlock%>">Prev</a></li>
 					     	 <%	
 							}
-					    	%>
-					    	
-					    	<%
 					    	for(int i=startPage;i<=endPage;i++){
 								%>
 								<li class="page-item"><a class="page-link" href="./AdminQnaList.bo?pageNum=<%=i%>"><%=i %></a></li>
 								<%
 							}
-					    	%>
-					    	
-					      <%
 					       if(endPage < pageCount){
 							%>
 					       <li class="page-item"><a class="page-link" href="./AdminQnaList.bo?pageNum=<%=startPage+pageBlock%>">Next</a></li>
@@ -147,10 +136,10 @@
     </div>
 </section>
 </div>
-<!-- Option 1: Bootstrap Bundle with Popper -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!-- footer -->
-<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- footer -->
+	<jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
@@ -161,7 +150,7 @@
 	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
 	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Option 1: Bootstrap Bundle with Popper -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

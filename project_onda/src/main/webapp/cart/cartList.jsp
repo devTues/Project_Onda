@@ -2,8 +2,7 @@
 <%@page import="com.itwillbs.cart.db.CartDAO"%>
 <%@page import="com.itwillbs.cart.db.CartDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,57 +36,52 @@
     <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 	<script type="text/javascript" src="./js/jquery-3.6.3.js"></script>
-<script type="text/javascript">
-
-	function calcMoney(){
-		var totalPrice = 0;
-		$('.crt_num').each(function(index, item){
-		    if(item.checked){
-		    	var i = item.id.split('_')[2];
-		    	totalPrice += Number($('#crt_price_' + i).val());
-		    }
-		})
-		
-		$('#total_price').val(totalPrice);
-	}
-
-	$(document).ready(function() {
-		
-		$('.count_check').click(function(e){
-			var index = e.currentTarget.id.split('_')[2]; 
-			var crt_num = $('#crt_num_' + index).val();		// 카트 번호
-			var menu_num = $('#menu_num_' + index).val();	// 메뉴 번호
-			var crt_count = $('#crt_count_' + index).val();	// 수량
-			$.ajax({
-				url:'./CartUpdate.ca',
-				data: { 'crt_num' : crt_num
-					  , 'menu_num' : menu_num
-					  , 'crt_count' : crt_count},
-				success: function(rdata){	// rdata: 가상주소로 이동해서 받은 결과를 저장할 변수 이름을 임의로 지정
-					$('#crt_price_' + index).val(rdata)
-					calcMoney();
-				}
-			});
-		})
-		
-		
-		// 체크박스 전체선택/해제
-		$( '#check-all' ).click( function() {
-          $( '.crt_num' ).prop( 'checked', this.checked );
-        });
-		
-		$('.crt_num').change(calcMoney);	
-		$('#check-all').change(calcMoney);
-		
-		
-});
+	<script type="text/javascript">
 	
-	function fun1() {
-		history.back();
-	}
+		function calcMoney(){
+			var totalPrice = 0;
+			$('.crt_num').each(function(index, item){
+			    if(item.checked){
+			    	var i = item.id.split('_')[2];
+			    	totalPrice += Number($('#crt_price_' + i).val());
+			    }
+			})
+			
+			$('#total_price').val(totalPrice);
+		}
 	
-	
-</script>
+		$(document).ready(function() {
+			
+			$('.count_check').click(function(e){
+				var index = e.currentTarget.id.split('_')[2]; 
+				var crt_num = $('#crt_num_' + index).val();		// 카트 번호
+				var menu_num = $('#menu_num_' + index).val();	// 메뉴 번호
+				var crt_count = $('#crt_count_' + index).val();	// 수량
+				$.ajax({
+					url:'./CartUpdate.ca',
+					data: { 'crt_num' : crt_num
+						  , 'menu_num' : menu_num
+						  , 'crt_count' : crt_count},
+					success: function(rdata){	// rdata: 가상주소로 이동해서 받은 결과를 저장할 변수 이름을 임의로 지정
+						$('#crt_price_' + index).val(rdata)
+						calcMoney();
+					}
+				});
+			})
+			
+			// 체크박스 전체선택/해제
+			$( '#check-all' ).click( function() {
+	          $( '.crt_num' ).prop( 'checked', this.checked );
+	        });
+			
+			$('.crt_num').change(calcMoney);	
+			$('#check-all').change(calcMoney);
+	});
+		
+		function fun1() {
+			history.back();
+		}
+	</script>
 	<title>CART LIST</title>
 </head>
 <jsp:include page="../inc/headerMenu.jsp"></jsp:include>
@@ -143,8 +137,6 @@
 					    <input type="text" name="menu_name" class="menu_name" value="<%=menu_name %>" style="border:0;" readonly>
 					    </td>
 					    <td>
-					    <!-- TODO 수량에 숫자가 아닌 문자 입력시 alert창 제어하기 -->
-<%-- 					    <input type="text" id="crt_count_<%=i%>" name="crt_count" class="crt_count" style="width:40px;" value="<%=dto.getCrt_count() %>"> --%>
 					    <input type="number" class="crt_count" step="1" min="0" id="crt_count_<%=i%>" name="crt_count" required value="<%=dto.getCrt_count() %>" style="text-align: left; width: 40px; height: 25px;">
 					    <input type="button" id="count_check_<%=i%>" class="count_check" style="background:#B2CCFF; border:#B2CCFF;"  value="수량변경">
 					    <input type="button" class="menu_delete" value="삭제" style="background:#B2CCFF; border:#B2CCFF;"
@@ -154,10 +146,8 @@
 					    	<%
 					    }
 					    %>
-					    
 					</table>
 					<%
-					// TODO 모든 금액에 패턴적용하기 => ##,###
 					int totalPrice = dao.getTotalPrice(cus_id);
 					%>
 					<div class="text-center">
@@ -178,8 +168,8 @@
 	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-<!-- footer -->
-<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- footer -->
+	<jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
@@ -190,7 +180,7 @@
 	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
 	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Option 1: Bootstrap Bundle with Popper -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -198,4 +188,3 @@
 	<!-- Main JS -->
 	<script src="./js/app.min.js "></script>
 </html>
-						

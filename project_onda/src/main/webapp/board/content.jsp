@@ -1,7 +1,6 @@
 <%@page import="com.itwillbs.board.db.BoardDTO"%>
 <%@page import="com.itwillbs.board.db.BoardDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,8 +50,6 @@
 					<%
 					BoardDTO dto = (BoardDTO)request.getAttribute("dto");
 					String cus_id=(String)session.getAttribute("cus_id");
-					
-					
 					%>
 					<table class="table">
 						<tr><th>글번호</th><td><%=dto.getQna_num() %></td></tr>
@@ -64,8 +61,6 @@
 					</table>	
 					<div class="text-right">
 					<%
-					
-					
 					if(cus_id == null) {
 						%>
 						<script type="text/javascript">
@@ -106,9 +101,6 @@
 					%>
 						<input type="button" value="글목록" class="btn btn-primary btn-shadow btn-lg"
 						onclick="location.href='./ReplyList.bo'">
-						
-						
-						
 					</div>
       			</div>
             </div>
@@ -120,8 +112,8 @@
 	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-<!-- footer -->
-<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- footer -->
+	<jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
@@ -132,7 +124,7 @@
 	<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
 	<script src="./vendor/stellar/jquery.stellar.js" type="text/javascript" charset="utf-8"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Option 1: Bootstrap Bundle with Popper -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

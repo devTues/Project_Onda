@@ -1,7 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.res.db.TableDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,7 +212,8 @@ List<TableDTO> tableList =  (List<TableDTO>)request.getAttribute("tableList");
     </div>
 </section>
 </div>
-<jsp:include page="../inc/footerMain.jsp"></jsp:include>
+	<!-- footer -->
+	<jsp:include page="../inc/footerMain.jsp"></jsp:include>
 	<!-- External JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
